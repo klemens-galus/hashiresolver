@@ -40,7 +40,7 @@ class LevelSelector
         @ListeButton.each{ |n| n.signal_connect "clicked" do |_widget|
             puts "Hello World!!"
           end}
-
+   
         provider = Gtk::CssProvider.new()
         provider.load(data: <<-CSS)
         #BTNLVL{
