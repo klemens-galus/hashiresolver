@@ -10,7 +10,6 @@ class MainMenu
   def buildInterface()
     @builder = Gtk::Builder.new()
     @builder.add_from_file("../asset/glade/mainMenu.glade")
-p
     @mainWindow = @builder.get_object("mainWindow")
     @mainWindow.set_title("Main Menu")
 
