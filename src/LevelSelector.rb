@@ -13,8 +13,13 @@ class LevelSelector
         builder = Gtk::Builder.new()
         builder.add_from_file("../asset/glade/LevelSelector.glade")
         main = builder.get_object('mainWindow')
+        
+        mainColor = Gdk::RGBA::parse("#003049")
+        secondColor = Gdk::RGBA::parse("#00507a")
+        main.override_background_color(:'normal', mainColor)
 
         listbox = builder.get_object('listbox')
+        listbox.override_background_color(:'normal', secondColor)
         main.set_title("Main menu")
 
 
@@ -31,6 +36,8 @@ class LevelSelector
 
         button = Gtk::Button.new()
         button.add(label);
+        button.override_background_color(:'normal', secondColor)
+        button.relief = Gtk::RELIEF_NONE
         @ListeButton.push(button)
         
         
