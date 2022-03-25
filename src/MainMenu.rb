@@ -1,6 +1,6 @@
 require "gtk3"
-require "gdk3"
 require "./SecondWindowTest.rb"
+require "./ArcadeMenu.rb"
 
 class MainMenu
   def initialize()
@@ -10,7 +10,7 @@ class MainMenu
   def buildInterface()
     @builder = Gtk::Builder.new()
     @builder.add_from_file("../asset/glade/mainMenu.glade")
-
+p
     @mainWindow = @builder.get_object("mainWindow")
     @mainWindow.set_title("Main Menu")
 
@@ -24,9 +24,14 @@ class MainMenu
 
     @mainWindow.set_window_position(Gtk::WindowPosition::CENTER)
 
-    @continuerBtn = @builder.get_object("continuerBtn")
-    @continuerBtn.signal_connect('clicked') do
+    continuerBtn = @builder.get_object("continuerBtn")
+    continuerBtn.signal_connect('clicked') do
       play()
+    end
+
+    arcadeBtn = @builder.get_object("arcadeBtn")
+    arcadeBtn.signal_connect('clicked') do
+      arcade()
     end
   end
 
@@ -36,7 +41,18 @@ class MainMenu
   end
 
   def play()
-    @mainWindow.remove(@builder.get_object("box1"))
+    puts "Je lance play"
+    clearWindow()
     secondWindow = SecondWindowTest.new(@mainWindow)
+  end
+
+  def arcade()
+    puts("je lance l'arcade")
+    clearWindow()
+    arcadeWindow = ArcadeMenu.new(@mainWindow)
+  end
+
+  def clearWindow()
+    @mainWindow.remove(@builder.get_object("mainMenuBox"))
   end
 end

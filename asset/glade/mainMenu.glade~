@@ -15,7 +15,7 @@
         <property name="orientation">vertical</property>
         <property name="spacing">65</property>
         <child>
-          <object class="GtkBox" id="box1">
+          <object class="GtkBox" id="mainMenuBox">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <child type="center">

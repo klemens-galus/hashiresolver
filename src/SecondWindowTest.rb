@@ -1,5 +1,4 @@
 require "gtk3"
-require "gdk3"
 
 class SecondWindowTest
   def initialize(fenetre)
