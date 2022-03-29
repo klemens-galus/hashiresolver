@@ -61,17 +61,17 @@ class ArcadeMenu
     def facile()
         puts("Facile")
         clearWindow()
-        levelWindow = LevelSelector.new(@mainWindow,"facile")
+        levelWindow = LevelSelector.new(@mainWindow,"facile",@pseudo )
     end
     def normal()
         puts("Normal")
         clearWindow()
-        levelWindow = LevelSelector.new(@mainWindow,"normal")
+        levelWindow = LevelSelector.new(@mainWindow,"normal",@pseudo)
     end
     def difficile()
         puts("Difficile")
         clearWindow()
-        levelWindow = LevelSelector.new(@mainWindow,"difficile")
+        levelWindow = LevelSelector.new(@mainWindow,"difficile",@pseudo)
     end
     def clearWindow()
         @mainWindow.remove(@builder.get_object("arcadeBox"))

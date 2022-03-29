@@ -7,7 +7,8 @@ class LevelSelector
 
     #@ListeNiveaux Liste des niveaux
 
-    def initialize(fenetre, diff)
+    def initialize(fenetre, diff, pseudo)
+        @pseudo = pseudo;
 
         @builder = Gtk::Builder.new()
         @builder.add_from_file("../asset/glade/LevelSelector.glade")
@@ -69,7 +70,7 @@ class LevelSelector
         retourBtn = @builder.get_object("retourBtn")
         retourBtn.signal_connect('clicked') do
             clearWindow()
-            mainMenu = ArcadeMenu.new(@main)
+            mainMenu = ArcadeMenu.new(@main, @pseudo)
         end
 
         retourBtn.signal_connect('enter-notify-event') do
