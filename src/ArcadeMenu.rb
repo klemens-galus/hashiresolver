@@ -19,8 +19,6 @@ class ArcadeMenu
             Gtk.main_quit()
         end
 
-        @mainWindow.override_background_color(:"normal", Gdk::RGBA::parse("#003049"))
-
         facileBtn = @builder.get_object("facileBtn")
         facileBtn.signal_connect('clicked') do
             puts "Facile";
@@ -35,6 +33,17 @@ class ArcadeMenu
         difficileBtn.signal_connect('clicked') do
             puts "Difficile"
         end
+
+        retourBtn = @builder.get_object("retourBtn")
+        retourBtn.signal_connect('clicked') do
+            clearWindow()
+            mainMenu = MainMenu.new(@mainWindow)
+        end 
+        
+    end
+
+    def clearWindow()
+        @mainWindow.remove(@builder.get_object("arcadeBox"))
     end
 
 end

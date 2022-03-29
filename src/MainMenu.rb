@@ -3,25 +3,22 @@ require "./SecondWindowTest.rb"
 require "./ArcadeMenu.rb"
 
 class MainMenu
-  def initialize()
-    buildInterface()
+  def initialize(fenetre)
+    buildInterface(fenetre)
   end
 
-  def buildInterface()
+  def buildInterface(fenetre)
     @builder = Gtk::Builder.new()
     @builder.add_from_file("../asset/glade/mainMenu.glade")
-    @mainWindow = @builder.get_object("mainWindow")
+
+    @mainWindow = fenetre
+    @builder.get_object("mainWindow").remove(@builder.get_object("mainMenuBox"))
+    @mainWindow.add(@builder.get_object("mainMenuBox"))
     @mainWindow.set_title("Main Menu")
-
-    mainColor = Gdk::RGBA::parse("#003049")
-
-    @mainWindow.override_background_color(:'normal', mainColor)
 
     @mainWindow.signal_connect "destroy" do
       Gtk.main_quit()
     end
-
-    @mainWindow.set_window_position(Gtk::WindowPosition::CENTER)
 
     continuerBtn = @builder.get_object("continuerBtn")
     continuerBtn.signal_connect('clicked') do
