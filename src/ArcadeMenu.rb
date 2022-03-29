@@ -38,7 +38,14 @@ class ArcadeMenu
         retourBtn.signal_connect('clicked') do
             clearWindow()
             mainMenu = MainMenu.new(@mainWindow)
-        end 
+        end
+
+        retourBtn.signal_connect('enter-notify-event') do
+            @builder.get_object("retourImage").set_from_file("../asset/images/return_hover.png");
+        end
+        retourBtn.signal_connect('leave-notify-event') do
+            @builder.get_object("retourImage").set_from_file("../asset/images/return.png");
+        end
         
     end
 

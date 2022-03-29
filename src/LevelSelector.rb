@@ -4,9 +4,7 @@ require 'gdk3'
 
 class LevelSelector
 
-    @ListeNiveaux
-
-    #private_class_method :new
+    #@ListeNiveaux Liste des niveaux
 
     def initialize()
 
