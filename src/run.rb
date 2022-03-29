@@ -10,5 +10,5 @@ mainWindow.set_window_position(Gtk::WindowPosition::CENTER)
 
 mainWindow.set_default_size(1280,720)
 
-mainMenu = MainMenu.new(mainWindow)
+mainMenu = MainMenu.new(mainWindow, "Romain")
 mainMenu.show()

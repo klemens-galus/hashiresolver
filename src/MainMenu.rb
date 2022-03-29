@@ -3,7 +3,8 @@ require "./SecondWindowTest.rb"
 require "./ArcadeMenu.rb"
 
 class MainMenu
-  def initialize(fenetre)
+  def initialize(fenetre, pseudo)
+    @pseudo = pseudo
     buildInterface(fenetre)
   end
 
@@ -19,6 +20,9 @@ class MainMenu
     @mainWindow.signal_connect "destroy" do
       Gtk.main_quit()
     end
+
+    @bienvenueLabel = @builder.get_object("bienvenueLabel")
+    @bienvenueLabel.set_text("Bienvenue " + @pseudo)
 
     continuerBtn = @builder.get_object("continuerBtn")
     continuerBtn.signal_connect('clicked') do
@@ -45,7 +49,7 @@ class MainMenu
   def arcade()
     puts("je lance l'arcade")
     clearWindow()
-    arcadeWindow = ArcadeMenu.new(@mainWindow)
+    arcadeWindow = ArcadeMenu.new(@mainWindow, @pseudo)
   end
 
   def clearWindow()
