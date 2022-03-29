@@ -1,5 +1,6 @@
 require_relative "./Ile"
 require_relative "./Jeu"
+require_relative "./Plateau"
 
 NORD = "N"
 SUD = "S"
@@ -8,11 +9,16 @@ OUEST = "O"
 V = "vertical"
 H = "horizontal"
 
-ileA = Ile.creer(5)   #               B
+stock = Plateau.init
+
+stock.lireFichier("Plateau_1_eazy.txt")
+
+=begin
+ileA = Ile.creer(5)   #                B7
 ileB = Ile.creer(7)   #
-ileC = Ile.creer(3)   #         C     A     D
+ileC = Ile.creer(3)   #         C3     A5     D6
 ileD = Ile.creer(6)   #
-ileE = Ile.creer(4)   #               E
+ileE = Ile.creer(4)   #                E4
 
 
 pontA = Pont.creer(ileA, ileB, V) # A est au sud de B
@@ -21,6 +27,7 @@ pontC = Pont.creer(ileD, ileA, H) # A est à l'ouest de D
 pontD = Pont.creer(ileE, ileA, V) # A est au nord de E
 
 jeu = Jeu.creer
+
 
 jeu.ajouterObj(0, 2, ileB)
 jeu.ajouterObj(2, 0, ileC)
@@ -32,10 +39,13 @@ jeu.ajouterObj(1, 2, pontA)
 jeu.ajouterObj(2, 1, pontB)
 jeu.ajouterObj(2, 3, pontC)
 jeu.ajouterObj(3, 2, pontD)
+=end
+
 
 while true
-  system("cls")
-  print(jeu.to_s)
+
+  #system("cls")
+  stock.afficher
   card = ""
 
   loop do
@@ -48,17 +58,19 @@ while true
     end
   end
 
-  case card
-  when 'N'
-    ileA.modifiePont(card)
-  when 'S'
-    ileA.modifiePont(card)
-  when 'O'
-    ileA.modifiePont(card)
-  when 'E'
-    ileA.modifiePont(card)
-  else "Erreur"
-  end
+
+  #case card
+  #when 'N'
+  #  ileA.modifiePont(card)
+  #when 'S'
+  #  ileA.modifiePont(card)
+ # when 'O'
+ #   ileA.modifiePont(card)
+ # when 'E'
+ #   ileA.modifiePont(card)
+ # else "Erreur"
+ # end
+
 
 end
 
