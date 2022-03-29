@@ -11,7 +11,8 @@ class LevelSelector
         @pseudo = pseudo;
 
         @builder = Gtk::Builder.new()
-        @builder.add_from_file("../asset/glade/LevelSelector.glade")
+        #@builder.add_from_file("../asset/glade/LevelSelector.glade")
+        @builder.add_from_file("../asset/glade/LevelSelector2.glade")
         @builder.get_object('mainWindow').remove(@builder.get_object("levels"))
 
         @main = fenetre
