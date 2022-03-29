@@ -1,5 +1,6 @@
 require 'gtk3'
 require 'gdk3'
+require "./ArcadeMenu.rb"
 
 
 class LevelSelector
@@ -8,19 +9,19 @@ class LevelSelector
 
     def initialize(fenetre, diff)
 
-        builder = Gtk::Builder.new()
-        builder.add_from_file("../asset/glade/LevelSelector.glade")
-        builder.get_object('mainWindow').remove(builder.get_object("levels"))
+        @builder = Gtk::Builder.new()
+        @builder.add_from_file("../asset/glade/LevelSelector.glade")
+        @builder.get_object('mainWindow').remove(@builder.get_object("levels"))
 
-        main = fenetre
-        main.add(builder.get_object("levels"))
+        @main = fenetre
+        @main.add(@builder.get_object("levels"))
         mainColor = Gdk::RGBA::parse("#003049")
         secondColor = Gdk::RGBA::parse("#00507a")
-        main.override_background_color(:'normal', mainColor)
+        @main.override_background_color(:'normal', mainColor)
 
-        listbox = builder.get_object('listbox')
+        listbox = @builder.get_object('listbox')
         listbox.override_background_color(:'normal', secondColor)
-        main.set_title("Main menu")
+        @main.set_title("Main menu")
 
 
         @ListeNiveaux = Array.new()
@@ -60,19 +61,34 @@ class LevelSelector
         @ListeButton.each{ |n| listbox.add(n)}
 
 
-       
+        button = Gtk::Button.new(:label => "Say hello")
+        button.signal_connect "clicked" do |_widget|
+          puts "Hello World!!"
+        end
+
+        retourBtn = @builder.get_object("retourBtn")
+        retourBtn.signal_connect('clicked') do
+            clearWindow()
+            mainMenu = ArcadeMenu.new(@main)
+        end
+
+        retourBtn.signal_connect('enter-notify-event') do
+            @builder.get_object("retourImage").set_from_file("../asset/images/return_hover.png");
+        end
+        retourBtn.signal_connect('leave-notify-event') do
+            @builder.get_object("retourImage").set_from_file("../asset/images/return.png");
+        end
 
 
 
-    button = Gtk::Button.new(:label => "Say hello")
-    button.signal_connect "clicked" do |_widget|
-      puts "Hello World!!"
+        #main.add(button)
+        @main.signal_connect("delete-event") { |_widget| Gtk.main_quit }
+        @main.show_all
     end
 
-    #main.add(button)
-    main.signal_connect("delete-event") { |_widget| Gtk.main_quit }
-    main.show_all
-        end
+    def clearWindow()
+        @main.remove(@builder.get_object("levels"))
+    end
 
 end
 

@@ -8,7 +8,7 @@
     <property name="can-focus">False</property>
     <property name="resizable">False</property>
     <child>
-      <object class="GtkFixed">
+      <object class="GtkFixed" id="levels">
         <property name="can-focus">False</property>
         <child>
           <object class="GtkLabel">
@@ -51,6 +51,25 @@
           <packing>
             <property name="x">320</property>
             <property name="y">200</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="retourBtn">
+            <property name="width-request">100</property>
+            <property name="height-request">80</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <child>
+              <object class="GtkImage" id="retourImage">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="pixbuf">../images/return.png</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="y">24</property>
           </packing>
         </child>
       </object>
