@@ -1,4 +1,5 @@
 require 'gtk3'
+require "./LevelSelector.rb"
 
 class ArcadeMenu
 
@@ -24,6 +25,7 @@ class ArcadeMenu
         facileBtn = @builder.get_object("facileBtn")
         facileBtn.signal_connect('clicked') do
             puts "Facile";
+            facile()
         end
 
         normalBtn = @builder.get_object("normalBtn")
@@ -35,6 +37,25 @@ class ArcadeMenu
         difficileBtn.signal_connect('clicked') do
             puts "Difficile"
         end
+    end
+
+    def facile()
+        puts("Facile")
+        clearWindow()
+        levelWindow = LevelSelector.new(@mainWindow,"facile")
+    end
+    def normal()
+        puts("Normal")
+        clearWindow()
+        levelWindow = LevelSelector.new(@mainWindow,"normal")
+    end
+    def difficile()
+        puts("Difficile")
+        clearWindow()
+        levelWindow = LevelSelector.new(@mainWindow,"difficile")
+    end
+    def clearWindow()
+        @mainWindow.remove(@builder.get_object("arcadeBox"))
     end
 
 end

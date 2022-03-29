@@ -8,12 +8,14 @@ class LevelSelector
 
     #private_class_method :new
 
-    def initialize()
+    def initialize(fenetre, diff)
 
         builder = Gtk::Builder.new()
         builder.add_from_file("../asset/glade/LevelSelector.glade")
-        main = builder.get_object('mainWindow')
-        
+        builder.get_object('mainWindow').remove(builder.get_object("levels"))
+
+        main = fenetre
+        main.add(builder.get_object("levels"))
         mainColor = Gdk::RGBA::parse("#003049")
         secondColor = Gdk::RGBA::parse("#00507a")
         main.override_background_color(:'normal', mainColor)
@@ -26,7 +28,7 @@ class LevelSelector
         @ListeNiveaux = Array.new()
         @ListeButton = Array.new()
         @ListeLabels = Array.new()
-        @files = Dir.glob("../levels/*")
+        @files = Dir.glob("../levels/"+diff+"/*")
 
         @files.each{ |n| @ListeNiveaux.push(File.basename(n,"*"))}
         puts(@ListeNiveaux)
@@ -37,7 +39,7 @@ class LevelSelector
         button = Gtk::Button.new()
         button.add(label);
         button.override_background_color(:'normal', secondColor)
-        button.relief = Gtk::RELIEF_NONE
+        button.relief = Gtk::ReliefStyle::NONE
         @ListeButton.push(button)
         
         
@@ -64,18 +66,15 @@ class LevelSelector
 
 
 
-button = Gtk::Button.new(:label => "Say hello")
-button.signal_connect "clicked" do |_widget|
-  puts "Hello World!!"
-end
-
-#main.add(button)
-main.signal_connect("delete-event") { |_widget| Gtk.main_quit }
-main.show_all
+    button = Gtk::Button.new(:label => "Say hello")
+    button.signal_connect "clicked" do |_widget|
+      puts "Hello World!!"
     end
 
+    #main.add(button)
+    main.signal_connect("delete-event") { |_widget| Gtk.main_quit }
+    main.show_all
+        end
+
 end
 
-
-a = LevelSelector.new()
-Gtk.main()

@@ -9,7 +9,6 @@
     <property name="resizable">False</property>
     <child>
       <object class="GtkFixed">
-        <property name="visible">True</property>
         <property name="can-focus">False</property>
         <child>
           <object class="GtkLabel">
@@ -21,6 +20,7 @@
             <attributes>
               <attribute name="font-desc" value="Franchise 10"/>
               <attribute name="scale" value="7"/>
+              <attribute name="foreground" value="#ffffffffffff"/>
             </attributes>
           </object>
           <packing>
