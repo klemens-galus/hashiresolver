@@ -31,8 +31,8 @@ class Pont
 
     else orientation == "horizontal"
 
-      @ileA.ajouteLiasion(self, ileB, "E")
-      @ileB.ajouteLiasion(self, ileA, "O")
+      @ileA.ajouteLiasion(self, ileB, "O")
+      @ileB.ajouteLiasion(self, ileA, "E")
 
     end
 
@@ -62,28 +62,14 @@ class Pont
     end
   end
 
-  ##
-  # Retourne un String en fonction de la taille du pont
-  # Taille = 0 : " "
-  # Taille = 1 : "-"
-  # Taille = 2 : "="
-  def affichePont
-
-    case @taille
-    when 0
-      " "
-    when 1
-      "-"
-    when 2
-      "="
-    else
-      "Error"
-    end
-
-  end
-
   def to_s
-    "Taille : #{@taille}"
+    if @taille == 0
+      " "
+    elsif @taille == 1
+      "-"
+    else
+      "="
+    end
   end
 
 end

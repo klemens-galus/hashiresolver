@@ -195,7 +195,7 @@ class Ile
   end
 
   def to_s
-    "Taille : #{@tailleIle}, nbPonts : #{@nbPont}"
+    "#{@tailleIle}"
   end
 
 end
