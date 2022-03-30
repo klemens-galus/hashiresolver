@@ -1,21 +1,21 @@
 require 'gtk3'
 require 'gdk3'
-require "./ArcadeMenu.rb"
+require "./MainMenu.rb"
 
 
-class LevelSelector
+class ClassementMenu
 
     #@ListeNiveaux Liste des niveaux
 
-    def initialize(fenetre, diff, pseudo)
+    def initialize(fenetre, pseudo)
         @pseudo = pseudo;
 
         @builder = Gtk::Builder.new()
-        @builder.add_from_file("../asset/glade/LevelSelector.glade")
-        @builder.get_object('mainWindow').remove(@builder.get_object("levels"))
+        @builder.add_from_file("../asset/glade/ClassementMenu.glade")
+        @builder.get_object('mainWindow').remove(@builder.get_object("classementBox"))
 
         @main = fenetre
-        @main.add(@builder.get_object("levels"))
+        @main.add(@builder.get_object("classementBox"))
         mainColor = Gdk::RGBA::parse("#003049")
         secondColor = Gdk::RGBA::parse("#00507a")
         @main.override_background_color(:'normal', mainColor)
@@ -25,50 +25,42 @@ class LevelSelector
         @main.set_title("Selection du niveau")
 
 
+        listeScores = Hash.new()
+
         @ListeNiveaux = Array.new()
         @ListeButton = Array.new()
         @ListeLabels = Array.new()
-        @files = Dir.glob("../levels/"+diff+"/*")
+        @files = Dir.glob("../saves/*")
 
-        @files.each{ |n| @ListeNiveaux.push(File.basename(n,"*"))}
-        puts(@ListeNiveaux)
-        @ListeNiveaux.each{ |n| 
-          label = Gtk::Label.new(n)
-          @ListeLabels.push(label)
+        @files.each do |n|
+            f = File.open(n)
+            score = f.read()
+            f.close()
 
-          button = Gtk::Button.new()
-          button.add(label);
-          button.override_background_color(:'normal', secondColor)
-          button.relief = Gtk::ReliefStyle::NONE
-          @ListeButton.push(button)
-        }
-        @ListeLabels.each{ |n| n.name = "BTNLVL"}
+            listeScores[File.basename(n, "*")] = score
+        end
         
-        @ListeButton.each{ |n| n.signal_connect "clicked" do |_widget|
-            puts "Hello World!!"
-          end}
+        listeScores.each do |k,v| 
+          label = Gtk::Label.new(k + " : " + v)
+          label.name = "score"
+
+          listbox.add(label)
+        end
+        
    
         provider = Gtk::CssProvider.new()
         provider.load(data: <<-CSS)
-        #BTNLVL{
+        #score{
             font-family: "Pixellari";
             font-size: 65px;
         }
         CSS
         Gtk::StyleContext.add_provider_for_screen(Gdk::Screen.default, provider, Gtk::StyleProvider::PRIORITY_APPLICATION)
-        
-        @ListeButton.each{ |n| listbox.add(n)}
-
-
-        button = Gtk::Button.new(:label => "Say hello")
-        button.signal_connect "clicked" do |_widget|
-          puts "Hello World!!"
-        end
 
         retourBtn = @builder.get_object("retourBtn")
         retourBtn.signal_connect('clicked') do
             clearWindow()
-            mainMenu = ArcadeMenu.new(@main, @pseudo)
+            mainMenu = MainMenu.new(@main, @pseudo)
         end
 
         retourBtn.signal_connect('enter-notify-event') do
@@ -78,16 +70,11 @@ class LevelSelector
             @builder.get_object("retourImage").set_from_file("../asset/images/return.png");
         end
 
-
-
-        #main.add(button)
-        @main.signal_connect("delete-event") { |_widget| Gtk.main_quit }
         @main.show_all
     end
 
     def clearWindow()
-        @main.remove(@builder.get_object("levels"))
+        @main.remove(@builder.get_object("classementBox"))
     end
-
 end
 
