@@ -16,7 +16,7 @@
             <property name="height-request">80</property>
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="label" translatable="yes">SELECTION DES NIVEAUX</property>
+            <property name="label" translatable="yes">HASHIRESOLVER</property>
             <attributes>
               <attribute name="font-desc" value="Franchise 10"/>
               <attribute name="scale" value="7"/>
