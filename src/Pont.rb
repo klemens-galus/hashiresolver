@@ -2,6 +2,7 @@ require_relative "./Ile"
 
 class Pont
 
+  @@nbPont = 0
   # @ileA
   # @ileB
   # @taille
@@ -20,19 +21,18 @@ class Pont
   # @param [Ile, Ile], 2 iles
   #
   def initialize(ileA, ileB, orientation)
-
     @ileA = ileA
     @ileB = ileB
     @taille = 0
     if orientation == "vertical"
 
-      @ileA.ajouteLiasion(self, ileB, "N")
-      @ileB.ajouteLiasion(self, ileA, "S")
+      @ileA.ajouteLiaision(self, ileB, "N")
+      @ileB.ajouteLiaision(self, ileA, "S")
 
     else orientation == "horizontal"
 
-      @ileA.ajouteLiasion(self, ileB, "O")
-      @ileB.ajouteLiasion(self, ileA, "E")
+      @ileA.ajouteLiaision(self, ileB, "O")
+      @ileB.ajouteLiaision(self, ileA, "E")
 
     end
 
@@ -60,6 +60,7 @@ class Pont
     else
       "Error"
     end
+
   end
 
   def to_s

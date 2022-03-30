@@ -13,6 +13,8 @@ stock = Plateau.init
 
 stock.lireFichier("Plateau_1_eazy.txt")
 
+jeu = stock.plateauFacile.at(0)
+
 =begin
 ileA = Ile.creer(5)   #                B7
 ileB = Ile.creer(7)   #
@@ -42,34 +44,48 @@ jeu.ajouterObj(3, 2, pontD)
 =end
 
 
+
 while true
 
   #system("cls")
   stock.afficher
+  x, y = 0, 0
   card = ""
+
+  loop do
+
+    print("Choississez la coordonné X !\n")
+    x = gets.to_i
+    unless x < 0 || x > Math.sqrt(jeu.taille) - 1 || x.class != Integer
+      break
+    end
+  end
+
+  loop do
+
+    print("Choississez la coordonné Y !\n")
+    y = gets.to_i
+
+    unless y < 0 || y > Math.sqrt(jeu.taille) - 1 || y.class != Integer
+      break
+    end
+  end
 
   loop do
 
     print("Choississez le pont à ajouter ! (N, S, E, O) \n")
     card = gets.chomp
-
     if card == 'N' || card == 'S' || card == 'O' || card == 'E'
+
       break
     end
   end
 
 
-  #case card
-  #when 'N'
-  #  ileA.modifiePont(card)
-  #when 'S'
-  #  ileA.modifiePont(card)
- # when 'O'
- #   ileA.modifiePont(card)
- # when 'E'
- #   ileA.modifiePont(card)
- # else "Erreur"
- # end
+  if jeu.estIle(x, y)
+    jeu.getCase(x, y).modifiePont(card)
+  end
+
 
 
 end

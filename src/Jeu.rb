@@ -13,6 +13,20 @@ class Jeu
     @taille = taille
     @jeu.fill("@")
   end
+
+  attr_reader :taille
+
+  def getCase(x, y)
+    @jeu.at(x + Math.sqrt(@taille) * y)
+  end
+
+  def estIle(x, y)
+    if @jeu.at(x + Math.sqrt(@taille) * y).class == Ile
+      true
+    else
+      false
+    end
+  end
   
   def ajouterObj(x, y, obj)
     if(x >= 0 && x < Math.sqrt(@taille)) && (y >=0 && y < Math.sqrt(@taille))

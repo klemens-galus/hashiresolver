@@ -8,11 +8,11 @@ class Ile
   # @pont           => Tableau comprenant les différents ponts
 
   # @param [Integer]
-  def Ile.creer(taille)
-    new(taille)
+  def Ile.creer(taille, x, y)
+    new(taille, x, y)
   end
 
-  def initialize(taille)
+  def initialize(taille, x, y)
 
     # On définit une taille pour le tableau contenant les iles voisines, comme une ile peut avoir 4 voisines, alors on définit une taille de 4
     @ileVoisine = Array.new(4)
@@ -30,10 +30,15 @@ class Ile
     @nbPont = 0
 
     @pont = [nil, nil, nil, nil]
+
+    @x = x
+    @y = y
   end
 
+  attr_reader :pont
   attr_reader :tailleIle
   attr_accessor :nbPont
+  attr_reader :x, :y
 
 
   ##
@@ -43,7 +48,7 @@ class Ile
     @nbPont == @tailleIle ? true : false
   end
 
-  def ajouteLiasion(pont, ileB, cardinal)
+  def ajouteLiaision(pont, ileB, cardinal)
 
     case cardinal
     when "N"

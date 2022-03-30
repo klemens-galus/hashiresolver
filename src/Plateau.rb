@@ -20,10 +20,13 @@ class Plateau
     @plateauDifficile = Array.new
   end
 
+  attr_reader :plateauFacile
+  attr_reader :plateauMoyen
+  attr_reader :plateauDifficile
+
   def lireFichier(fichier)
     # Nouveau tableau
     tab = Array.new
-    tab_temp = Array.new
     tab_final = Array.new
 
     #On crée un nouveau jeu
@@ -44,24 +47,35 @@ class Plateau
       taille_ile = tab_final.at(i).at(0).to_i
       x = tab_final.at(i).at(1).to_i
       y = tab_final.at(i).at(2).to_i
-      @plateauFacile.at(0).ajouterObj(x, y, Ile.creer(taille_ile))
+      @plateauFacile.at(0).ajouterObj(x, y, Ile.creer(taille_ile, x, y))
       i+=1
     end
+    setLiaison
+  end
 
-    #j = 0
-    #nb_pont = tab_final.at(nb_ile).at(1).to_i
-    #while j < nb_pont
-    #  ileA = nil
-    #  ileB = nil
-    #  @plateauFacile.at(1).ajouterObj(0, 2, Pont.creer())
-    #  j+=1
-    #end
+  def setLiaison
 
+    jeu = @plateauFacile.at(0)
 
+    x = 0
+    y = 0
+
+    for x in 0..Math.sqrt(jeu.taille) - 1
+      for y in 0..Math.sqrt(jeu.taille) - 1
+        if jeu.estIle(x - 1, y) && jeu.estIle(x + 1, y)
+          puts "ajout H"
+          jeu.ajouterObj(x, y, Pont.creer(jeu.getCase(x + 1, y), jeu.getCase(x - 1, y), "vertical"))
+        end
+        if jeu.estIle(x, y - 1) && jeu.estIle(x, y + 1)
+          puts "ajout V"
+          jeu.ajouterObj(x, y, Pont.creer(jeu.getCase(x, y + 1), jeu.getCase(x, y - 1), "horizontal"))
+        end
+      end
+    end
   end
 
   def afficher
-    print @plateauFacile.at(0).to_s
+    puts @plateauFacile.at(0).to_s
   end
 
 end
