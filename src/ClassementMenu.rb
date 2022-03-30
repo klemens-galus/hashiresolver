@@ -40,7 +40,8 @@ class ClassementMenu
             listeScores[File.basename(n, "*")] = score
         end
         
-        listeScores.each do |k,v| 
+
+        listeScores.sort_by{|name, score| score.to_i()}.reverse().each do |k,v| 
           label = Gtk::Label.new(k + " : " + v)
           label.name = "score"
 
