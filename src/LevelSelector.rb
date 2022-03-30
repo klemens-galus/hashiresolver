@@ -5,8 +5,6 @@ require "./ArcadeMenu.rb"
 
 class LevelSelector
 
-    #@ListeNiveaux Liste des niveaux
-
     def initialize(fenetre, diff, pseudo)
         @pseudo = pseudo;
 
