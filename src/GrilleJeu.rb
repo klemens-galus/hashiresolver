@@ -21,9 +21,6 @@ class GrilleJeu
 
         @mainWindow.override_background_color(:"normal", Gdk::RGBA::parse("#003049"))
 
-       # spacingBox = @builder.get_object("spacingBox")
-        #spacingBox.override_background_color(:"normal", Gdk::RGBA::parse("#004366"))
-
         panneauGaucheBox = @builder.get_object("panneauGaucheBox")
         panneauGaucheBox.override_background_color(:"normal", Gdk::RGBA::parse("#004366"))
 
@@ -36,6 +33,19 @@ class GrilleJeu
         aideBox = @builder.get_object("aideBox")
         aideBox.override_background_color(:"normal", Gdk::RGBA::parse("#004366"))
 
+        panneauGaucheBox.name = "panneauGaucheBox"
+        panneauHautBox.name = "panneauHautBox"
+        panneauBasBox.name = "panneauBasBox"
+        aideBox.name = "aideBox"
+
+        provider = Gtk::CssProvider.new()
+        provider.load(data: <<-CSS)
+        #panneauGaucheBox, #panneauHautBox, #panneauBasBox, #aideBox{
+            border: 1px solid black;
+        }
+        CSS
+
+        Gtk::StyleContext.add_provider_for_screen(Gdk::Screen.default, provider, Gtk::StyleProvider::PRIORITY_APPLICATION)
 
     end
 
