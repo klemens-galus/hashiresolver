@@ -1,6 +1,7 @@
 require "gtk3"
 require "./SecondWindowTest.rb"
 require "./ArcadeMenu.rb"
+require "./Astuces.rb"
 
 class MainMenu
   def initialize(fenetre, pseudo)
@@ -33,6 +34,11 @@ class MainMenu
     arcadeBtn.signal_connect('clicked') do
       arcade()
     end
+
+    tutoBtn = @builder.get_object("tutoBtn")
+    tutoBtn.signal_connect('clicked') do
+      tuto()
+    end
   end
 
   def show()
@@ -50,6 +56,12 @@ class MainMenu
     puts("je lance l'arcade")
     clearWindow()
     arcadeWindow = ArcadeMenu.new(@mainWindow, @pseudo)
+  end
+
+  def tuto()
+    puts("je lance le tuto")
+    clearWindow()
+    tutoWindow = Astuces.new(@mainWindow, @pseudo)
   end
 
   def clearWindow()
