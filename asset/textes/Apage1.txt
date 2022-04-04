@@ -1,0 +1,11 @@
+Tout pont débute et finit sur une île.
+
+Deux îles ne peuvent pas être reliées par plus de deux ponts.
+
+Aucun pont ne peut en croiser un autre.
+
+Tous les ponts sont en ligne droite, à l'horizontale ou à la verticale.
+
+Le nombre de ponts qui passent sur une île est le nombre indiqué sur l'île.
+
+Toutes les îles doivent être reliées entre elles.
