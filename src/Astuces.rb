@@ -5,6 +5,12 @@ require "./ArcadeMenu.rb"
 
 class Astuces
 
+  def remplir(file)
+    fich = File.open(file)
+    puts fich.read()
+    fich.close()
+
+  end
   def initialize(fenetre, pseudo)
     @pseudo = pseudo;
     mainColor = Gdk::RGBA::parse("#003049")
@@ -27,7 +33,7 @@ Aucun pont ne peut en croiser un autre.\n
 Tous les ponts sont en ligne droite, à l'horizontale ou à la verticale.\n
 Le nombre de ponts qui passent sur une île est le nombre indiqué sur l'île.\n
 Toutes les îles doivent être reliées entre elles."
-
+    remplir("test.txt")
 
     tview = @builder.get_object("viewtext")
     tbuf = Gtk::TextBuffer.new
