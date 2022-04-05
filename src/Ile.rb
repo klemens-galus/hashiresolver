@@ -76,11 +76,12 @@ class Ile
 
     case cardinal
     when "N"          # Pont entre self et la voisine NORD
+      ileB = @ileVoisine.at(0)
       unless @pont.at(0).at(0) == nil
         if @pont.at(0).at(0).taille != 2
           # Si le pont ajoute des ponts
 
-          unless capaMaxAtteinte
+          unless capaMaxAtteinte || ileB.capaMaxAtteinte
             # Si la capaMax est pas atteinte
 
             pontModife(0)
@@ -103,12 +104,12 @@ class Ile
       end
 
     when "S"          # Pont entre self et la voisine SUD
-
+      ileB = @ileVoisine.at(1)
       unless @pont.at(1).at(0) == nil
         if @pont.at(1).at(0).taille != 2
           # Si le pont ajoute des ponts
 
-          unless capaMaxAtteinte
+          unless capaMaxAtteinte || ileB.capaMaxAtteinte
             # Si la capaMax est pas atteinte
 
             pontModife(1)
@@ -132,11 +133,12 @@ class Ile
 
     when "E"          # Pont entre self et la voisine EST
       puts "E"
+      ileB = @ileVoisine.at(2)
       unless @pont.at(2).at(0) == nil
         if @pont.at(2).at(0).taille != 2
           # Si le pont ajoute des ponts
 
-          unless capaMaxAtteinte
+          unless capaMaxAtteinte || ileB.capaMaxAtteinte
             # Si la capaMax est pas atteinte
 
             pontModife(2)
@@ -159,12 +161,12 @@ class Ile
       end
 
     when "O"          # Pont entre self et la voisine OUEST
-
+      ileB = @ileVoisine.at(3)
       unless @pont.at(3).at(0) == nil
         if @pont.at(3).at(0).taille != 2
           # Si le pont ajoute des ponts
 
-          unless capaMaxAtteinte
+          unless capaMaxAtteinte || ileB.capaMaxAtteinte
             # Si la capaMax est pas atteinte
 
             pontModife(3)
@@ -222,11 +224,12 @@ class Ile
     ileB = @ileVoisine.at(index)
     ileB.nbPont=(ileB.nbPont - @pont.at(index).at(0).taille)
 
-    puts @pont.at(index).size
-    # On modifie tout les ponts du tableau
-    for x in 0..@pont.at(index).size - 1
-      @pont.at(index).at(x).modifiePont
-    end
+
+      # On modifie tout les ponts du tableau
+      for x in 0..@pont.at(index).size - 1
+        @pont.at(index).at(x).modifiePont
+      end
+
 
     # On ajoute la nouvelle taille du pont
     @nbPont += @pont.at(index).at(0).taille
