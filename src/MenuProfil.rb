@@ -11,18 +11,20 @@ class MenuProfil
     def initialize(fenetre)
 
       @builder = Gtk::Builder.new()
-      @builder.add_from_file("../asset/glade/menuProfil.glade")
-      @builder.get_object("profilWindow").remove(@builder.get_object("profilBox"))
+      @builder.add_from_file("../asset/glade/menuProfil2.glade")
       @mainWindow = fenetre
-      @mainWindow.add(@builder.get_object('profilBox'))
+
+      @builder.get_object("mainWindow").remove(@builder.get_object("profils"))
+
+      @mainWindow.add(@builder.get_object('profils'))
 
       mainColor = Gdk::RGBA::parse("#003049")
       secondColor = Gdk::RGBA::parse("#00507a")
-      main.override_background_color(:'normal', mainColor)
+      @mainWindow.override_background_color(:'normal', mainColor)
 
       listbox = @builder.get_object('listbox')
       listbox.override_background_color(:'normal', secondColor)
-      main.set_title("Menu profil")
+      @mainWindow.set_title("Menu profil")
 
 
       @ListeProfil = Array.new()
@@ -49,6 +51,7 @@ class MenuProfil
 
 
       #save
+
       newProfilButton = @builder.get_object("newProfilButton")
       newProfilLabel = @builder.get_object("newProfilLabel")
       newProfilButton.signal_connect "clicked" do
@@ -62,7 +65,8 @@ class MenuProfil
 
       @ListeButton.each do |n|
         n.signal_connect "clicked" do |_widget|
-          puts "Hello World!!"
+          clearWindow()
+          mainMenu = MainMenu.new(@mainWindow, "ddddd")
         end
       end
 
@@ -84,14 +88,17 @@ class MenuProfil
       end
 
       #main.add(button)
-      main.signal_connect("delete-event") do |_widget|
+      @mainWindow.signal_connect("delete-event") do |_widget|
         Gtk.main_quit
       end
 
-      main.show_all
+      @mainWindow.show_all
 
     end
 
+    def clearWindow()
+      @mainWindow.remove(@builder.get_object("profils"))
+    end
 
     def showNewProfilPopup()
       #popup
