@@ -1,69 +1,113 @@
 require "gtk3"
-require "./ArcadeMenu.rb"
-require "./ClassementMenu.rb"
+require './ArcadeMenu'
+require './ClassementMenu'
 
+#
+# Menu principale
+#
 class MainMenu
+  # @pseudo pseudo du joueur
+  # @builder Builder glade pour récuperer les composants graphiques
+  # @window Fenetre dans laquelle le menu va s'afficher
+
+  #
+  # Initialisation
+  #
+  # @param [Gtk::Window] fenetre Fenetre dans laquelle le menu va s'afficher
+  # @param [String] pseudo du joueur
+  #
   def initialize(fenetre, pseudo)
     @pseudo = pseudo
-    buildInterface(fenetre)
+    @builder = Gtk::Builder.new
+
+    build_interface(fenetre)
+    connect_signals
   end
 
-  def buildInterface(fenetre)
-    @builder = Gtk::Builder.new()
-    @builder.add_from_file("../asset/glade/mainMenu.glade")
+  #
+  # Chargement des composants graphiques Gtk dans la fenetre
+  #
+  # @param [Gtk::Window] fenetre Fenetre dans laquelle le menu va s'afficher
+  #
+  def build_interface(fenetre)
+    @builder.add_from_file('../asset/glade/mainMenu.glade')
 
-    @mainWindow = fenetre
-    @builder.get_object("mainWindow").remove(@builder.get_object("mainMenuBox"))
-    @mainWindow.add(@builder.get_object("mainMenuBox"))
-    @mainWindow.set_title("Main Menu")
+    @window = fenetre
 
-    @mainWindow.signal_connect "destroy" do
-      Gtk.main_quit()
+    # Liberation de la Box principale qui ne peux etre ratachée qu'a une seule fenêtre
+    @builder.get_object('mainWindow').remove(@builder.get_object('mainMenuBox'))
+
+    # Ajout du contenu du menu dans la fenêtre
+    @window.add(@builder.get_object('mainMenuBox'))
+
+    # Style
+    @window.set_title('Main Menu')
+
+    bienvenue_label = @builder.get_object('bienvenueLabel')
+    bienvenue_label.set_text("Bienvenue #{@pseudo}")
+  end
+
+  #
+  # Gestion des signaux
+  #
+  def connect_signals
+    @window.signal_connect 'destroy' do
+      Gtk.main_quit
     end
 
-    bienvenueLabel = @builder.get_object("bienvenueLabel")
-    bienvenueLabel.set_text("Bienvenue " + @pseudo)
-
-    continuerBtn = @builder.get_object("continuerBtn")
-    continuerBtn.signal_connect('clicked') do
-      play()
+    continuer_btn = @builder.get_object('continuerBtn')
+    continuer_btn.signal_connect('clicked') do
+      play
     end
 
-    arcadeBtn = @builder.get_object("arcadeBtn")
-    arcadeBtn.signal_connect('clicked') do
-      arcade()
+    arcade_btn = @builder.get_object('arcadeBtn')
+    arcade_btn.signal_connect('clicked') do
+      arcade
     end
 
-    classementBtn = @builder.get_object("classementBtn")
-    classementBtn.signal_connect('clicked') do
-      classement()
+    classement_btn = @builder.get_object('classementBtn')
+    classement_btn.signal_connect('clicked') do
+      classement
     end
   end
 
-  def show()
-    @mainWindow.show_all()
-    Gtk.main()
+  #
+  # Affichage du menu
+  #
+  def show
+    @window.show_all
+    Gtk.main
   end
 
-  def play()
-    #puts "Je lance play"
-    #clearWindow()
-    #secondWindow = SecondWindowTest.new(@mainWindow)
+  #
+  # Lancement du mode aventure
+  #
+  def play
+    puts('Lancement jeu')
   end
 
-  def arcade()
+  #
+  # Lancement du mode arcade
+  #
+  def arcade
     puts("je lance l'arcade")
-    clearWindow()
-    arcadeWindow = ArcadeMenu.new(@mainWindow, @pseudo)
+    clear_window
+    ArcadeMenu.new(@window, @pseudo)
   end
 
-  def classement()
-    puts("je lance classement")
-    clearWindow()
-    classementWindow = ClassementMenu.new(@mainWindow, @pseudo)
+  #
+  # Lancement du menu de classement
+  #
+  def classement
+    puts('je lance classement')
+    clear_window
+    ClassementMenu.new(@window, @pseudo)
   end
 
-  def clearWindow()
-    @mainWindow.remove(@builder.get_object("mainMenuBox"))
+  #
+  # Methode qui vide la fenêtre. A utiliser avant de leguer la fenêtre à un nouveau menu
+  #
+  def clear_window
+    @window.remove(@builder.get_object('mainMenuBox'))
   end
 end
