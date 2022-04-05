@@ -7,7 +7,7 @@ require 'yaml'
 # Menu de classement des scores des joueurs
 #
 class ClassementMenu
-  # @pseudo pseudo du joueur
+  # @pseudo pseudo Pseudo du joueur
   # @builder Builder glade pour récuperer les composants graphiques
   # @window Fenetre dans laquelle le menu va s'afficher
   # @list_box Composant graphique pour l'affichage du classement
@@ -16,7 +16,7 @@ class ClassementMenu
   # Initialisation
   #
   # @param [Gtk::Window] fenetre Fenetre dans laquelle le menu va s'afficher
-  # @param [String] pseudo du joueur
+  # @param [String] pseudo Pseudo du joueur
   #
   def initialize(fenetre, pseudo)
     @pseudo = pseudo
@@ -84,7 +84,6 @@ class ClassementMenu
   #
   # Application du css aux composants graphiques Gtk
   #
-  #
   def apply_css
     provider = Gtk::CssProvider.new
     provider.load(data: <<-CSS)
@@ -117,6 +116,9 @@ class ClassementMenu
     end
   end
 
+  #
+  # Methode qui vide la fenêtre. A utiliser avant de leguer la fenêtre à un nouveau menu
+  #
   def clear_window
     @window.remove(@builder.get_object('classementBox'))
   end

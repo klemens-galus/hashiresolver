@@ -5,7 +5,7 @@ require './LevelSelector'
 # Menu de selection de la difficulté du mode arcade
 #
 class ArcadeMenu
-  # @pseudo pseudo du joueur
+  # @pseudo pseudo Pseudo du joueur
   # @builder Builder glade pour récuperer les composants graphiques
   # @window Fenetre dans laquelle le menu va s'afficher
 
@@ -13,7 +13,7 @@ class ArcadeMenu
   # Initialisation
   #
   # @param [Gtk::Window] fenetre Fenetre dans laquelle le menu va s'afficher
-  # @param [String] pseudo du joueur
+  # @param [String] pseudo Pseudo du joueur
   #
   def initialize(fenetre, pseudo)
     @pseudo = pseudo
