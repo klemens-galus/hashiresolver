@@ -29,7 +29,7 @@ class Ile
     # On initialise les ponts à 0
     @nbPont = 0
 
-    @pont = [nil, nil, nil, nil]
+    @pont = [Array.new, Array.new, Array.new, Array.new]
 
     @x = x
     @y = y
@@ -53,20 +53,16 @@ class Ile
     case cardinal
     when "N"
       setIleVoisine(ileB, nil, nil, nil)
-      @pont.delete_at(0)
-      @pont.insert(0, pont)
+      @pont.at(0).push(pont)
     when "S"
       setIleVoisine(nil, ileB, nil, nil)
-      @pont.delete_at(1)
-      @pont.insert(1, pont)
+      @pont.at(1).push(pont)
     when "E"
       setIleVoisine(nil, nil, ileB, nil)
-      @pont.delete_at(2)
-      @pont.insert(2, pont)
+      @pont.at(2).push(pont)
     when "O"
       setIleVoisine(nil, nil, nil, ileB)
-      @pont.delete_at(3)
-      @pont.insert(3, pont)
+      @pont.at(3).push(pont)
     else
       "Erreur cardinal"
     end
@@ -80,15 +76,24 @@ class Ile
 
     case cardinal
     when "N"          # Pont entre self et la voisine NORD
-      unless @pont.at(0) == nil
-        if @pont.at(0).taille != 2
+      unless @pont.at(0).at(0) == nil
+        if @pont.at(0).at(0).taille != 2
           # Si le pont ajoute des ponts
 
           unless capaMaxAtteinte
             # Si la capaMax est pas atteinte
 
             pontModife(0)
-
+          else
+            case @pont.at(0).at(0).taille
+            when 1
+              pontModife(0)
+              pontModife(0)
+            else
+              pontModife(0)
+              pontModife(0)
+              pontModife(0)
+            end
           end
         else
           # Le pont est supprimer donc on peut ne pas tester la capaMax
@@ -99,15 +104,24 @@ class Ile
 
     when "S"          # Pont entre self et la voisine SUD
 
-      unless @pont.at(1) == nil
-        if @pont.at(1).taille != 2
+      unless @pont.at(1).at(0) == nil
+        if @pont.at(1).at(0).taille != 2
           # Si le pont ajoute des ponts
 
           unless capaMaxAtteinte
             # Si la capaMax est pas atteinte
 
             pontModife(1)
-
+          else
+            case @pont.at(1).at(0).taille
+            when 1
+              pontModife(1)
+              pontModife(1)
+            else
+              pontModife(1)
+              pontModife(1)
+              pontModife(1)
+            end
           end
         else
           # Le pont est supprimer donc on peut ne pas tester la capaMax
@@ -117,16 +131,25 @@ class Ile
       end
 
     when "E"          # Pont entre self et la voisine EST
-
-      unless @pont.at(2) == nil
-        if @pont.at(2).taille != 2
+      puts "E"
+      unless @pont.at(2).at(0) == nil
+        if @pont.at(2).at(0).taille != 2
           # Si le pont ajoute des ponts
 
           unless capaMaxAtteinte
             # Si la capaMax est pas atteinte
 
             pontModife(2)
-
+          else
+            case @pont.at(2).at(0).taille
+            when 1
+              pontModife(2)
+              pontModife(2)
+            else
+              pontModife(2)
+              pontModife(2)
+              pontModife(2)
+            end
           end
         else
           # Le pont est supprimer donc on peut ne pas tester la capaMax
@@ -137,8 +160,8 @@ class Ile
 
     when "O"          # Pont entre self et la voisine OUEST
 
-      unless @pont.at(3) == nil
-        if @pont.at(3).taille != 2
+      unless @pont.at(3).at(0) == nil
+        if @pont.at(3).at(0).taille != 2
           # Si le pont ajoute des ponts
 
           unless capaMaxAtteinte
@@ -146,6 +169,16 @@ class Ile
 
             pontModife(3)
 
+          else
+            case @pont.at(3).at(0).taille
+            when 1
+              pontModife(3)
+              pontModife(3)
+            else
+              pontModife(3)
+              pontModife(3)
+              pontModife(3)
+            end
           end
         else
           # Le pont est supprimer donc on peut ne pas tester la capaMax
@@ -184,18 +217,20 @@ class Ile
   def pontModife(index)
 
     # On enlève la taille du pont à notre nbPont mais aussi à sa voisine
-    @nbPont -= @pont.at(index).taille
+    @nbPont -= @pont.at(index).at(0).taille
 
     ileB = @ileVoisine.at(index)
-    ileB.nbPont=(ileB.nbPont - @pont.at(index).taille)
+    ileB.nbPont=(ileB.nbPont - @pont.at(index).at(0).taille)
 
-
-    # On modifie le pont 0 du tableau
-    @pont.at(index).modifiePont
+    puts @pont.at(index).size
+    # On modifie tout les ponts du tableau
+    for x in 0..@pont.at(index).size - 1
+      @pont.at(index).at(x).modifiePont
+    end
 
     # On ajoute la nouvelle taille du pont
-    @nbPont += @pont.at(index).taille
-    ileB.nbPont=(ileB.nbPont + @pont.at(index).taille)
+    @nbPont += @pont.at(index).at(0).taille
+    ileB.nbPont=(ileB.nbPont + @pont.at(index).at(0).taille)
 
   end
 
