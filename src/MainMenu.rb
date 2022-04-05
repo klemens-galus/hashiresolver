@@ -1,5 +1,4 @@
 require "gtk3"
-require "./SecondWindowTest.rb"
 require "./ArcadeMenu.rb"
 require "./ClassementMenu.rb"
 
@@ -47,9 +46,9 @@ class MainMenu
   end
 
   def play()
-    puts "Je lance play"
-    clearWindow()
-    secondWindow = SecondWindowTest.new(@mainWindow)
+    #puts "Je lance play"
+    #clearWindow()
+    #secondWindow = SecondWindowTest.new(@mainWindow)
   end
 
   def arcade()
