@@ -1,1 +1,13 @@
-Page 2
+Pour construire un pont, vous devez cliquer sur les 2 îles en question.
+
+Pour détruire un pont, il faut qu'il y ait 2 ponts entre vos îles puis il faut refaire
+
+la même manipulation que pour ajouter un pont, pour en détruire un.
+
+Vous pouvez revenir en arrière et refaire vos mouvements en cliquant sur les boutons
+
+qui correspondent à ces actions.
+
+Le but du jeu est de relier toutes les îles avec autant de ponts que le chiffre
+
+qui est marqué sur l'île.
