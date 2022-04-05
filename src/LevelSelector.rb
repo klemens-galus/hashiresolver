@@ -1,7 +1,7 @@
 require 'gtk3'
 require 'gdk3'
 require './ArcadeMenu'
-require './InterfacePartie'
+require './PartieMenu'
 
 #
 # Menu de selection des niveaux du mode arcade
@@ -131,7 +131,7 @@ class LevelSelector
   #
   def lancer_partie
     clear_window
-    InterfacePartie.new(@window)
+    PartieMenu.new(@window, @diff, @pseudo)
   end
 
   #
