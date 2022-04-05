@@ -8,12 +8,13 @@ class Ile
   # @pont           => Tableau comprenant les différents ponts
 
   # @param [Integer]
-  def Ile.creer(taille, x, y)
-    new(taille, x, y)
+  def Ile.creer(jeu, taille, x, y)
+    new(jeu ,taille, x, y)
   end
 
-  def initialize(taille, x, y)
+  def initialize(jeu, taille, x, y)
 
+    @jeu = jeu # Pour connaitre les iles et les ponts
     # On définit une taille pour le tableau contenant les iles voisines, comme une ile peut avoir 4 voisines, alors on définit une taille de 4
     @ileVoisine = Array.new(4)
 
@@ -40,6 +41,37 @@ class Ile
   attr_accessor :nbPont
   attr_reader :x, :y
 
+
+  def trouvePont(pont, x, y)
+    # Retourne vrai si un pont est déjà contruit sur la ligne du pont que l'on veut poser
+    cases = @jeu.getTab(x, y)
+    if cases.size > 1
+      # Il y a plusieurs ponts dessus
+      puts "Plusieurs ponts"
+      if cases.at(0) != pont
+        # C'est pas notre pont en paramètre donc besoin de le tester
+        puts "Pas notre pont 0"
+        if cases.at(0).taille != 0
+          # C'est un pont contruit donc on vrai
+          puts "Il y a un pont 0"
+          return true
+        end
+      else
+        if cases.at(1) != pont
+          # C'est pas notre pont non plus
+          puts "Pas notre pont 1"
+          if cases.at(1).taille != 0
+            # C'est un pont contruit donc on vrai
+            puts "Il y a un pont 1"
+            return true
+          end
+        end
+      end
+      # Si tout cela n'est pas vérifier, alors il n'y a pas de pont de construit
+      puts "Il n'y a pas de pont"
+      false
+    end
+  end
 
   ##
   # Retourne vrai si le nombre de pont == la taille de l'ile
@@ -72,7 +104,7 @@ class Ile
   ##
   # Modifie la taille du pont entre lui-même et son voisin, l'ile en paramètre en donnée en String et avec son Cardinal
   # @param cardinal : "N", "S", "E", "O"
-  def modifiePont(cardinal)
+  def initModif(cardinal, x, y)
 
     case cardinal
     when "N"          # Pont entre self et la voisine NORD
@@ -84,22 +116,22 @@ class Ile
           unless capaMaxAtteinte || ileB.capaMaxAtteinte
             # Si la capaMax est pas atteinte
 
-            pontModife(0)
+            pontModife(0, x, y)
           else
             case @pont.at(0).at(0).taille
             when 1
-              pontModife(0)
-              pontModife(0)
+              pontModife(0, x, y)
+              pontModife(0, x, y)
             else
-              pontModife(0)
-              pontModife(0)
-              pontModife(0)
+              pontModife(0, x, y)
+              pontModife(0, x, y)
+              pontModife(0, x, y)
             end
           end
         else
           # Le pont est supprimer donc on peut ne pas tester la capaMax
 
-          pontModife(0)
+          pontModife(0, x, y)
         end
       end
 
@@ -112,22 +144,22 @@ class Ile
           unless capaMaxAtteinte || ileB.capaMaxAtteinte
             # Si la capaMax est pas atteinte
 
-            pontModife(1)
+            pontModife(1, x, y)
           else
             case @pont.at(1).at(0).taille
             when 1
-              pontModife(1)
-              pontModife(1)
+              pontModife(1, x, y)
+              pontModife(1, x, y)
             else
-              pontModife(1)
-              pontModife(1)
-              pontModife(1)
+              pontModife(1, x, y)
+              pontModife(1, x, y)
+              pontModife(1, x, y)
             end
           end
         else
           # Le pont est supprimer donc on peut ne pas tester la capaMax
 
-          pontModife(1)
+          pontModife(1, x, y)
         end
       end
 
@@ -141,22 +173,22 @@ class Ile
           unless capaMaxAtteinte || ileB.capaMaxAtteinte
             # Si la capaMax est pas atteinte
 
-            pontModife(2)
+            pontModife(2, x, y)
           else
             case @pont.at(2).at(0).taille
             when 1
-              pontModife(2)
-              pontModife(2)
+              pontModife(2, x, y)
+              pontModife(2, x, y)
             else
-              pontModife(2)
-              pontModife(2)
-              pontModife(2)
+              pontModife(2, x, y)
+              pontModife(2, x, y)
+              pontModife(2, x, y)
             end
           end
         else
           # Le pont est supprimer donc on peut ne pas tester la capaMax
 
-          pontModife(2)
+          pontModife(2, x, y)
         end
       end
 
@@ -169,23 +201,23 @@ class Ile
           unless capaMaxAtteinte || ileB.capaMaxAtteinte
             # Si la capaMax est pas atteinte
 
-            pontModife(3)
+            pontModife(3, x, y)
 
           else
             case @pont.at(3).at(0).taille
             when 1
-              pontModife(3)
-              pontModife(3)
+              pontModife(3, x, y)
+              pontModife(3, x, y)
             else
-              pontModife(3)
-              pontModife(3)
-              pontModife(3)
+              pontModife(3, x, y)
+              pontModife(3, x, y)
+              pontModife(3, x, y)
             end
           end
         else
           # Le pont est supprimer donc on peut ne pas tester la capaMax
 
-          pontModife(3)
+          pontModife(3, x, y)
         end
       end
 
@@ -216,7 +248,8 @@ class Ile
 
   end
 
-  def pontModife(index)
+  def pontModife(index, x, y)
+
 
     # On enlève la taille du pont à notre nbPont mais aussi à sa voisine
     @nbPont -= @pont.at(index).at(0).taille
@@ -224,11 +257,20 @@ class Ile
     ileB = @ileVoisine.at(index)
     ileB.nbPont=(ileB.nbPont - @pont.at(index).at(0).taille)
 
-
+    aPont = false
       # On modifie tout les ponts du tableau
-      for x in 0..@pont.at(index).size - 1
-        @pont.at(index).at(x).modifiePont
+      for i in 0..@pont.at(index).size - 1
+        if trouvePont(@pont.at(index).at(i), @pont.at(index).at(i).x, @pont.at(index).at(i).y)
+          aPont = true
+        end
       end
+
+    if aPont == false
+      for i in 0..@pont.at(index).size - 1
+        @pont.at(index).at(i).modifiePont
+      end
+    end
+
 
 
     # On ajoute la nouvelle taille du pont

@@ -47,7 +47,7 @@ class Plateau
       taille_ile = tab_final.at(i).at(0).to_i
       x = tab_final.at(i).at(1).to_i
       y = tab_final.at(i).at(2).to_i
-      @plateauFacile.at(0).ajouterObj(x, y, Ile.creer(taille_ile, x, y))
+      @plateauFacile.at(0).ajouterObj(x, y, Ile.creer(@plateauFacile.at(0), taille_ile, x, y))
       i+=1
     end
     setLiaison
@@ -120,10 +120,10 @@ class Plateau
 
         unless jeu.estIle(x, y)
           if ileNord != nil && ileSud != nil && ileSud != "@" && ileNord != "@"
-            jeu.ajouterObj(x, y, Pont.creer(ileSud, ileNord, "vertical"))
+            jeu.ajouterObj(x, y, Pont.creer(x, y, ileSud, ileNord, "vertical"))
           end
           if ileEst != nil && ileOuest != nil && ileOuest != "@" && ileEst != "@"
-            jeu.ajouterObj(x, y, Pont.creer(ileEst, ileOuest, "horizontal"))
+            jeu.ajouterObj(x, y, Pont.creer(x, y, ileEst, ileOuest, "horizontal"))
           end
         end
       end

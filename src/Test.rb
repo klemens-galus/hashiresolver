@@ -43,9 +43,9 @@ jeu.ajouterObj(2, 3, pontC)
 jeu.ajouterObj(3, 2, pontD)
 =end
 
+fini = false
 
-
-while true
+while fini == false
 
   #system("cls")
   stock.afficher
@@ -83,10 +83,10 @@ while true
 
 
   if jeu.estIle(x, y)
-    jeu.getCase(x, y).modifiePont(card)
+    jeu.getCase(x, y).initModif(card, x, y)
   end
 
-
+  fini = jeu.testFini
 
 end
 

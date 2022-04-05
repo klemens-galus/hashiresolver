@@ -12,17 +12,19 @@ class Pont
   # @param ileA : Si vertical alors Sud du pont, si horizontale, alors Ouest du pont
   # @param ileB : Si vertical alors Nord du pont, si horizontale, alors Est du pont
   # @param orientation : Soit vertical, soit horizontale
-  def Pont.creer(ileA, ileB, orientation)
-    new(ileA, ileB, orientation)
+  def Pont.creer(x, y, ileA, ileB, orientation)
+    new(x, y, ileA, ileB, orientation)
   end
 
   ##
   # Initialisateur de la classe Pont, qui prend 2 iles en paramètres
   # @param [Ile, Ile], 2 iles
-  #
-  def initialize(ileA, ileB, orientation)
+
+  def initialize(x, y, ileA, ileB, orientation)
     @ileA = ileA
     @ileB = ileB
+    @x = x
+    @y = y
     @taille = 0
     if orientation == "vertical"
 
@@ -35,9 +37,10 @@ class Pont
       @ileB.ajouteLiaision(self, ileA, "E")
 
     end
-
-
   end
+
+  attr_reader :x, :y
+
 
   def taille
     @taille

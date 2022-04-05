@@ -14,7 +14,7 @@ class Jeu
     for x in 0..Math.sqrt(@taille)-1 do
       for y in 0..Math.sqrt(@taille)-1 do
         @jeu.delete_at(x + Math.sqrt(@taille) * y)
-        @jeu.insert(x + Math.sqrt(@taille) * y, Array.new.insert(0,"@"))
+        @jeu.insert(x + Math.sqrt(@taille) * y, Array.new.insert(0," "))
       end
     end
   end
@@ -23,6 +23,10 @@ class Jeu
 
   def getCase(x, y)
     @jeu.at(x + Math.sqrt(@taille) * y).at(0)
+  end
+
+  def getTab(x, y)
+    @jeu.at(x + Math.sqrt(@taille) * y)
   end
 
   def estIle(x, y)
@@ -103,5 +107,22 @@ class Jeu
     end
     string
   end
-  
+
+  def testFini
+    for x in 0..Math.sqrt(@taille)-1 do
+      for y in 0..Math.sqrt(@taille)-1 do
+
+        # Pour chaque case, on va verifier si les iles ont toutes la capaMax
+        if getCase(x, y).class == Ile
+          if getCase(x, y).capaMaxAtteinte == false
+            # Si la case actuel n'a pas atteint sa capaMax, alors on continue le jeu
+            return false
+          end
+        end
+      end
+    end
+    # Si toute les cases ont atteint leur capamax, alors on retourne vrai
+    true
+  end
+
 end
