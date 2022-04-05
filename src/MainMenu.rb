@@ -1,6 +1,6 @@
 require "gtk3"
-require "./SecondWindowTest.rb"
 require "./ArcadeMenu.rb"
+require "./ClassementMenu.rb"
 
 class MainMenu
   def initialize(fenetre, pseudo)
@@ -21,8 +21,8 @@ class MainMenu
       Gtk.main_quit()
     end
 
-    @bienvenueLabel = @builder.get_object("bienvenueLabel")
-    @bienvenueLabel.set_text("Bienvenue " + @pseudo)
+    bienvenueLabel = @builder.get_object("bienvenueLabel")
+    bienvenueLabel.set_text("Bienvenue " + @pseudo)
 
     continuerBtn = @builder.get_object("continuerBtn")
     continuerBtn.signal_connect('clicked') do
@@ -33,6 +33,11 @@ class MainMenu
     arcadeBtn.signal_connect('clicked') do
       arcade()
     end
+
+    classementBtn = @builder.get_object("classementBtn")
+    classementBtn.signal_connect('clicked') do
+      classement()
+    end
   end
 
   def show()
@@ -41,15 +46,21 @@ class MainMenu
   end
 
   def play()
-    puts "Je lance play"
-    clearWindow()
-    secondWindow = SecondWindowTest.new(@mainWindow)
+    #puts "Je lance play"
+    #clearWindow()
+    #secondWindow = SecondWindowTest.new(@mainWindow)
   end
 
   def arcade()
     puts("je lance l'arcade")
     clearWindow()
     arcadeWindow = ArcadeMenu.new(@mainWindow, @pseudo)
+  end
+
+  def classement()
+    puts("je lance classement")
+    clearWindow()
+    classementWindow = ClassementMenu.new(@mainWindow, @pseudo)
   end
 
   def clearWindow()
