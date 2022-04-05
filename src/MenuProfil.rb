@@ -22,8 +22,8 @@ class MenuProfil
       secondColor = Gdk::RGBA::parse("#00507a")
       @mainWindow.override_background_color(:'normal', mainColor)
 
-      listbox = @builder.get_object('listbox')
-      listbox.override_background_color(:'normal', secondColor)
+      @listbox = @builder.get_object('listbox')
+      @listbox.override_background_color(:'normal', secondColor)
       @mainWindow.set_title("Menu profil")
 
 
@@ -40,6 +40,8 @@ class MenuProfil
       @ListeProfil.each do |n|
         label = Gtk::Label.new(n)
         @ListeLabels.push(label)
+
+
 
         button = Gtk::Button.new()
         button.add(label);
@@ -66,7 +68,7 @@ class MenuProfil
       @ListeButton.each do |n|
         n.signal_connect "clicked" do |_widget|
           clearWindow()
-          mainMenu = MainMenu.new(@mainWindow, "ddddd")
+          mainMenu = MainMenu.new(@mainWindow, "")
         end
       end
 
@@ -79,7 +81,7 @@ class MenuProfil
       CSS
       Gtk::StyleContext.add_provider_for_screen(Gdk::Screen.default, provider, Gtk::StyleProvider::PRIORITY_APPLICATION)
 
-      @ListeButton.each{ |n| listbox.add(n)}
+      @ListeButton.each{ |n| @listbox.add(n)}
 
 
       button = Gtk::Button.new(:label => "Say hello")
@@ -126,8 +128,20 @@ class MenuProfil
     end
 
     def createProfil(name)
+      secondColor = Gdk::RGBA::parse("#00507a")
       puts "creation profil de " + name
       File.new("../save/"+name+".yml","w+")
+      label = Gtk::Label.new(name)
+      button = Gtk::Button.new()
+      button.add(label)
+      button.relief = :none
+      button.override_background_color(:'normal', secondColor)
+      button.name="BTNLVL"
+      @listbox.add(button)
+      @mainWindow.show_all
+
+
+
     end
 
     def show()
