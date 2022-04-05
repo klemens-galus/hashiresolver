@@ -1,7 +1,7 @@
 require 'gtk3'
 require 'gdk3'
 require 'yaml'
-
+require "./MainMenu.rb"
 
 class MenuProfil
 
@@ -12,7 +12,9 @@ class MenuProfil
 
       @builder = Gtk::Builder.new()
       @builder.add_from_file("../asset/glade/menuProfil.glade")
-      main = @builder.get_object('profilWindow')
+      @builder.get_object("profilWindow").remove(@builder.get_object("profilBox"))
+      @mainWindow = fenetre
+      @mainWindow.add(@builder.get_object('profilBox'))
 
       mainColor = Gdk::RGBA::parse("#003049")
       secondColor = Gdk::RGBA::parse("#00507a")
@@ -28,7 +30,7 @@ class MenuProfil
       @ListeLabels = Array.new()
       @files = Dir.glob("../save/*")
 
-      @files.each do |n| 
+      @files.each do |n|
         @ListeProfil.push(File.basename(n,"*"))
       end
 
@@ -54,11 +56,11 @@ class MenuProfil
         showNewProfilPopup()
       end
 
-      @ListeLabels.each do |n| 
+      @ListeLabels.each do |n|
         n.name = "BTNLVL"
       end
 
-      @ListeButton.each do |n| 
+      @ListeButton.each do |n|
         n.signal_connect "clicked" do |_widget|
           puts "Hello World!!"
         end
@@ -82,7 +84,7 @@ class MenuProfil
       end
 
       #main.add(button)
-      main.signal_connect("delete-event") do |_widget| 
+      main.signal_connect("delete-event") do |_widget|
         Gtk.main_quit
       end
 
@@ -98,7 +100,7 @@ class MenuProfil
       popup.set_title "// Edit //"
 
 
-      box = Gtk::Box.new(:vertical, 10) 
+      box = Gtk::Box.new(:vertical, 10)
 
       text = Gtk::Entry.new
       text.set_text "Entrez votre nom"
@@ -121,8 +123,9 @@ class MenuProfil
       File.new("../save/"+name+".yml","w+")
     end
 
+    def show()
+      @mainWindow.show_all()
+      Gtk.main()
+    end
+
 end
-
-
-a = MenuProfil.new()
-Gtk.main()
