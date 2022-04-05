@@ -40,15 +40,15 @@ class LevelSelector
           button.override_background_color(:'normal', secondColor)
           button.relief = Gtk::ReliefStyle::NONE
           @listeButton.push(button)
-        
+
         }
         @listeLabels.each{ |n| n.name = "BTNLVL"}
-        
+
         @listeButton.each{ |n|
           n.signal_connect "clicked" do |_widget| puts "Hello ";
           end
         }
-   
+
         provider = Gtk::CssProvider.new()
         provider.load(data: <<-CSS)
         #BTNLVL{
@@ -57,7 +57,7 @@ class LevelSelector
         }
         CSS
         Gtk::StyleContext.add_provider_for_screen(Gdk::Screen.default, provider, Gtk::StyleProvider::PRIORITY_APPLICATION)
-        
+
         @listeButton.each{ |n| listbox.add(n)}
 
 
@@ -91,4 +91,3 @@ class LevelSelector
     end
 
 end
-

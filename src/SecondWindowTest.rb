@@ -23,7 +23,7 @@ class SecondWindowTest
     end
 
     @mainWindow.set_window_position(Gtk::WindowPosition::CENTER)
-  end 
+  end
 
   def show()
     @mainWindow.show_all()
