@@ -1,6 +1,7 @@
 require "gtk3"
 require "./SecondWindowTest.rb"
 require "./ArcadeMenu.rb"
+require "./InterfacePartie.rb"
 
 class MainMenu
   def initialize(fenetre, pseudo)
@@ -33,6 +34,7 @@ class MainMenu
     arcadeBtn.signal_connect('clicked') do
       arcade()
     end
+
   end
 
   def show()

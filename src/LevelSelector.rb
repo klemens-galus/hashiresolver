@@ -1,6 +1,7 @@
 require 'gtk3'
 require 'gdk3'
 require "./ArcadeMenu.rb"
+require "./InterfacePartie.rb"
 
 
 class LevelSelector
@@ -45,7 +46,8 @@ class LevelSelector
         @listeLabels.each{ |n| n.name = "BTNLVL"}
         
         @listeButton.each{ |n|
-          n.signal_connect "clicked" do |_widget| puts "Hello ";
+          n.signal_connect "clicked" do |_widget|
+            lancerPartie()
           end
         }
    
@@ -84,6 +86,11 @@ class LevelSelector
         #main.add(button)
         @main.signal_connect("delete-event") { |_widget| Gtk.main_quit }
         @main.show_all
+    end
+
+    def lancerPartie()
+        clearWindow()
+        InterfacePartie.new(@main)
     end
 
     def clearWindow()
