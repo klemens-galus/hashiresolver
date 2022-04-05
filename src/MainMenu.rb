@@ -43,6 +43,9 @@ class MainMenu
     # Style
     @window.set_title('Main Menu')
 
+    main_color = Gdk::RGBA.parse('#003049')
+    @window.override_background_color(:normal, main_color)
+
     bienvenue_label = @builder.get_object('bienvenueLabel')
     bienvenue_label.set_text("Bienvenue #{@pseudo}")
   end
