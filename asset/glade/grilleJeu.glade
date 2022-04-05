@@ -46,10 +46,10 @@
                         <property name="margin_right">5</property>
                         <property name="margin_top">5</property>
                         <property name="margin_bottom">5</property>
-                        <property name="label" translatable="yes">12 : 24 : 13</property>
+                        <property name="label" translatable="yes">00 : 00 : 00</property>
                         <attributes>
-                          <attribute name="font-desc" value="Pixellari Medium 10"/>
                           <attribute name="scale" value="3"/>
+                          <attribute name="foreground" value="#000000000000"/>
                         </attributes>
                       </object>
                       <packing>
@@ -57,9 +57,6 @@
                         <property name="fill">True</property>
                         <property name="position">0</property>
                       </packing>
-                    </child>
-                    <child>
-                      <placeholder/>
                     </child>
                     <child>
                       <object class="GtkBox" id="indiceBox">
@@ -75,8 +72,8 @@
                             <property name="can_focus">False</property>
                             <property name="label" translatable="yes">4</property>
                             <attributes>
-                              <attribute name="font-desc" value="Pixellari Medium 10"/>
                               <attribute name="scale" value="3"/>
+                              <attribute name="foreground" value="#000000000000"/>
                             </attributes>
                           </object>
                           <packing>
@@ -90,7 +87,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="margin_right">10</property>
-                            <property name="pixbuf">../../../../../Pictures/hashi/thinkingHead.png</property>
+                            <property name="pixbuf">../images/thinkingHead.png</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -136,23 +133,14 @@
                             <property name="margin_left">15</property>
                             <property name="margin_right">15</property>
                             <property name="margin_top">15</property>
+                            <property name="spacing">70</property>
+                            <property name="homogeneous">True</property>
                             <child>
                               <object class="GtkButton" id="aideBtn">
+                                <property name="label" translatable="yes">Aide</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
-                                <property name="halign">center</property>
-                                <property name="valign">center</property>
-                                <property name="relief">none</property>
-                                <child>
-                                  <object class="GtkImage" id="aideImg">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="margin_left">23</property>
-                                    <property name="margin_right">7</property>
-                                    <property name="pixbuf">../images/boutons/aide/aide.png</property>
-                                  </object>
-                                </child>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -162,67 +150,15 @@
                             </child>
                             <child>
                               <object class="GtkButton" id="verifierBtn">
+                                <property name="label" translatable="yes">Vérifier</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
-                                <property name="halign">center</property>
-                                <property name="valign">center</property>
-                                <property name="relief">none</property>
-                                <child>
-                                  <object class="GtkImage" id="verifierImg">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="margin_right">22</property>
-                                    <property name="pixbuf">../images/boutons/verifier/verifier.png</property>
-                                  </object>
-                                </child>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
                                 <property name="fill">True</property>
                                 <property name="position">1</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkButton">
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="receives_default">True</property>
-                                <property name="relief">none</property>
-                                <child>
-                                  <object class="GtkImage">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="halign">center</property>
-                                    <property name="valign">center</property>
-                                    <property name="pixbuf">../images/boutons/undo/undo.png</property>
-                                  </object>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">2</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkButton">
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="receives_default">True</property>
-                                <property name="relief">none</property>
-                                <child>
-                                  <object class="GtkImage">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="pixbuf">../images/boutons/redo/redo.png</property>
-                                  </object>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">3</property>
                               </packing>
                             </child>
                           </object>
@@ -241,21 +177,10 @@
                             <property name="spacing">70</property>
                             <child>
                               <object class="GtkButton" id="hypoBtn">
+                                <property name="label" translatable="yes">Hypothèse</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
-                                <property name="halign">center</property>
-                                <property name="valign">center</property>
-                                <property name="relief">none</property>
-                                <child>
-                                  <object class="GtkImage">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="halign">center</property>
-                                    <property name="valign">center</property>
-                                    <property name="pixbuf">../images/boutons/hypothese/hypothese.png</property>
-                                  </object>
-                                </child>
                               </object>
                               <packing>
                                 <property name="expand">True</property>
@@ -265,19 +190,10 @@
                             </child>
                             <child>
                               <object class="GtkButton" id="finHypoBtn">
+                                <property name="label" translatable="yes">X</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
-                                <property name="halign">center</property>
-                                <property name="valign">center</property>
-                                <property name="relief">none</property>
-                                <child>
-                                  <object class="GtkImage">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="pixbuf">../images/boutons/croix_hypo/croix_hypo_null.png</property>
-                                  </object>
-                                </child>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -290,6 +206,48 @@
                             <property name="expand">False</property>
                             <property name="fill">True</property>
                             <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkBox" id="boutonsBasBox">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="margin_left">15</property>
+                            <property name="margin_right">15</property>
+                            <property name="margin_bottom">15</property>
+                            <property name="spacing">70</property>
+                            <property name="homogeneous">True</property>
+                            <child>
+                              <object class="GtkButton" id="undoBtn">
+                                <property name="label" translatable="yes">Undo</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="receives_default">True</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="redoBtn">
+                                <property name="label" translatable="yes">Redo</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="receives_default">True</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
                           </packing>
                         </child>
                       </object>
@@ -306,6 +264,7 @@
                         <property name="can_focus">False</property>
                         <property name="margin_left">15</property>
                         <property name="margin_right">15</property>
+                        <property name="margin_top">15</property>
                         <property name="margin_bottom">15</property>
                         <property name="orientation">vertical</property>
                         <child>
@@ -316,7 +275,7 @@
                             <property name="margin_right">10</property>
                             <property name="margin_top">20</property>
                             <property name="margin_bottom">20</property>
-                            <property name="label" translatable="yes">imagine t'a besoin d'aide</property>
+                            <property name="label" translatable="yes">aide</property>
                             <attributes>
                               <attribute name="font-desc" value="Pixellari Medium 10"/>
                               <attribute name="scale" value="1.5"/>
@@ -343,6 +302,28 @@
                         <property name="spacing">105</property>
                         <property name="homogeneous">True</property>
                         <child>
+                          <object class="GtkButton" id="backBtn">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
+                            <property name="relief">none</property>
+                            <child>
+                              <object class="GtkImage" id="backImg">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="pixbuf">../images/boutons/return.png</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
                           <object class="GtkButton" id="reglesBtn">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
@@ -356,31 +337,7 @@
                                 <property name="can_focus">False</property>
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
-                                <property name="pixbuf">../../../../../Pictures/hashi/regles.png</property>
-                              </object>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkButton" id="langueBtn">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">True</property>
-                            <property name="halign">center</property>
-                            <property name="valign">center</property>
-                            <property name="relief">none</property>
-                            <child>
-                              <object class="GtkImage" id="langueImg">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">center</property>
-                                <property name="valign">center</property>
-                                <property name="pixbuf">../../../../../Pictures/hashi/drapeauFrance.png</property>
+                                <property name="pixbuf">../images/regles.png</property>
                               </object>
                             </child>
                           </object>
@@ -437,14 +394,14 @@
               </object>
               <packing>
                 <property name="expand">False</property>
-                <property name="fill">True</property>
+                <property name="fill">False</property>
                 <property name="position">0</property>
               </packing>
             </child>
           </object>
           <packing>
             <property name="expand">False</property>
-            <property name="fill">True</property>
+            <property name="fill">False</property>
             <property name="position">1</property>
           </packing>
         </child>
