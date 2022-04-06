@@ -135,6 +135,9 @@ class PartieMenu
     @window.remove(@builder.get_object('grilleJeuBox'))
   end
 
+  #
+  # Création de la grille de jeu (la grille s'occupe du déroulement du jeu)
+  #
   def creer_grille
     puts "création de la grille #{@niveau} : #{@diff}"
 
@@ -142,6 +145,7 @@ class PartieMenu
     jeu_grid.set_column_homogeneous(true)
     jeu_grid.set_row_homogeneous(true)
 
+    # Placement de la grille dans le menu
     @builder.get_object('grilleJeuBox').pack_start(jeu_grid, expand: true, fill: true, padding: 0)
 
     @window.show_all
