@@ -44,7 +44,7 @@ class LevelSelector
     files = Dir.glob("../levels/#{@diff}/*")
 
     files.each do |fichier_niveau|
-      liste_niveaux.push(File.basename(fichier_niveau, '*'))
+      liste_niveaux.push(File.basename(fichier_niveau, '.*'))
     end
 
     # Debug
@@ -60,7 +60,7 @@ class LevelSelector
       button.relief = Gtk::ReliefStyle::NONE
 
       button.signal_connect 'clicked' do
-        lancer_partie
+        lancer_partie(niveau)
       end
 
       @list_box.add(button)
@@ -129,9 +129,9 @@ class LevelSelector
   #
   # Lancement du menu de jeu avec le niveau choisi
   #
-  def lancer_partie
+  def lancer_partie(niveau)
     clear_window
-    PartieMenu.new(@window, @diff, @pseudo)
+    PartieMenu.new(@window, @diff, @pseudo, niveau)
   end
 
   #
