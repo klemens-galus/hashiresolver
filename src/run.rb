@@ -1,14 +1,11 @@
-require "gtk3"
-require "./MenuProfil.rb"
+require 'gtk3'
+require './MainMenu'
 
-mainColor = Gdk::RGBA::parse("#003049")
+main_window = Gtk::Window.new
 
-mainWindow = Gtk::Window.new()
-mainWindow.override_background_color(:'normal', mainColor)
+main_window.set_window_position(Gtk::WindowPosition::CENTER)
 
-mainWindow.set_window_position(Gtk::WindowPosition::CENTER)
+main_window.set_default_size(1280, 720)
 
-mainWindow.set_default_size(1280,720)
-
-mainMenu = MenuProfil.new(mainWindow)
-mainMenu.show()
+main_menu = MainMenu.new(main_window, 'Romain')
+main_menu.show
