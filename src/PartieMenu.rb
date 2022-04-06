@@ -1,5 +1,6 @@
 require 'gtk3'
 require './LevelSelector'
+require './Jeu/Grille'
 
 #
 # Menu lors d'une partie
@@ -17,14 +18,16 @@ class PartieMenu
   # @param [String] diff Difficulté choisie
   # @param [String] pseudo Pseudo du joueur
   #
-  def initialize(fenetre, diff, pseudo)
+  def initialize(fenetre, diff, pseudo, niveau)
     @pseudo = pseudo
     @builder = Gtk::Builder.new
     @diff = diff
+    @niveau = niveau
 
     build_interface(fenetre)
     apply_css
     connect_signals
+    creer_grille
   end
 
   #
@@ -130,5 +133,17 @@ class PartieMenu
   #
   def clear_window
     @window.remove(@builder.get_object('grilleJeuBox'))
+  end
+
+  def creer_grille
+    puts "création de la grille #{@niveau} : #{@diff}"
+
+    jeu_grid = Grille.new(@diff, @niveau)
+    jeu_grid.set_column_homogeneous(true)
+    jeu_grid.set_row_homogeneous(true)
+
+    @builder.get_object('grilleJeuBox').pack_start(jeu_grid, expand: true, fill: true, padding: 0)
+
+    @window.show_all
   end
 end
