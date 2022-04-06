@@ -70,7 +70,7 @@
                           <object class="GtkLabel" id="indiceLabel">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">4</property>
+                            <property name="label" translatable="yes">0</property>
                             <attributes>
                               <attribute name="scale" value="3"/>
                               <attribute name="foreground" value="#000000000000"/>
@@ -87,7 +87,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="margin_right">10</property>
-                            <property name="pixbuf">../../../../../Pictures/hashi/thinkingHead.png</property>
+                            <property name="pixbuf">../images/thinkingHead.png</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -275,7 +275,9 @@
                             <property name="margin_right">10</property>
                             <property name="margin_top">20</property>
                             <property name="margin_bottom">20</property>
-                            <property name="label" translatable="yes">imagine t'a besoin d'aide</property>
+                            <property name="label" translatable="yes">Une île située dans un coin ne peut pas avoir plus de deux îles voisines, et peut donc avoir un maximum de 4 ponts obligatoires</property>
+                            <property name="wrap">True</property>
+                            <property name="wrap_mode">word-char</property>
                             <attributes>
                               <attribute name="font-desc" value="Pixellari Medium 10"/>
                               <attribute name="scale" value="1.5"/>
@@ -337,7 +339,7 @@
                                 <property name="can_focus">False</property>
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
-                                <property name="pixbuf">../../../../../Pictures/hashi/regles.png</property>
+                                <property name="pixbuf">../images/regles.png</property>
                               </object>
                             </child>
                           </object>

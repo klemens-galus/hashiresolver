@@ -1,5 +1,6 @@
 require 'gtk3'
 require './LevelSelector'
+require './Aide'
 
 #
 # Menu lors d'une partie
@@ -16,11 +17,15 @@ class PartieMenu
   # @param [Gtk::Window] fenetre Fenetre dans laquelle le menu va s'afficher
   # @param [String] diff Difficulté choisie
   # @param [String] pseudo Pseudo du joueur
+  # @param [Integer] nb_indices Nombre d'indice demandés par le joueur
+  # @param [Gtk::Label] indice_label Texte indiquant le nombre d'indice demandés par le joueur
+  # @param [Gtk::Label] aide_label Texte indiquant une aide
   #
   def initialize(fenetre, diff, pseudo)
     @pseudo = pseudo
     @builder = Gtk::Builder.new
     @diff = diff
+    @nb_indices = 0
 
     build_interface(fenetre)
     apply_css
@@ -49,6 +54,9 @@ class PartieMenu
     main_color = Gdk::RGBA.parse('#003049')
     btn_color = Gdk::RGBA.parse('#e9e1b7')
     @window.override_background_color(:normal, main_color)
+
+    @aide_label = @builder.get_object('aideLabel')
+    @indice_label = @builder.get_object('indiceLabel')
 
     panneau_gauche_box = @builder.get_object('panneauGaucheBox')
     panneau_gauche_box.override_background_color(:normal, Gdk::RGBA.parse('#004366'))
@@ -80,9 +88,11 @@ class PartieMenu
     redo_btn = @builder.get_object('redoBtn')
     redo_btn.override_background_color(:normal, btn_color)
 
+    aide_box.name = 'box'
+
     @builder.objects.each do |n|
       n.name = 'btn' if n.builder_name.end_with?('Btn')
-      n.name = 'box' if n.builder_name.end_with?('Box')
+      n.name = 'box' if n.builder_name.start_with?('panneau')
     end
   end
 
@@ -111,10 +121,33 @@ class PartieMenu
   # Gestion des signaux
   #
   def connect_signals
+    aide_btn = @builder.get_object('aideBtn')
+    aide_btn.signal_connect('clicked') do
+      aide
+    end
+
     back_btn = @builder.get_object('backBtn')
     back_btn.signal_connect('clicked') do
       back
     end
+  end
+
+  #
+  # Affiche une aide en fonction du jeu en cours
+  #
+  def aide
+    aide = Aide.new
+    text = aide.verif_aide
+    incr_indices
+    @aide_label.set_text(text)
+  end
+
+  #
+  # Incrémente le nombre d'indice demandés par le joueur
+  #
+  def incr_indices
+    @nb_indices += 1
+    @indice_label.set_text(@nb_indices.to_s)
   end
 
   #
