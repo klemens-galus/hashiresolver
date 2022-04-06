@@ -20,48 +20,60 @@ class MenuProfil
   def initialize(fenetre)
     @builder = Gtk::Builder.new
     @second_color = Gdk::RGBA.parse('#00507a')
+
     build_interface(fenetre)
     apply_css
     connect_signals
     populate_profil_list
   end
 
+  #
+  # Gestion des signaux
+  #
   def connect_signals
     @window.signal_connect('delete-event') do |_widget|
       Gtk.main_quit
     end
   end
 
+  #
+  # Fonction d'implementation des profils dans la liste
+  #
   def populate_profil_list
-    liste_profil = []
-
     files = Dir.glob('../saves/*')
 
     files.each do |n|
-      liste_profil.push(File.basename(n, '.*'))
-    end
-
-    # Debug
-    puts(liste_profil)
-
-    liste_profil.each do |profil|
-      label = Gtk::Label.new(profil)
-      label.name = 'profilLabel'
-
-      button = Gtk::Button.new
-      button.add(label)
-      button.override_background_color(:normal, @secondColor)
-      button.relief = :none
-
-      button.signal_connect 'clicked' do
-        clear_window
-        MainMenu.new(@window, profil)
-      end
-
-      @list_box.add(button)
+      add_profil_to_list_box(File.basename(n, '.*'))
     end
   end
 
+  #
+  # Ajoute un profil à la liste des profils
+  #
+  # @param [String] profil Nom du profil à ajouter
+  #
+  def add_profil_to_list_box(profil)
+    label = Gtk::Label.new(profil)
+    label.name = 'profilLabel'
+
+    button = Gtk::Button.new
+    button.add(label)
+    button.override_background_color(:normal, @secondColor)
+    button.relief = :none
+
+    button.signal_connect 'clicked' do
+      clear_window
+      MainMenu.new(@window, profil)
+    end
+
+    @list_box.add(button)
+
+    @window.show_all
+  end
+
+  #
+  # Application du css sur les composants Gtk
+  #
   def apply_css
     provider = Gtk::CssProvider.new
     provider.load(data: <<-CSS)
@@ -73,6 +85,11 @@ class MenuProfil
     Gtk::StyleContext.add_provider_for_screen(Gdk::Screen.default, provider, Gtk::StyleProvider::PRIORITY_APPLICATION)
   end
 
+  #
+  # Generation de la fenetre avec les composants du fichier glade
+  #
+  # @param [Gtk::Window] fenetre Fenêtre où vont être implémentés les composants Gtk
+  #
   def build_interface(fenetre)
     @builder.add_from_file('../asset/glade/menuProfil2.glade')
     @window = fenetre
@@ -97,10 +114,16 @@ class MenuProfil
     @window.set_title('Menu profil')
   end
 
+  #
+  # Methode qui vide la fenêtre. A utiliser avant de leguer la fenêtre à un nouveau menu
+  #
   def clear_window
     @window.remove(@builder.get_object('profils'))
   end
 
+  #
+  # Affichage du popup de selection du nom du nouveau profil
+  #
   def show_new_profil_popup
     # popup
     popup = Gtk::Window.new('First example')
@@ -125,16 +148,30 @@ class MenuProfil
     popup.show_all
   end
 
+  #
+  # Création d'un nouveau profil
+  #
+  # @param [String] name Nom du profil à créer
+  #
   def create_profil(name)
-
+    # Verification doublons
     if File.exist?("../saves/#{name}.yml")
       puts 'erreur ça exist deja'
+
+      Gtk::MessageDialog.new(
+        parent: nil,
+        flags: 0,
+        type: :error,
+        buttons: :none,
+        message: 'Profil déjà existant').show_all
+
       return
     end
 
     puts "creation profil de #{name}"
     f = File.open("../saves/#{name}.yml", 'w')
 
+    # Données de base
     data = {
       score: 0,
       arcade: [
@@ -147,27 +184,15 @@ class MenuProfil
     }
 
     f.write(data.to_yaml)
-
-    label = Gtk::Label.new(File.basename(f, '.*'))
-    label.name = 'profilLabel'
-
-    button = Gtk::Button.new
-    button.add(label)
-    button.override_background_color(:normal, @secondColor)
-    button.relief = :none
-
-    button.signal_connect 'clicked' do
-      clear_window
-      MainMenu.new(@window, File.basename(f, '.*'))
-    end
-
-    @list_box.add(button)
-
     f.close
-    
-    @window.show_all
+
+    # Ajout du profil à la liste
+    add_profil_to_list_box(name)
   end
 
+  #
+  # Affichage de la fenetre
+  #
   def show
     @window.show_all
     Gtk.main
