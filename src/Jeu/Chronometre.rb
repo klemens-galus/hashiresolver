@@ -1,9 +1,9 @@
 # Thread de mesure de temps
 #
 class Chronometre < Thread
-  # @temps Temps du chronometre en secondes
-  # @chrono_label Version GUI du chronometre
-  # @running Variable d'état du chronometre
+  # @temps Temps du chronomètre en secondes
+  # @chrono_label Version GUI du chronomètre
+  # @running Variable d'état du chronomètre
 
   attr :temps, true
   attr :running, true
@@ -22,12 +22,12 @@ class Chronometre < Thread
   end
 
   #
-  # Update le temps du chrono et la version GUI du chrono
+  # Met à jour le temps du chrono et la version GUI du chrono
   #
   def update
     @temps += 1
 
-    @chrono_label.set_text(second_beautifull)
+    @chrono_label.set_text(second_beautiful)
   end
 
   def start
@@ -40,9 +40,9 @@ class Chronometre < Thread
   end
 
   #
-  # Fonction de mise au propre du temps en heure/minutes/secondes
+  # Fonction de mise au propre du temps en heures/minutes/secondes
   #
-  def second_beautifull
+  def second_beautiful
     heures = @temps / 3600
     minutes = (@temps - 3600 * heures) / 60
     secondes = (@temps - 3600 * heures) - 60 * minutes
