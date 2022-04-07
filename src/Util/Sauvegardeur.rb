@@ -8,7 +8,7 @@ require_relative '../Jeu/Chronometre'
 class Sauvegardeur
   private_class_method :new
 
-  def self.sauvegarder_niveau_arcade(difficulte, niveau, pseudo, grille, chrono)
+  def self.sauvegarder_niveau_arcade(difficulte, niveau, pseudo, grille, chrono, score, etat)
     fichier_joueur = File.open("../saves/#{pseudo}.yml", 'r')
     puts "#{difficulte}, #{niveau}, #{pseudo}, #{grille}, #{chrono}"
 
@@ -17,6 +17,8 @@ class Sauvegardeur
     puts data_joueur
 
     data_joueur[:arcade][difficulte.to_sym][niveau.to_sym] = {
+      etat: etat,
+      score: score,
       ponts: {
         ile_debut: [],
         ile_fin: [],

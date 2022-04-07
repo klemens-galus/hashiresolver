@@ -4,6 +4,7 @@ require_relative './Jeu/Grille'
 require_relative './Jeu/Chronometre'
 require_relative './Util/Sauvegardeur'
 require_relative './Util/Solveur'
+require_relative './Jeu/EtatJeu'
 
 #
 # Menu lors d'une partie
@@ -18,8 +19,11 @@ class PartieMenu
   # @chrono Chronometre pour la gestion du temps
   # @aide_label Texte pour l'affichage des aides
   # @solveur Outil d'aide à la résolution de la grille
+  # @etat Etat du jeu en cours (gagné ou en cours)
 
   attr :aide_label, true
+  attr :etat, true
+  attr_reader :diff, :chrono
 
   #
   # Initialisation
@@ -33,14 +37,17 @@ class PartieMenu
     @builder = Gtk::Builder.new
     @diff = diff
     @niveau = niveau
+    @etat = EtatJeu::EN_COURS
 
     build_interface(fenetre)
+
     apply_css
     connect_signals
     creer_grille
     @solveur = Solveur.new(@jeu_grille, self)
-    start_chrono
+    start_chrono 
     charger_niveau_profil
+    stop_chrono if @etat == EtatJeu::GAGNE
   end
 
   #
@@ -151,7 +158,7 @@ class PartieMenu
   # Retour sur la selection de niveau
   #
   def back
-    sauvegarder_grille
+    sauvegarder_grille(@jeu_grille.calcul_score)
     clear_window
     LevelSelector.new(@window, @diff, @pseudo)
   end
@@ -182,9 +189,9 @@ class PartieMenu
   #
   # Sasuvegarde la grille dans le fichier du joueur
   #
-  def sauvegarder_grille
+  def sauvegarder_grille(score)
     stop_chrono
-    Sauvegardeur.sauvegarder_niveau_arcade(@diff, @niveau, @pseudo, @jeu_grille, @chrono)
+    Sauvegardeur.sauvegarder_niveau_arcade(@diff, @niveau, @pseudo, @jeu_grille, @chrono, score, @etat)
   end
 
   #
@@ -197,6 +204,9 @@ class PartieMenu
 
     # Verification de la présence du niveau dans le fichier du joueur
     return unless data_profil[:arcade][@diff.to_sym].key?(@niveau.to_sym)
+
+    # Lecture de l'état du niveau
+    @etat = data_profil[:arcade][@diff.to_sym][@niveau.to_sym][:etat]
 
     # Données concernants les ponts
     data_pont = data_profil[:arcade][@diff.to_sym][@niveau.to_sym][:ponts]
@@ -215,6 +225,7 @@ class PartieMenu
 
     # Remise en place du chrono
     @chrono.temps = data_profil[:arcade][@diff.to_sym][@niveau.to_sym][:temps]
+    @builder.get_object('tempsLabel').set_text(@chrono.second_beautifull)
   end
 
   def demande_aide

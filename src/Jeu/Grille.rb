@@ -5,6 +5,7 @@ require_relative 'Pont'
 require_relative 'CaseVide'
 require_relative 'Orientation'
 require_relative 'VictoirePopup'
+require_relative 'EtatJeu'
 #
 # Grille de jeu contenant les îles et les ponts
 #
@@ -222,6 +223,8 @@ class Grille < Gtk::Grid
   #
   def check_victoire
     # Verification de la completion de chaques iles
+    return if @gui.etat == EtatJeu::GAGNE
+
     @liste_iles.each do |ile|
       return false if ile.numero != ile.nombre_ponts
     end
@@ -229,31 +232,28 @@ class Grille < Gtk::Grid
     true
   end
 
-
   # Retourne un score en fonction du temps et de la difficulté
-def calcul_score
-  case @diff
-  when 'facile'
-    return 10000 / @chrono.temps                    # Donc 120 secondes donne => 10000 / 120 un score de 83.33
-  when 'normal'
-    return 10000 / @chrono.temps * 2                # Donc 120 secondes donne => 10000 / 120 * 2 un score de 166.66
-  when 'difficile'
-    return 10000 / @chrono.temps * 5                # Donc 120 secondes donne => 10000 / 120 * 5 un score de 416.66
-  else
-    return nil
+  def calcul_score
+    case @gui.diff
+    when 'facile'
+      10_000 / @gui.chrono.temps                    # Donc 120 secondes donne => 10000 / 120 un score de 83.33
+    when 'normal'
+      10_000 / @gui.chrono.temps * 2                # Donc 120 secondes donne => 10000 / 120 * 2 un score de 166.66
+    when 'difficile'
+      10_000 / @gui.chrono.temps * 5                # Donc 120 secondes donne => 10000 / 120 * 5 un score de 416.66
+    end
   end
-end
 
-#
-# Fonction de gestion de la victoire
-#
-def gagner
-  @gui.stop_chrono
-  @gui.sauvegarder_grille
+  #
+  # Fonction de gestion de la victoire
+  #
+  def gagner
+    score = calcul_score
+    puts score.to_s
 
-  score = calcul_score
+    @gui.etat = EtatJeu::GAGNE
+    @gui.sauvegarder_grille(score)
 
-  VictoirePopup.popup(score)
-end
-
+    VictoirePopup.popup(score)
+  end
 end
