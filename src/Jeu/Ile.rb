@@ -1,6 +1,7 @@
 require 'gtk3'
 require_relative 'Grille'
 require_relative '../UI/AppColors'
+require_relative '../Util/UndoRedo'
 
 #
 # Bouton représentant une île
@@ -13,13 +14,13 @@ class Ile < Gtk::Button
 
   attr_reader :x, :y, :numero, :grille
 
-  def initialize(x, y, numero, grille)
+  def initialize(x, y, numero, grille, undoredo)
     @x = x
     @y = y
     @numero = numero
     @grille = grille
     @liste_ponts = []
-
+    @undoRedo = undoredo
     super(label: numero.to_s)
     set_style
     connect_signals
@@ -56,7 +57,11 @@ class Ile < Gtk::Button
 
       # Selection apres une autre selection => essai de création d'un pont
       elsif grille.selected != self && !grille.selected.nil?
+        @undoRedo.undoEmpile(grille.selected, self)
         grille.creer_pont(grille.selected, self)
+
+
+
       end
     end
   end

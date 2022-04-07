@@ -6,6 +6,7 @@ require_relative 'CaseVide'
 require_relative 'Orientation'
 require_relative 'VictoirePopup'
 require_relative 'EtatJeu'
+require_relative '../Util/UndoRedo'
 #
 # Grille de jeu contenant les îles et les ponts
 #
@@ -27,6 +28,8 @@ class Grille < Gtk::Grid
     @liste_iles = []
     @gui = gui
     @diff = difficulty
+
+    @undoRedo = UndoRedo.new(self)
 
     super()
     charger_niveau(difficulty, niveau)
@@ -81,7 +84,7 @@ class Grille < Gtk::Grid
       puts "creation ile #{x},#{y} |#{nombre_ponts}|"
 
       # Ajout de l'ile dans la grille
-      ile = Ile.new(x.to_i, y.to_i, nombre_ponts.to_i, self)
+      ile = Ile.new(x.to_i, y.to_i, nombre_ponts.to_i, self, @undoRedo)
       attach(ile, x.to_i, y.to_i, 1, 1)
 
       # Ajout de l'ile dans la liste pour la verification de victoire
@@ -271,5 +274,13 @@ class Grille < Gtk::Grid
     desactiver_iles
 
     VictoirePopup.popup(score)
+  end
+
+  def undo
+    @undoRedo.undoExecute()
+  end
+
+  def redo
+    @undoRedo.redoExecute()
   end
 end
