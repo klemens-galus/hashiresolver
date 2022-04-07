@@ -173,7 +173,6 @@ class MenuProfil
 
     # Données de base
     data = {
-      score: 0,
       arcade: {
         facile: {
 

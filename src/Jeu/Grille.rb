@@ -253,7 +253,7 @@ class Grille < Gtk::Grid
   # Désactive les iles pour empecher la modification après une victoire
   #
   def desactiver_iles
-    @liste_ile.each do |ile|
+    @liste_iles.each do |ile|
       ile.set_sensitive(false)
     end
   end

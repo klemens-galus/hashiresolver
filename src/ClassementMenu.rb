@@ -68,8 +68,7 @@ class ClassementMenu
 
     # Récuperation des scores
     files.each do |n|
-      data = YAML.load(File.read(n))
-      liste_scores[File.basename(n, '.*')] = data[:score]
+      liste_scores[File.basename(n, '.*')] = calculer_score_joueur(n)
     end
 
     # Tri de la liste en fonction des scores et affichage
@@ -79,6 +78,20 @@ class ClassementMenu
 
       @list_box.add(label)
     end
+  end
+
+  def calculer_score_joueur(fichier_joueur)
+    data_joueur = YAML.load(File.read(fichier_joueur))
+
+    score_total = 0
+
+    data_joueur[:arcade].each_key do |difficulte_symbol|
+      data_joueur[:arcade][difficulte_symbol].each_key do |niveau_symbol|
+        score_total += data_joueur[:arcade][difficulte_symbol][niveau_symbol][:score] if data_joueur[:arcade][difficulte_symbol][niveau_symbol][:etat] == EtatJeu::GAGNE
+      end
+    end
+
+    score_total
   end
 
   #
