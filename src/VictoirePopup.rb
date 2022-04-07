@@ -1,28 +1,24 @@
 require 'gtk3'
 require 'yaml'
-require_relative './UI/AppColors.rb'
+require_relative '../UI/AppColors'
 
 
 class VictoirePopup
 
-
-
 # Affichage du popup de selection du nom du nouveau profil
-#gla
+
   def self.popup(score)
     builder = Gtk::Builder.new
-    add_from_file('../../asset/glade/VictoirePopup.glade')
+    builder.add_from_file('../asset/glade/VictoirePopup.glade')
 
-    .get_object('VictoirePopup').remove(builder.get_object('VictoirePopup'))
+    builder.get_object('VictoirePopupWindow').remove(builder.get_object('VictoirePopupBox'))
 
 
-    window.add(builder.get_object('VictoirePopup'))
+    window.add(builder.get_object('VictoirePopupWindow'))
 
 
     window.override_background_color(:normal, AppColors::MAIN_COLOR)
 
-    # popup
-    popup = Gtk::Window.new('Victoire')
 
     # button = Gtk::Button.new 'close'
     # score_text = Gtk::Label.new
@@ -39,7 +35,7 @@ class VictoirePopup
   # Methode qui vide la fenêtre. A utiliser avant de leguer la fenêtre à un nouveau menu
   #
   def clear_window
-    @window.remove(@builder.get_object('victoire'))
+    window.remove(builder.get_object('VictoirePopupWindow'))
   end
 
 end
