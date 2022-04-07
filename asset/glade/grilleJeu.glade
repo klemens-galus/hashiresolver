@@ -243,7 +243,7 @@
                             <property name="margin_right">10</property>
                             <property name="margin_top">20</property>
                             <property name="margin_bottom">20</property>
-                            <property name="label" translatable="yes">aide</property>
+                            <property name="label" translatable="yes"></property>
                             <property name="wrap">True</property>
                             <attributes>
                               <attribute name="font-desc" value="Pixellari Medium 10"/>

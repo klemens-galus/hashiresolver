@@ -106,8 +106,13 @@ class PartieMenu
 
     @builder.objects.each do |n|
       n.name = 'btn' if n.builder_name.end_with?('Btn')
-      n.name = 'box' if n.builder_name.end_with?('Box')
     end
+
+    panneau_gauche_box.name = 'box'
+    panneau_haut_box.name = 'box'
+    panneau_bas_box.name = 'box'
+    aide_box.name = 'box'
+
   end
 
   #
