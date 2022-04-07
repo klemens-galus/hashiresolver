@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.38.2 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkWindow" id="profilWindow">
+    <property name="width-request">1280</property>
+    <property name="height-request">720</property>
+    <property name="can-focus">False</property>
+    <child>
+      <object class="GtkFixed" id="profil">
+        <property name="name">profil</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="width-request">100</property>
+            <property name="height-request">80</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">HASHICKEN</property>
+            <attributes>
+              <attribute name="font-desc" value="Franchise 10"/>
+              <attribute name="scale" value="7"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="x">475</property>
+            <property name="y">41</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="newProfilButton">
+            <property name="width-request">100</property>
+            <property name="height-request">80</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <child>
+              <object class="GtkLabel" id="newProfilLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">NOUVEAU PROFIL</property>
+                <attributes>
+                  <attribute name="font-desc" value="Franchise 10"/>
+                  <attribute name="scale" value="4"/>
+                </attributes>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="x">450</property>
+            <property name="y">150</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow">
+            <property name="width-request">600</property>
+            <property name="height-request">400</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="shadow-type">in</property>
+            <child>
+              <object class="GtkViewport">
+                <property name="width-request">600</property>
+                <property name="height-request">400</property>
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <child>
+                  <object class="GtkListBox" id="listbox">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="x">325</property>
+            <property name="y">250</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
