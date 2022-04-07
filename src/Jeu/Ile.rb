@@ -106,6 +106,8 @@ class Ile < Gtk::Button
     else
       override_color(:normal, AppColors::ILE_TEXTE_NORMAL)
     end
+
+    override_background_color(:normal, AppColors::ILE_BACKGROUND_TRANSPARENT)
   end
 
   #
@@ -120,6 +122,13 @@ class Ile < Gtk::Button
   #
   def remove_border
     update_etat_ile
+  end
+
+  #
+  # Indicateur visuel si l'ile est concernée par une aide
+  #
+  def afficher_aide
+    override_background_color(:normal, AppColors::ILE_BACKGROUND_AIDE)
   end
 
   #
