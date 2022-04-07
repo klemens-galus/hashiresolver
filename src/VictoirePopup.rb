@@ -7,25 +7,32 @@ class VictoirePopup
 
 
 
-  class VictoirePopup
-    # Affichage du popup de selection du nom du nouveau profil
+# Affichage du popup de selection du nom du nouveau profil
+#gla
+  def self.popup(score)
+    builder = Gtk::Builder.new
+    builder.add_from_file('../../asset/glade/VictoirePopup.glade')
 
-    def self.popup(score)
-      builder = Gtk::Builder.new
-      builder.add_from_file('../asset/glade/VictoirePopup.glade')
+    builder.get_object('VictoirePopup').remove(builder.get_object('VictoirePopup'))
 
-      window = builder.get_object('VictoirePopupWindow')
-      window.override_background_color(:normal, AppColors::MAIN_COLOR)
 
-      builder.get_object('quitterBtn').signal_connect 'clicked' do
-        window.close
-      end
+    window.add(builder.get_object('VictoirePopup'))
 
-      message_label = builder.get_object('messageLabel')
-      message_label.set_text(message_label.text << " " << score.to_s)
 
-      window.show_all
-    end
+    window.override_background_color(:normal, AppColors::MAIN_COLOR)
+
+    # popup
+    popup = Gtk::Window.new('Victoire')
+
+    # button = Gtk::Button.new 'close'
+    # score_text = Gtk::Label.new
+    # button.signal_connect 'clicked' do
+    #   popup.close
+    # end
+    #
+    # popup.add(score_text)
+    # popup.add(button)
+    # popup.show_all
   end
 
   #

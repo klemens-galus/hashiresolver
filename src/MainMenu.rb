@@ -15,7 +15,7 @@ class MainMenu
   #
   # Initialisation
   #
-  # @param [Gtk::Window] fenetre Fenêtre dans laquelle le menu va s'afficher
+  # @param [Gtk::Window] fenetre Fenetre dans laquelle le menu va s'afficher
   # @param [String] pseudo Pseudo du joueur
   #
   def initialize(fenetre, pseudo)
@@ -27,16 +27,16 @@ class MainMenu
   end
 
   #
-  # Chargement des composants graphiques Gtk dans la fenêtre
+  # Chargement des composants graphiques Gtk dans la fenetre
   #
-  # @param [Gtk::Window] fenetre Fenêtre dans laquelle le menu va s'afficher
+  # @param [Gtk::Window] fenetre Fenetre dans laquelle le menu va s'afficher
   #
   def build_interface(fenetre)
     @builder.add_from_file('../asset/glade/mainMenu.glade')
 
     @window = fenetre
 
-    # Libération de la Box principale qui ne peux etre rattachée qu'à une seule fenêtre
+    # Liberation de la Box principale qui ne peux etre ratachée qu'a une seule fenêtre
     @builder.get_object('mainWindow').remove(@builder.get_object('mainMenuBox'))
 
     # Ajout du contenu du menu dans la fenêtre
@@ -122,7 +122,7 @@ class MainMenu
   end
 
   #
-  # Méthode qui vide la fenêtre. A utiliser avant de léguer la fenêtre à un nouveau menu
+  # Methode qui vide la fenêtre. A utiliser avant de leguer la fenêtre à un nouveau menu
   #
   def clear_window
     @window.remove(@builder.get_object('mainMenuBox'))

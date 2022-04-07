@@ -13,12 +13,12 @@ require_relative './UI/AppColors'
 #
 class PartieMenu
   # @pseudo pseudo Pseudo du joueur
-  # @builder Builder glade pour récupérer les composants graphiques
-  # @window Fenêtre dans laquelle le menu va s'afficher
+  # @builder Builder glade pour récuperer les composants graphiques
+  # @window Fenetre dans laquelle le menu va s'afficher
   # @diff Difficulté des niveaux de ce menu
   # @niveau Niveau choisi
-  # @jeu_grille Grille qui contient les îles et les cases
-  # @chrono Chronomètre pour la gestion du temps
+  # @jeu_grille Grille qui contient les iles et les cases
+  # @chrono Chronometre pour la gestion du temps
   # @aide_label Texte pour l'affichage des aides
   # @solveur Outil d'aide à la résolution de la grille
   # @etat Etat du jeu en cours (gagné ou en cours)
@@ -30,7 +30,7 @@ class PartieMenu
   #
   # Initialisation
   #
-  # @param [Gtk::Window] fenetre Fenêtre dans laquelle le menu va s'afficher
+  # @param [Gtk::Window] fenetre Fenetre dans laquelle le menu va s'afficher
   # @param [String] diff Difficulté choisie
   # @param [String] pseudo Pseudo du joueur
   #
@@ -47,7 +47,7 @@ class PartieMenu
     connect_signals
     creer_grille
     @solveur = Solveur.new(@jeu_grille, self)
-    start_chrono
+    start_chrono 
     charger_niveau_profil
     stop_chrono if @etat == EtatJeu::GAGNE
   end
@@ -55,9 +55,9 @@ class PartieMenu
   attr_reader :chrono
 
   #
-  # Chargement des composants graphiques Gtk dans la fenêtre
+  # Chargement des composants graphiques Gtk dans la fenetre
   #
-  # @param [Gtk::Window] fenetre Fenêtre dans laquelle le menu va s'afficher
+  # @param [Gtk::Window] fenetre Fenetre dans laquelle le menu va s'afficher
   #
   def build_interface(fenetre)
     @builder.add_from_file('../asset/glade/grilleJeu.glade')
@@ -170,7 +170,7 @@ class PartieMenu
   end
 
   #
-  # Retour sur la sélection de niveau
+  # Retour sur la selection de niveau
   #
   def back
     sauvegarder_grille(@jeu_grille.calcul_score)
@@ -179,7 +179,7 @@ class PartieMenu
   end
 
   #
-  # Méthode qui vide la fenêtre. A utiliser avant de léguer la fenêtre à un nouveau menu
+  # Methode qui vide la fenêtre. A utiliser avant de leguer la fenêtre à un nouveau menu
   #
   def clear_window
     @window.remove(@builder.get_object('grilleJeuBox'))
@@ -217,7 +217,7 @@ class PartieMenu
 
     data_profil = YAML.load(fichier_profil.read)
 
-    # Vérification de la présence du niveau dans le fichier du joueur
+    # Verification de la présence du niveau dans le fichier du joueur
     return unless data_profil[:arcade][@diff.to_sym].key?(@niveau.to_sym)
 
     # Lecture de l'état du niveau
