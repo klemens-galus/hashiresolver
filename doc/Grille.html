@@ -1,0 +1,1787 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Grille
+  
+    &mdash; Documentation by YARD 0.9.24
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Grille";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (G)</a> &raquo;
+    
+    
+    <span class="title">Grille</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Grille
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Gtk::Grid</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Gtk::Grid</li>
+          
+            <li class="next">Grille</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>src/Jeu/Grille.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Grille de jeu contenant les îles et les ponts</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#liste_iles-instance_method" title="#liste_iles (instance method)">#<strong>liste_iles</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute liste_iles.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#liste_ponts-instance_method" title="#liste_ponts (instance method)">#<strong>liste_ponts</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute liste_ponts.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#selected-instance_method" title="#selected (instance method)">#<strong>selected</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute selected.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#taille-instance_method" title="#taille (instance method)">#<strong>taille</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute taille.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ajouter_corp_pont-instance_method" title="#ajouter_corp_pont (instance method)">#<strong>ajouter_corp_pont</strong>(pont)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Ajoute les cases qui séparent deux îles pour former un pont.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#calcul_score-instance_method" title="#calcul_score (instance method)">#<strong>calcul_score</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Retourne un score en fonction du temps et de la difficulté.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#charger_niveau-instance_method" title="#charger_niveau (instance method)">#<strong>charger_niveau</strong>(difficulty, niveau)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Charge les données du niveau en mémoire.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_victoire-instance_method" title="#check_victoire (instance method)">#<strong>check_victoire</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Vérification de toutes les îles pour la victoire.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#creer_pont-instance_method" title="#creer_pont (instance method)">#<strong>creer_pont</strong>(ile1, ile2)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Création d&#39;un pont entre deux îles.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#desactiver_iles-instance_method" title="#desactiver_iles (instance method)">#<strong>desactiver_iles</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Désactive les îles pour empecher la modification après une victoire.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#gagner-instance_method" title="#gagner (instance method)">#<strong>gagner</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Fonction de gestion de la victoire.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_pont-instance_method" title="#get_pont (instance method)">#<strong>get_pont</strong>(ile1, ile2)  &#x21d2; Pont </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Recherche d&#39;un pont entre deux îles.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(difficulty, niveau, gui)  &#x21d2; Grille </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of Grille.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#placer_iles-instance_method" title="#placer_iles (instance method)">#<strong>placer_iles</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Initialise la grille avec des cellules vides puis place les îles par rapport aux données.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#redo-instance_method" title="#redo (instance method)">#<strong>redo</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#undo-instance_method" title="#undo (instance method)">#<strong>undo</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#verification_croisement-instance_method" title="#verification_croisement (instance method)">#<strong>verification_croisement</strong>(pont)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Vérifie si le pont que l&#39;on veut créer croise un autre pont ou rencontre une ile.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(difficulty, niveau, gui)  &#x21d2; <tt><span class='object_link'><a href="" title="Grille (class)">Grille</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of Grille.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/Jeu/Grille.rb', line 25</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_difficulty'>difficulty</span><span class='comma'>,</span> <span class='id identifier rubyid_niveau'>niveau</span><span class='comma'>,</span> <span class='id identifier rubyid_gui'>gui</span><span class='rparen'>)</span>
+  <span class='ivar'>@selected</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@liste_ponts</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@liste_iles</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@gui</span> <span class='op'>=</span> <span class='id identifier rubyid_gui'>gui</span>
+  <span class='ivar'>@diff</span> <span class='op'>=</span> <span class='id identifier rubyid_difficulty'>difficulty</span>
+
+  <span class='ivar'>@undoRedo</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="UndoRedo.html" title="UndoRedo (class)">UndoRedo</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="UndoRedo.html#initialize-instance_method" title="UndoRedo#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
+
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_charger_niveau'>charger_niveau</span><span class='lparen'>(</span><span class='id identifier rubyid_difficulty'>difficulty</span><span class='comma'>,</span> <span class='id identifier rubyid_niveau'>niveau</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_placer_iles'>placer_iles</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="liste_iles-instance_method">
+  
+    #<strong>liste_iles</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute liste_iles.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+23
+24
+25</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/Jeu/Grille.rb', line 23</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_liste_iles'>liste_iles</span>
+  <span class='ivar'>@liste_iles</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="liste_ponts-instance_method">
+  
+    #<strong>liste_ponts</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute liste_ponts.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+23
+24
+25</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/Jeu/Grille.rb', line 23</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_liste_ponts'>liste_ponts</span>
+  <span class='ivar'>@liste_ponts</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="selected=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="selected-instance_method">
+  
+    #<strong>selected</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute selected.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+22
+23
+24</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/Jeu/Grille.rb', line 22</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_selected'>selected</span>
+  <span class='ivar'>@selected</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="taille-instance_method">
+  
+    #<strong>taille</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute taille.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+23
+24
+25</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/Jeu/Grille.rb', line 23</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_taille'>taille</span>
+  <span class='ivar'>@taille</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="ajouter_corp_pont-instance_method">
+  
+    #<strong>ajouter_corp_pont</strong>(pont)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Ajoute les cases qui séparent deux îles pour former un pont</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>pont</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Pont.html" title="Pont (class)">Pont</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Le pont à former</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/Jeu/Grille.rb', line 120</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ajouter_corp_pont'>ajouter_corp_pont</span><span class='lparen'>(</span><span class='id identifier rubyid_pont'>pont</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_orientation'>orientation</span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="Orientation.html" title="Orientation (module)">Orientation</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Orientation.html#VERTICAL-constant" title="Orientation::VERTICAL (constant)">VERTICAL</a></span></span>    <span class='comment'># Parcours de cases qui séparent deux îles verticales
+</span>
+    <span class='lparen'>(</span><span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_ile_debut'>ile_debut</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span><span class='op'>..</span><span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_ile_fin'>ile_fin</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_y'>y</span><span class='op'>|</span>
+      <span class='comment'># Ajout de la case seulement si ce n&#39;est pas une île (permet de passer les îles des bouts)
+</span>      <span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_ajouter_case_pont'>ajouter_case_pont</span><span class='lparen'>(</span><span class='id identifier rubyid_get_child_at'>get_child_at</span><span class='lparen'>(</span><span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_ile_debut'>ile_debut</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_get_child_at'>get_child_at</span><span class='lparen'>(</span><span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_ile_debut'>ile_debut</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span>
+                                                                                    <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_instance_of?'>instance_of?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Ile.html" title="Ile (class)">Ile</a></span></span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_orientation'>orientation</span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="Orientation.html" title="Orientation (module)">Orientation</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Orientation.html#HORIZONTAL-constant" title="Orientation::HORIZONTAL (constant)">HORIZONTAL</a></span></span>    <span class='comment'># Même principe pour des îles horizontales
+</span>
+    <span class='lparen'>(</span><span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_ile_debut'>ile_debut</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span><span class='op'>..</span><span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_ile_fin'>ile_fin</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_x'>x</span><span class='op'>|</span>
+      <span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_ajouter_case_pont'>ajouter_case_pont</span><span class='lparen'>(</span><span class='id identifier rubyid_get_child_at'>get_child_at</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_ile_debut'>ile_debut</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_get_child_at'>get_child_at</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span>
+                                                                                    <span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_ile_debut'>ile_debut</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_instance_of?'>instance_of?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Ile.html" title="Ile (class)">Ile</a></span></span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="calcul_score-instance_method">
+  
+    #<strong>calcul_score</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Retourne un score en fonction du temps et de la difficulté</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/Jeu/Grille.rb', line 242</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_calcul_score'>calcul_score</span>
+  <span class='kw'>case</span> <span class='ivar'>@gui</span><span class='period'>.</span><span class='id identifier rubyid_diff'>diff</span>
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>facile</span><span class='tstring_end'>&#39;</span></span>
+    <span class='int'>10000</span> <span class='op'>/</span> <span class='ivar'>@gui</span><span class='period'>.</span><span class='id identifier rubyid_chrono'>chrono</span><span class='period'>.</span><span class='id identifier rubyid_temps'>temps</span>                    <span class='comment'># Donc 120 secondes donne =&gt; 10000 / 120 un score de 83.33
+</span>  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>normal</span><span class='tstring_end'>&#39;</span></span>
+    <span class='int'>10000</span> <span class='op'>/</span> <span class='ivar'>@gui</span><span class='period'>.</span><span class='id identifier rubyid_chrono'>chrono</span><span class='period'>.</span><span class='id identifier rubyid_temps'>temps</span> <span class='op'>*</span> <span class='int'>2</span>                <span class='comment'># Donc 120 secondes donne =&gt; 10000 / 120 * 2 un score de 166.66
+</span>  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>difficile</span><span class='tstring_end'>&#39;</span></span>
+    <span class='int'>10000</span> <span class='op'>/</span> <span class='ivar'>@gui</span><span class='period'>.</span><span class='id identifier rubyid_chrono'>chrono</span><span class='period'>.</span><span class='id identifier rubyid_temps'>temps</span> <span class='op'>*</span> <span class='int'>5</span>                <span class='comment'># Donc 120 secondes donne =&gt; 10000 / 120 * 5 un score de 416.66
+</span>  <span class='kw'>else</span>
+    <span class='kw'>return</span> <span class='int'>0</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="charger_niveau-instance_method">
+  
+    #<strong>charger_niveau</strong>(difficulty, niveau)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Charge les données du niveau en mémoire</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>difficulty</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>La difficulté du niveau choisi</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>niveau</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Le niveau choisi</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/Jeu/Grille.rb', line 45</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_charger_niveau'>charger_niveau</span><span class='lparen'>(</span><span class='id identifier rubyid_difficulty'>difficulty</span><span class='comma'>,</span> <span class='id identifier rubyid_niveau'>niveau</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_fichier_niveau'>fichier_niveau</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>../levels/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_difficulty'>difficulty</span><span class='embexpr_end'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_niveau'>niveau</span><span class='embexpr_end'>}</span><span class='tstring_content'>.yml</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+
+  <span class='comment'># Récupération des  données en YAML (format hash)
+</span>  <span class='ivar'>@data_niveau</span> <span class='op'>=</span> <span class='const'>YAML</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='id identifier rubyid_fichier_niveau'>fichier_niveau</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rparen'>)</span>
+
+  <span class='comment'># Taille de la zone de jeu (carré pour l&#39;instant)
+</span>  <span class='ivar'>@taille</span> <span class='op'>=</span> <span class='ivar'>@data_niveau</span><span class='lbracket'>[</span><span class='symbol'>:taille</span><span class='rbracket'>]</span>
+
+  <span class='comment'># Debug
+</span>  <span class='id identifier rubyid_puts'>puts</span> <span class='ivar'>@data_niveau</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_victoire-instance_method">
+  
+    #<strong>check_victoire</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Vérification de toutes les îles pour la victoire</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/Jeu/Grille.rb', line 229</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_victoire'>check_victoire</span>  <span class='comment'># Vérification de la complétion de chaques îles
+</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='ivar'>@gui</span><span class='period'>.</span><span class='id identifier rubyid_etat'>etat</span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="EtatJeu.html" title="EtatJeu (module)">EtatJeu</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="EtatJeu.html#GAGNE-constant" title="EtatJeu::GAGNE (constant)">GAGNE</a></span></span>
+
+  <span class='ivar'>@liste_iles</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ile'>ile</span><span class='op'>|</span>
+    <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_ile'>ile</span><span class='period'>.</span><span class='id identifier rubyid_numero'>numero</span> <span class='op'>!=</span> <span class='id identifier rubyid_ile'>ile</span><span class='period'>.</span><span class='id identifier rubyid_nombre_ponts'>nombre_ponts</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Toutes les îles sont complètes
+</span>  <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="creer_pont-instance_method">
+  
+    #<strong>creer_pont</strong>(ile1, ile2)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Création d&#39;un pont entre deux îles</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>ile1</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Ile.html" title="Ile (class)">Ile</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Premiere ile du pont</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ile2</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Ile.html" title="Ile (class)">Ile</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Seconde ile du pont</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/Jeu/Grille.rb', line 169</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_creer_pont'>creer_pont</span><span class='lparen'>(</span><span class='id identifier rubyid_ile1'>ile1</span><span class='comma'>,</span> <span class='id identifier rubyid_ile2'>ile2</span><span class='rparen'>)</span>
+  <span class='comment'># Debug
+</span>  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>essai création d&#39;un pont</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='comment'># Cas où le pont souhaité n&#39;existe pas
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_get_pont'>get_pont</span><span class='lparen'>(</span><span class='id identifier rubyid_ile1'>ile1</span><span class='comma'>,</span> <span class='id identifier rubyid_ile2'>ile2</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>    <span class='comment'># Mêmes x =&gt; pont vertical
+</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_ile1'>ile1</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span> <span class='op'>==</span> <span class='id identifier rubyid_ile2'>ile2</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span>      <span class='comment'># Création des ponts avec ile_depart.x &lt; ile_fin.x pour avoir tous les ponts dans le même sens
+</span>
+      <span class='id identifier rubyid_pont'>pont</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Pont.html" title="Pont (class)">Pont</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Pont.html#initialize-instance_method" title="Pont#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_ile1'>ile1</span><span class='comma'>,</span> <span class='id identifier rubyid_ile2'>ile2</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="Orientation.html" title="Orientation (module)">Orientation</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Orientation.html#VERTICAL-constant" title="Orientation::VERTICAL (constant)">VERTICAL</a></span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_ile1'>ile1</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_ile2'>ile2</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span>
+      <span class='id identifier rubyid_pont'>pont</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Pont.html" title="Pont (class)">Pont</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Pont.html#initialize-instance_method" title="Pont#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_ile2'>ile2</span><span class='comma'>,</span> <span class='id identifier rubyid_ile1'>ile1</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="Orientation.html" title="Orientation (module)">Orientation</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Orientation.html#VERTICAL-constant" title="Orientation::VERTICAL (constant)">VERTICAL</a></span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_ile2'>ile2</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_ile1'>ile1</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span>
+
+    <span class='comment'># Même y =&gt; pont horizontal
+</span>    <span class='kw'>elsif</span> <span class='id identifier rubyid_ile1'>ile1</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span> <span class='op'>==</span> <span class='id identifier rubyid_ile2'>ile2</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span>      <span class='comment'># Création des ponts avec ile_depart.y &lt; ile_fin.y pour avoir tous les ponts dans le même sens
+</span>
+      <span class='id identifier rubyid_pont'>pont</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Pont.html" title="Pont (class)">Pont</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Pont.html#initialize-instance_method" title="Pont#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_ile1'>ile1</span><span class='comma'>,</span> <span class='id identifier rubyid_ile2'>ile2</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="Orientation.html" title="Orientation (module)">Orientation</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Orientation.html#HORIZONTAL-constant" title="Orientation::HORIZONTAL (constant)">HORIZONTAL</a></span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_ile1'>ile1</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_ile2'>ile2</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span>
+      <span class='id identifier rubyid_pont'>pont</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Pont.html" title="Pont (class)">Pont</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Pont.html#initialize-instance_method" title="Pont#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_ile2'>ile2</span><span class='comma'>,</span> <span class='id identifier rubyid_ile1'>ile1</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="Orientation.html" title="Orientation (module)">Orientation</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Orientation.html#HORIZONTAL-constant" title="Orientation::HORIZONTAL (constant)">HORIZONTAL</a></span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_ile2'>ile2</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_ile1'>ile1</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span>
+    <span class='kw'>end</span>
+
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_verification_croisement'>verification_croisement</span><span class='lparen'>(</span><span class='id identifier rubyid_pont'>pont</span><span class='rparen'>)</span>      <span class='comment'># Ajout du pont dans la liste, les îles et affichage du pont
+</span>
+      <span class='ivar'>@liste_ponts</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_pont'>pont</span>
+
+      <span class='id identifier rubyid_ile1'>ile1</span><span class='period'>.</span><span class='id identifier rubyid_ajouter_pont'>ajouter_pont</span><span class='lparen'>(</span><span class='id identifier rubyid_pont'>pont</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_ile2'>ile2</span><span class='period'>.</span><span class='id identifier rubyid_ajouter_pont'>ajouter_pont</span><span class='lparen'>(</span><span class='id identifier rubyid_pont'>pont</span><span class='rparen'>)</span>
+
+      <span class='id identifier rubyid_ajouter_corp_pont'>ajouter_corp_pont</span><span class='lparen'>(</span><span class='id identifier rubyid_pont'>pont</span><span class='rparen'>)</span>
+
+      <span class='comment'># Met à jour l&#39;affichage de toutes les parties du pont
+</span>      <span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_afficher'>afficher</span>
+
+      <span class='comment'># Debug
+</span>      <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>pont ajouté : </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_pont'>pont</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span> <span class='comment'># Cas où le pont existe déjà
+</span>
+    <span class='id identifier rubyid_pont'>pont</span> <span class='op'>=</span> <span class='id identifier rubyid_get_pont'>get_pont</span><span class='lparen'>(</span><span class='id identifier rubyid_ile1'>ile1</span><span class='comma'>,</span> <span class='id identifier rubyid_ile2'>ile2</span><span class='rparen'>)</span>
+
+    <span class='kw'>if</span> <span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_double'>double</span>
+      <span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_supprimer'>supprimer</span>
+      <span class='ivar'>@liste_ponts</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_pont'>pont</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_double'>double</span> <span class='op'>=</span> <span class='kw'>true</span>      <span class='comment'># Mise à jour de l&#39;affichage de toutes les parties du pont pour afficher un pont double
+</span>
+      <span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_afficher'>afficher</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Désélection des îles à la fin de la création du pont
+</span>  <span class='id identifier rubyid_ile1'>ile1</span><span class='period'>.</span><span class='id identifier rubyid_remove_border'>remove_border</span>
+  <span class='id identifier rubyid_ile2'>ile2</span><span class='period'>.</span><span class='id identifier rubyid_remove_border'>remove_border</span>
+  <span class='ivar'>@selected</span> <span class='op'>=</span> <span class='kw'>nil</span>
+
+  <span class='comment'># Vérification de victoire
+</span>  <span class='id identifier rubyid_gagner'>gagner</span> <span class='kw'>if</span> <span class='id identifier rubyid_check_victoire'>check_victoire</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="desactiver_iles-instance_method">
+  
+    #<strong>desactiver_iles</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Désactive les îles pour empecher la modification après une victoire</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+258
+259
+260
+261
+262</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/Jeu/Grille.rb', line 258</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_desactiver_iles'>desactiver_iles</span>
+  <span class='ivar'>@liste_iles</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ile'>ile</span><span class='op'>|</span>
+    <span class='id identifier rubyid_ile'>ile</span><span class='period'>.</span><span class='id identifier rubyid_set_sensitive'>set_sensitive</span><span class='lparen'>(</span><span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="gagner-instance_method">
+  
+    #<strong>gagner</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Fonction de gestion de la victoire</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/Jeu/Grille.rb', line 267</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_gagner'>gagner</span>
+  <span class='id identifier rubyid_score'>score</span> <span class='op'>=</span> <span class='id identifier rubyid_calcul_score'>calcul_score</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_score'>score</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+
+  <span class='ivar'>@gui</span><span class='period'>.</span><span class='id identifier rubyid_etat'>etat</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="EtatJeu.html" title="EtatJeu (module)">EtatJeu</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="EtatJeu.html#GAGNE-constant" title="EtatJeu::GAGNE (constant)">GAGNE</a></span></span>
+  <span class='ivar'>@gui</span><span class='period'>.</span><span class='id identifier rubyid_sauvegarder_grille'>sauvegarder_grille</span><span class='lparen'>(</span><span class='id identifier rubyid_score'>score</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_desactiver_iles'>desactiver_iles</span>
+
+  <span class='const'><span class='object_link'><a href="VictoirePopup.html" title="VictoirePopup (class)">VictoirePopup</a></span></span><span class='period'>.</span><span class='id identifier rubyid_popup'><span class='object_link'><a href="VictoirePopup.html#popup-class_method" title="VictoirePopup.popup (method)">popup</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_score'>score</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_pont-instance_method">
+  
+    #<strong>get_pont</strong>(ile1, ile2)  &#x21d2; <tt><span class='object_link'><a href="Pont.html" title="Pont (class)">Pont</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Recherche d&#39;un pont entre deux îles</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>île1</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Ile.html" title="Ile (class)">Ile</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Premiere île du pont</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>île2</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Ile.html" title="Ile (class)">Ile</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Seconde île du pont</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Pont.html" title="Pont (class)">Pont</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Pont trouvé ou nil si aucun pont entre les deux îles</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/Jeu/Grille.rb', line 103</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_pont'>get_pont</span><span class='lparen'>(</span><span class='id identifier rubyid_ile1'>ile1</span><span class='comma'>,</span> <span class='id identifier rubyid_ile2'>ile2</span><span class='rparen'>)</span>
+  <span class='ivar'>@liste_ponts</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_pont'>pont</span><span class='op'>|</span>
+    <span class='comment'># Vérification dans les deux sens (ile1 =&gt; ile2 et ile2 =&gt; ile1)
+</span>    <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_ile_debut'>ile_debut</span> <span class='op'>==</span> <span class='id identifier rubyid_ile1'>ile1</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_ile_fin'>ile_fin</span> <span class='op'>==</span> <span class='id identifier rubyid_ile2'>ile2</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='lparen'>(</span><span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_ile_debut'>ile_debut</span> <span class='op'>==</span> <span class='id identifier rubyid_ile2'>ile2</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_ile_fin'>ile_fin</span> <span class='op'>==</span> <span class='id identifier rubyid_ile1'>ile1</span><span class='rparen'>)</span>
+      <span class='kw'>return</span> <span class='id identifier rubyid_pont'>pont</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Aucuns ponts trouvés
+</span>  <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="placer_iles-instance_method">
+  
+    #<strong>placer_iles</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Initialise la grille avec des cellules vides puis place les îles par rapport aux données</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/Jeu/Grille.rb', line 61</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_placer_iles'>placer_iles</span>  <span class='comment'># Placement cases vides
+</span>
+  <span class='lparen'>(</span><span class='int'>0</span><span class='op'>..</span><span class='ivar'>@taille</span> <span class='op'>-</span> <span class='int'>1</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
+    <span class='lparen'>(</span><span class='int'>0</span><span class='op'>..</span><span class='ivar'>@taille</span> <span class='op'>-</span> <span class='int'>1</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_j'>j</span><span class='op'>|</span>
+      <span class='id identifier rubyid_attach'>attach</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="CaseVide.html" title="CaseVide (class)">CaseVide</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="CaseVide.html#initialize-instance_method" title="CaseVide#initialize (method)">new</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set_sensitive'>set_sensitive</span><span class='lparen'>(</span><span class='kw'>false</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_i'>i</span><span class='comma'>,</span> <span class='id identifier rubyid_j'>j</span><span class='comma'>,</span> <span class='int'>1</span><span class='comma'>,</span> <span class='int'>1</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Debug
+</span>  <span class='id identifier rubyid_puts'>puts</span> <span class='ivar'>@data_niveau</span><span class='lbracket'>[</span><span class='symbol'>:iles</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>%</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+
+  <span class='comment'># Lecture des données pour placer les îles
+</span>  <span class='ivar'>@data_niveau</span><span class='lbracket'>[</span><span class='symbol'>:iles</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>%</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_data_ile'>data_ile</span><span class='op'>|</span>
+    <span class='id identifier rubyid_pos'>pos</span> <span class='op'>=</span> <span class='id identifier rubyid_data_ile'>data_ile</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_nombre_ponts'>nombre_ponts</span> <span class='op'>=</span> <span class='id identifier rubyid_data_ile'>data_ile</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_x'>x</span> <span class='op'>=</span> <span class='id identifier rubyid_pos'>pos</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_y'>y</span> <span class='op'>=</span> <span class='id identifier rubyid_pos'>pos</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+
+    <span class='comment'># Récupération de la case vide à l&#39;endroit voulu pour échanger avec l&#39;île
+</span>    <span class='id identifier rubyid_case_vide'>case_vide</span> <span class='op'>=</span> <span class='id identifier rubyid_get_child_at'>get_child_at</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_remove'>remove</span><span class='lparen'>(</span><span class='id identifier rubyid_case_vide'>case_vide</span><span class='rparen'>)</span>
+
+    <span class='comment'># Debug
+</span>    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>creation ile </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_x'>x</span><span class='embexpr_end'>}</span><span class='tstring_content'>,</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_y'>y</span><span class='embexpr_end'>}</span><span class='tstring_content'> |</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_nombre_ponts'>nombre_ponts</span><span class='embexpr_end'>}</span><span class='tstring_content'>|</span><span class='tstring_end'>&quot;</span></span>
+
+    <span class='comment'># Ajout de l&#39;île dans la grille
+</span>    <span class='id identifier rubyid_ile'>ile</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Ile.html" title="Ile (class)">Ile</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Ile.html#initialize-instance_method" title="Ile#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span> <span class='id identifier rubyid_nombre_ponts'>nombre_ponts</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span> <span class='kw'>self</span><span class='comma'>,</span> <span class='ivar'>@undoRedo</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_attach'>attach</span><span class='lparen'>(</span><span class='id identifier rubyid_ile'>ile</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span> <span class='int'>1</span><span class='comma'>,</span> <span class='int'>1</span><span class='rparen'>)</span>
+
+    <span class='comment'># Ajout de l&#39;île dans la liste pour la vérification de victoire
+</span>    <span class='ivar'>@liste_iles</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_ile'>ile</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="redo-instance_method">
+  
+    #<strong>redo</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+283
+284
+285</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/Jeu/Grille.rb', line 283</span>
+
+<span class='kw'>def</span> <span class='kw'>redo</span>
+  <span class='ivar'>@undoRedo</span><span class='period'>.</span><span class='id identifier rubyid_redoExecute'>redoExecute</span><span class='lparen'>(</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="undo-instance_method">
+  
+    #<strong>undo</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+279
+280
+281</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/Jeu/Grille.rb', line 279</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_undo'>undo</span>
+  <span class='ivar'>@undoRedo</span><span class='period'>.</span><span class='id identifier rubyid_undoExecute'>undoExecute</span><span class='lparen'>(</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="verification_croisement-instance_method">
+  
+    #<strong>verification_croisement</strong>(pont)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Vérifie si le pont que l&#39;on veut créer croise un autre pont ou rencontre une ile</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>pont</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Pont.html" title="Pont (class)">Pont</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Le pont à vérifier</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>true si le pont peut être créer, false sinon</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/Jeu/Grille.rb', line 144</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_verification_croisement'>verification_croisement</span><span class='lparen'>(</span><span class='id identifier rubyid_pont'>pont</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_orientation'>orientation</span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="Orientation.html" title="Orientation (module)">Orientation</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Orientation.html#VERTICAL-constant" title="Orientation::VERTICAL (constant)">VERTICAL</a></span></span>    <span class='comment'># Vérification de toutes les cases pour un pont à la vertical
+</span>
+    <span class='lparen'>(</span><span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_ile_debut'>ile_debut</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span> <span class='op'>+</span> <span class='int'>1</span><span class='op'>..</span><span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_ile_fin'>ile_fin</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span> <span class='op'>-</span> <span class='int'>1</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_y'>y</span><span class='op'>|</span>
+      <span class='id identifier rubyid_case_pont'>case_pont</span> <span class='op'>=</span> <span class='id identifier rubyid_get_child_at'>get_child_at</span><span class='lparen'>(</span><span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_ile_debut'>ile_debut</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span>      <span class='comment'># détection de si une case n&#39;est pas libre ou si une île est sur le chemin du pont
+</span>
+      <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_case_pont'>case_pont</span><span class='period'>.</span><span class='id identifier rubyid_instance_of?'>instance_of?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Ile.html" title="Ile (class)">Ile</a></span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='op'>!</span><span class='id identifier rubyid_case_pont'>case_pont</span><span class='period'>.</span><span class='id identifier rubyid_libre'>libre</span>
+    <span class='kw'>end</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_orientation'>orientation</span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="Orientation.html" title="Orientation (module)">Orientation</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Orientation.html#HORIZONTAL-constant" title="Orientation::HORIZONTAL (constant)">HORIZONTAL</a></span></span>    <span class='comment'># Même principe pour l&#39;horizontal
+</span>
+    <span class='lparen'>(</span><span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_ile_debut'>ile_debut</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span> <span class='op'>+</span> <span class='int'>1</span><span class='op'>..</span><span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_ile_fin'>ile_fin</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span> <span class='op'>-</span> <span class='int'>1</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_x'>x</span><span class='op'>|</span>
+      <span class='id identifier rubyid_case_pont'>case_pont</span> <span class='op'>=</span> <span class='id identifier rubyid_get_child_at'>get_child_at</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_pont'>pont</span><span class='period'>.</span><span class='id identifier rubyid_ile_debut'>ile_debut</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span>
+      <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_case_pont'>case_pont</span><span class='period'>.</span><span class='id identifier rubyid_instance_of?'>instance_of?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Ile.html" title="Ile (class)">Ile</a></span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='op'>!</span><span class='id identifier rubyid_case_pont'>case_pont</span><span class='period'>.</span><span class='id identifier rubyid_libre'>libre</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>  <span class='comment'># Toutes les cases sont valides, le pont peut être crée
+</span>
+  <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.24 (ruby-2.7.0).
+</div>
+
+    </div>
+  </body>
+</html>

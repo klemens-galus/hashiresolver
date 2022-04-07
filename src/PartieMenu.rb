@@ -91,13 +91,6 @@ class PartieMenu
     aide_btn = @builder.get_object('aideBtn')
     aide_btn.override_background_color(:normal, AppColors::BUTTON_JEU)
 
-
-    hypo_btn = @builder.get_object('hypoBtn')
-    hypo_btn.override_background_color(:normal, AppColors::BUTTON_JEU)
-
-    fin_hypo_btn = @builder.get_object('finHypoBtn')
-    fin_hypo_btn.override_background_color(:normal, AppColors::BUTTON_JEU)
-
     undo_btn = @builder.get_object('undoBtn')
     undo_btn.override_background_color(:normal, AppColors::BUTTON_JEU)
 
