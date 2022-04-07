@@ -4,6 +4,7 @@ require_relative 'Ile'
 require_relative 'Pont'
 require_relative 'CaseVide'
 require_relative 'Orientation'
+require_relative 'VictoirePopup'
 
 #
 # Grille de jeu contenant les îles et les ponts
@@ -15,6 +16,7 @@ class Grille < Gtk::Grid
   # @liste_ponts Liste des ponts crées
   # @liste_ile Liste des iles du niveau (utilisée pour la verification de victoire)
   # @gui Le menu qui contient la grille
+  # @diff Le niveau de difficulté
 
   attr :selected, true
   attr_reader :liste_ponts
@@ -24,6 +26,7 @@ class Grille < Gtk::Grid
     @liste_ponts = []
     @liste_ile = []
     @gui = gui
+    @diff = difficulty
 
     super()
     charger_niveau(difficulty, niveau)
@@ -56,7 +59,7 @@ class Grille < Gtk::Grid
     # Placement case vides
     (0..@taille - 1).each do |i|
       (0..@taille - 1).each do |j|
-        attach(CaseVide.new, i, j, 1, 1)
+        attach(CaseVide.new.set_sensitive(false), i, j, 1, 1)
       end
     end
 
@@ -83,6 +86,10 @@ class Grille < Gtk::Grid
 
       # Ajout de l'ile dans la liste pour la verification de victoire
       @liste_ile << ile
+
+      if @data_niveau[:fini] == false
+        ile.set_sensitive(true);
+      end
     end
   end
 
@@ -229,6 +236,26 @@ class Grille < Gtk::Grid
     true
   end
 
+  # Retourne un score en fonction du temps et de la difficulté
+  def calcul_score
+    case @diff
+    when 'facile'
+      return (10000 / @gui.chrono.temps) + 1               # Donc 120 secondes donne => 10000 / 120 un score de 83.33
+    when 'normal'
+      return (10000 / @gui.chrono.temps * 2) + 1           # Donc 120 secondes donne => 10000 / 120 * 2 un score de 166.66
+    when 'difficile'
+      return (10000 / @gui.chrono.temps * 5) + 1           # Donc 120 secondes donne => 10000 / 120 * 5 un score de 416.66
+    else
+      return nil
+    end
+  end
+
+  def disable_button
+    @liste_ile.each do |ile|
+      ile.set_sensitive(false);
+    end
+  end
+
   #
   # Fonction de gestion de la victoire
   #
@@ -236,12 +263,10 @@ class Grille < Gtk::Grid
     @gui.stop_chrono
     @gui.sauvegarder_grille
 
-    Gtk::MessageDialog.new(
-      parent: nil,
-      flags: 0,
-      type: :info,
-      buttons: :close,
-      message: '!!!!!!!!!! BRAVO !!!!!!!!!!'
-    ).show_all
+    disable_button
+
+    score = calcul_score
+
+    VictoirePopup.popup(score)
   end
 end

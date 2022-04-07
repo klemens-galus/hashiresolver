@@ -8,9 +8,9 @@ require_relative '../Jeu/Chronometre'
 class Sauvegardeur
   private_class_method :new
 
-  def self.sauvegarder_niveau_arcade(difficulte, niveau, pseudo, grille, chrono)
+  def self.sauvegarder_niveau_arcade(difficulte, niveau, pseudo, grille, chrono, score, fini)
     fichier_joueur = File.open("../saves/#{pseudo}.yml", 'r')
-    puts "#{difficulte}, #{niveau}, #{pseudo}, #{grille}, #{chrono}"
+    puts "#{difficulte}, #{niveau}, #{pseudo}, #{grille}, #{chrono}, #{score}, #{fini}"
 
     data_joueur = YAML.load(fichier_joueur.read)
     fichier_joueur.close
@@ -22,7 +22,9 @@ class Sauvegardeur
         ile_fin: [],
         double: []
       },
-      temps: chrono.temps
+      temps: chrono.temps,
+      score: score,
+      fini: fini
     }
 
     grille.liste_ponts.each do |pont|

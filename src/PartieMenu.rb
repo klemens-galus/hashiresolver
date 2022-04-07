@@ -37,6 +37,8 @@ class PartieMenu
     charger_niveau_profil
   end
 
+  attr_reader :chrono
+
   #
   # Chargement des composants graphiques Gtk dans la fenetre
   #
@@ -173,7 +175,8 @@ class PartieMenu
   #
   def sauvegarder_grille
     stop_chrono
-    Sauvegardeur.sauvegarder_niveau_arcade(@diff, @niveau, @pseudo, @jeu_grille, @chrono)
+    score = @jeu_grille.calcul_score
+    Sauvegardeur.sauvegarder_niveau_arcade(@diff, @niveau, @pseudo, @jeu_grille, @chrono, score, @jeu_grille.check_victoire)
   end
 
   #
