@@ -41,7 +41,7 @@ class CaseVide < Gtk::Button
     @libre = false
 
     if orientation == Orientation::HORIZONTAL
-      set_label('----')
+      set_label('--')
     elsif orientation == Orientation::VERTICAL
       set_label('|')
     end
@@ -56,7 +56,7 @@ class CaseVide < Gtk::Button
     @libre = false
 
     if orientation == Orientation::HORIZONTAL
-      set_label('====')
+      set_label('==')
     elsif orientation == Orientation::VERTICAL
       set_label('||')
     end

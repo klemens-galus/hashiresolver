@@ -101,6 +101,7 @@
             <attributes>
               <attribute name="font-desc" value="Pixellari Italic 10"/>
               <attribute name="scale" value="2"/>
+              <attribute name="foreground" value="#ffffffffffff"/>
             </attributes>
           </object>
           <packing>

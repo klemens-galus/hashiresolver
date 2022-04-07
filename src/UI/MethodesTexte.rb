@@ -35,8 +35,8 @@ module MethodesTexte
   METHODE11_NORMALE = "Une île de 4 avec trois voisines dont deux îles de 1 peut reliée tous ses ponts"
   METHODE11_FACILE = "L'île de 4 qui peut avoir tous ses ponts reliée à été montrée"
 
-  METHODE12_NORMALE = "Une île de 6 avec quatre voisines dont une île de 1 peut reliée tous ses ponts"
-  METHODE12_FACILE = "L'île de 6 qui peut avoir tous ses ponts reliée à été montrée"
+  METHODE12_NORMALE = "Une île de 6 avec quatre voisines dont une île de 1 peut reliée un pont sur chaque îles sauf l'île de 1"
+  METHODE12_FACILE = "L'île de 6 qui peut reliée un pont sur chaque îles sauf l'île de 1 à été montrée"
 
   METHODE13_NORMALE = "Une île de 1 ne peut pas être reliée à une autre île de 1 pour éviter d'être isolée"
   METHODE13_FACILE = "Les îles de 1 isolées ont été montrées"

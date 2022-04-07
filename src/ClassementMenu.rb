@@ -1,7 +1,8 @@
 require 'gtk3'
 require 'gdk3'
-require './MainMenu'
 require 'yaml'
+require_relative 'MainMenu'
+require_relative './UI/AppColors'
 
 #
 # Menu de classement des scores des joueurs
@@ -47,12 +48,10 @@ class ClassementMenu
     @window.add(@builder.get_object('classementBox'))
 
     # Style
-    main_color = Gdk::RGBA.parse('#003049')
-    second_color = Gdk::RGBA.parse('#00507a')
-    @window.override_background_color(:normal, main_color)
+    @window.override_background_color(:normal, AppColors::MAIN_COLOR)
 
     @list_box = @builder.get_object('listbox')
-    @list_box.override_background_color(:normal, second_color)
+    @list_box.override_background_color(:normal, AppColors::SECOND_COLOR)
 
     @window.set_title('Selection du niveau')
   end
@@ -103,6 +102,7 @@ class ClassementMenu
         #score{
             font-family: "Pixellari";
             font-size: 65px;
+            color: #EAE2B7
         }
     CSS
     Gtk::StyleContext.add_provider_for_screen(Gdk::Screen.default, provider,

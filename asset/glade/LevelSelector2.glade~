@@ -8,13 +8,13 @@
     <property name="can-focus">False</property>
     <property name="resizable">False</property>
     <child>
-      <object class="GtkBox" id="profils">
+      <object class="GtkBox" id="levels">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="valign">start</property>
         <property name="margin-top">50</property>
         <property name="orientation">vertical</property>
-        <property name="spacing">38</property>
+        <property name="spacing">85</property>
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
@@ -23,7 +23,7 @@
               <object class="GtkLabel" id="bienvenueLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes">SELECTION DU PROFIL</property>
+                <property name="label" translatable="yes">SELECTION DU NIVEAU</property>
                 <attributes>
                   <attribute name="font-desc" value="Franchise 10"/>
                   <attribute name="scale" value="7"/>
@@ -37,12 +37,42 @@
               </packing>
             </child>
             <child>
-              <placeholder/>
-            </child>
-            <child>
-              <object class="GtkEntry">
+              <object class="GtkButton" id="classementBtn">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="margin-right">81</property>
+                <property name="margin-end">81</property>
+                <property name="relief">none</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="pixbuf">../images/coupe.png</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="pack-type">end</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="retourBtn">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="relief">none</property>
+                <property name="always-show-image">True</property>
+                <child>
+                  <object class="GtkImage" id="retourImage">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="pixbuf">../images/return.png</property>
+                  </object>
+                </child>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -61,85 +91,8 @@
           </packing>
         </child>
         <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <child>
-              <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="orientation">vertical</property>
-                <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">False</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="newProfilButton">
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
-                <property name="relief">none</property>
-                <child>
-                  <object class="GtkLabel" id="newProfilLabel">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">NOUVEAU PROFIL</property>
-                    <attributes>
-                      <attribute name="font-desc" value="Pixellari Medium 10"/>
-                      <attribute name="scale" value="4"/>
-                    </attributes>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="orientation">vertical</property>
-                <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">False</property>
-                <property name="position">2</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
-        <child>
           <object class="GtkScrolledWindow">
-            <property name="width-request">785</property>
+            <property name="width-request">600</property>
             <property name="height-request">400</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
@@ -162,7 +115,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">2</property>
+            <property name="position">1</property>
           </packing>
         </child>
       </object>

@@ -5,6 +5,7 @@ require_relative './Jeu/Chronometre'
 require_relative './Util/Sauvegardeur'
 require_relative './Util/Solveur'
 require_relative './Jeu/EtatJeu'
+require_relative './UI/AppColors'
 
 #
 # Menu lors d'une partie
@@ -72,39 +73,35 @@ class PartieMenu
     # Style
     @window.set_title('Jeu')
 
-    main_color = Gdk::RGBA.parse('#003049')
-    btn_color = Gdk::RGBA.parse('#e9e1b7')
-    @window.override_background_color(:normal, main_color)
+    @window.override_background_color(:normal, AppColors::MAIN_COLOR)
 
     panneau_gauche_box = @builder.get_object('panneauGaucheBox')
-    panneau_gauche_box.override_background_color(:normal, Gdk::RGBA.parse('#004366'))
+    panneau_gauche_box.override_background_color(:normal, AppColors::PANNEAU_AIDE_JEU)
 
     panneau_haut_box = @builder.get_object('panneauHautBox')
-    panneau_haut_box.override_background_color(:normal, Gdk::RGBA.parse('#00507a'))
+    panneau_haut_box.override_background_color(:normal, AppColors::PANNEAU_JEU)
 
     panneau_bas_box = @builder.get_object('panneauBasBox')
-    panneau_bas_box.override_background_color(:normal, Gdk::RGBA.parse('#00507a'))
+    panneau_bas_box.override_background_color(:normal, AppColors::PANNEAU_JEU)
 
     aide_box = @builder.get_object('aideBox')
-    aide_box.override_background_color(:normal, Gdk::RGBA.parse('#004366'))
+    aide_box.override_background_color(:normal, AppColors::PANNEAU_AIDE_JEU)
 
     aide_btn = @builder.get_object('aideBtn')
-    aide_btn.override_background_color(:normal, btn_color)
+    aide_btn.override_background_color(:normal, AppColors::BUTTON_JEU)
 
-    verifier_btn = @builder.get_object('verifierBtn')
-    verifier_btn.override_background_color(:normal, btn_color)
 
     hypo_btn = @builder.get_object('hypoBtn')
-    hypo_btn.override_background_color(:normal, btn_color)
+    hypo_btn.override_background_color(:normal, AppColors::BUTTON_JEU)
 
     fin_hypo_btn = @builder.get_object('finHypoBtn')
-    fin_hypo_btn.override_background_color(:normal, btn_color)
+    fin_hypo_btn.override_background_color(:normal, AppColors::BUTTON_JEU)
 
     undo_btn = @builder.get_object('undoBtn')
-    undo_btn.override_background_color(:normal, btn_color)
+    undo_btn.override_background_color(:normal, AppColors::BUTTON_JEU)
 
     redo_btn = @builder.get_object('redoBtn')
-    redo_btn.override_background_color(:normal, btn_color)
+    redo_btn.override_background_color(:normal, AppColors::BUTTON_JEU)
 
     @builder.objects.each do |n|
       n.name = 'btn' if n.builder_name.end_with?('Btn')

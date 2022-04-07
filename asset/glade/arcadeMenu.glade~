@@ -29,7 +29,7 @@
                 <property name="relief">none</property>
                 <property name="always_show_image">True</property>
                 <child>
-                  <object class="GtkImage">
+                  <object class="GtkImage" id="retourImage">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="pixbuf">../images/return.png</property>

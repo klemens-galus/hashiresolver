@@ -68,33 +68,10 @@
                         <property name="margin_top">5</property>
                         <property name="margin_bottom">5</property>
                         <child>
-                          <object class="GtkLabel" id="indiceLabel">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">4</property>
-                            <attributes>
-                              <attribute name="scale" value="3"/>
-                              <attribute name="foreground" value="#000000000000"/>
-                            </attributes>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
+                          <placeholder/>
                         </child>
                         <child>
-                          <object class="GtkImage" id="indiceImg">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="margin_right">10</property>
-                            <property name="pixbuf">../images/thinkingHead.png</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">1</property>
-                          </packing>
+                          <placeholder/>
                         </child>
                       </object>
                       <packing>
@@ -150,17 +127,7 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkButton" id="verifierBtn">
-                                <property name="label" translatable="yes">Vérifier</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="receives_default">True</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
+                              <placeholder/>
                             </child>
                           </object>
                           <packing>
@@ -281,6 +248,7 @@
                             <attributes>
                               <attribute name="font-desc" value="Pixellari Medium 10"/>
                               <attribute name="scale" value="1.5"/>
+                              <attribute name="foreground" value="#eaeae2e2b7b7"/>
                             </attributes>
                           </object>
                           <packing>

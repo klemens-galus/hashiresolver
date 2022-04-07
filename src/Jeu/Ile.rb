@@ -140,7 +140,7 @@ class Ile < Gtk::Button
     liste_voisins = []
 
     # Gauche
-    (0..@x - 1).each do |x|
+    (0..@x - 1).reverse_each do |x|
       child = @grille.get_child_at(x, @y)
 
       if child.instance_of?(Ile)
@@ -170,8 +170,8 @@ class Ile < Gtk::Button
     end
 
     # Bas
-    (@y + 1..@grille.taille - 1).each do |x|
-      child = @grille.get_child_at(x, @y)
+    (@y + 1..@grille.taille - 1).each do |y|
+      child = @grille.get_child_at(@x, y)
 
       if child.instance_of?(Ile)
         liste_voisins << child

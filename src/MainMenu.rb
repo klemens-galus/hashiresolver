@@ -2,6 +2,7 @@ require 'gtk3'
 require_relative 'ArcadeMenu'
 require_relative 'ClassementMenu'
 require_relative 'Astuces'
+require_relative './UI/AppColors'
 
 #
 # Menu principale
@@ -44,8 +45,7 @@ class MainMenu
     # Style
     @window.set_title('Main Menu')
 
-    main_color = Gdk::RGBA.parse('#003049')
-    @window.override_background_color(:normal, main_color)
+    @window.override_background_color(:normal, AppColors::MAIN_COLOR)
 
     bienvenue_label = @builder.get_object('bienvenueLabel')
     bienvenue_label.set_text("Bienvenue #{@pseudo}")
@@ -77,6 +77,21 @@ class MainMenu
     tuto_btn = @builder.get_object('tutoBtn')
     tuto_btn.signal_connect('clicked') do
       tuto
+    end
+
+    retour_btn = @builder.get_object('retourBtn')
+    retour_btn.signal_connect 'clicked' do
+      clear_window
+      MenuProfil.new(@window)
+    end
+
+    # Gestion du hover sur le bouton retour
+    retour_btn.signal_connect('enter-notify-event') do
+      @builder.get_object('retourImage').set_from_file('../asset/images/return_hover.png')
+    end
+
+    retour_btn.signal_connect('leave-notify-event') do
+      @builder.get_object('retourImage').set_from_file('../asset/images/return.png')
     end
   end
 

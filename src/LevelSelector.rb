@@ -3,6 +3,7 @@ require 'gdk3'
 require_relative 'ArcadeMenu'
 require_relative 'PartieMenu'
 require_relative './Jeu/EtatJeu'
+require_relative './UI/AppColors'
 
 #
 # Menu de selection des niveaux du mode arcade
@@ -25,7 +26,6 @@ class LevelSelector
     @pseudo = pseudo
     @builder = Gtk::Builder.new
     @diff = diff
-    @second_color = Gdk::RGBA.parse('#00507a')
 
     build_interface(fenetre)
     apply_css
@@ -61,7 +61,7 @@ class LevelSelector
 
       button = Gtk::Button.new
       button.add(label)
-      button.override_background_color(:normal, @second_color)
+      button.override_background_color(:normal, AppColors::SECOND_COLOR)
       button.relief = Gtk::ReliefStyle::NONE
 
       button.signal_connect 'clicked' do
@@ -105,11 +105,10 @@ class LevelSelector
     @window = fenetre
     @window.add(@builder.get_object('levels'))
 
-    main_color = Gdk::RGBA.parse('#003049')
-    @window.override_background_color(:normal, main_color)
+    @window.override_background_color(:normal, AppColors::MAIN_COLOR)
 
     @list_box = @builder.get_object('listbox')
-    @list_box.override_background_color(:normal, @second_color)
+    @list_box.override_background_color(:normal, AppColors::SECOND_COLOR)
     @window.set_title(@diff.capitalize)
   end
 
@@ -122,6 +121,7 @@ class LevelSelector
         #BTNLVL{
             font-family: "Pixellari";
             font-size: 65px;
+            color: #EAE2B7;
         }
     CSS
     Gtk::StyleContext.add_provider_for_screen(Gdk::Screen.default, provider,

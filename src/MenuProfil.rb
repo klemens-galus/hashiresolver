@@ -1,7 +1,9 @@
 require 'gtk3'
 require 'gdk3'
 require 'yaml'
-require './MainMenu'
+require_relative 'MainMenu'
+require_relative './UI/AppColors'
+require_relative './UI/NouveauProfilPopup'
 
 #
 # Menu de selection du profil
@@ -19,7 +21,6 @@ class MenuProfil
   #
   def initialize(fenetre)
     @builder = Gtk::Builder.new
-    @second_color = Gdk::RGBA.parse('#00507a')
 
     build_interface(fenetre)
     apply_css
@@ -40,6 +41,7 @@ class MenuProfil
   # Fonction d'implementation des profils dans la liste
   #
   def populate_profil_list
+
     files = Dir.glob('../saves/*')
 
     files.each do |n|
@@ -56,9 +58,20 @@ class MenuProfil
     label = Gtk::Label.new(profil)
     label.name = 'profilLabel'
 
+    profil_box = Gtk::Box.new(:horizontal, 5)
+    profil_box.set_homogeneous(true)
+
+    remove_button = Gtk::Button.new(label: '✖')
+    remove_button.relief = :none
+    remove_button.name = 'remove_button'
+
+    remove_button.signal_connect('clicked') do
+      supprimer_profile(profil)
+    end
+
     button = Gtk::Button.new
     button.add(label)
-    button.override_background_color(:normal, @secondColor)
+    button.override_background_color(:normal, AppColors::SECOND_COLOR)
     button.relief = :none
 
     button.signal_connect 'clicked' do
@@ -66,9 +79,19 @@ class MenuProfil
       MainMenu.new(@window, profil)
     end
 
-    @list_box.add(button)
+    profil_box.add(button)
+    profil_box.add(remove_button)
+
+    @list_box.add(profil_box)
 
     @window.show_all
+  end
+
+  def supprimer_profile(profil)
+    File.delete("../saves/#{profil}.yml")
+
+    clear_window
+    MenuProfil.new(@window)
   end
 
   #
@@ -80,7 +103,13 @@ class MenuProfil
       #profilLabel{
           font-family: "Pixellari";
           font-size: 65px;
+          color: #EAE2B7;
       }
+
+      #remove_button{
+        font-size: 80px;
+        color: white;
+       }
     CSS
     Gtk::StyleContext.add_provider_for_screen(Gdk::Screen.default, provider, Gtk::StyleProvider::PRIORITY_APPLICATION)
   end
@@ -98,12 +127,10 @@ class MenuProfil
 
     @window.add(@builder.get_object('profils'))
 
-    main_color = Gdk::RGBA.parse('#003049')
-
-    @window.override_background_color(:normal, main_color)
+    @window.override_background_color(:normal, AppColors::MAIN_COLOR)
 
     @list_box = @builder.get_object('listbox')
-    @list_box.override_background_color(:normal, @second_color)
+    @list_box.override_background_color(:normal, AppColors::SECOND_COLOR)
 
     new_profil_button = @builder.get_object('newProfilButton')
     new_profil_button.signal_connect 'clicked' do
@@ -126,25 +153,15 @@ class MenuProfil
   #
   def show_new_profil_popup
     # popup
-    popup = Gtk::Window.new('First example')
-    popup.show
-    popup.set_title '// Edit //'
+    popup = NouveauProfilPopup.new
 
-    box = Gtk::Box.new(:vertical, 10)
-
-    text = Gtk::Entry.new
-    text.set_text 'Entrez votre nom'
-
-    box.add(text)
-
-    button = Gtk::Button.new 'Valider'
-    button.signal_connect 'clicked' do
-      create_profil(text.text)
-      popup.close
+    popup.valider_button.signal_connect 'clicked' do
+      unless popup.pseudo_entry.text.empty? || popup.pseudo_entry.text.length > 10
+        create_profil(popup.pseudo_entry.text)
+        popup.close
+      end
     end
-    box.add(button)
 
-    popup.add box
     popup.show_all
   end
 
@@ -157,14 +174,6 @@ class MenuProfil
     # Verification doublons
     if File.exist?("../saves/#{name}.yml")
       puts 'erreur ça exist deja'
-
-      Gtk::MessageDialog.new(
-        parent: nil,
-        flags: 0,
-        type: :error,
-        buttons: :none,
-        message: 'Profil déjà existant').show_all
-
       return
     end
 

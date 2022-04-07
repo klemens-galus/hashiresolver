@@ -11,9 +11,9 @@ class VictoirePopup
 #gla
   def self.popup(score)
     builder = Gtk::Builder.new
-    add_from_file('../../asset/glade/VictoirePopup.glade')
+    builder.add_from_file('../../asset/glade/VictoirePopup.glade')
 
-    .get_object('VictoirePopup').remove(builder.get_object('VictoirePopup'))
+    builder.get_object('VictoirePopup').remove(builder.get_object('VictoirePopup'))
 
 
     window.add(builder.get_object('VictoirePopup'))

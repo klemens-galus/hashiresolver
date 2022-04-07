@@ -23,6 +23,9 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
+              <placeholder/>
+            </child>
+            <child>
               <object class="GtkButton" id="retourBtn">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -61,29 +64,6 @@
                 <property name="expand">False</property>
                 <property name="fill">True</property>
                 <property name="position">3</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="classementBtn">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="margin_right">81</property>
-                <property name="margin_end">81</property>
-                <property name="relief">none</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="pixbuf">../images/coupe.png</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="pack_type">end</property>
-                <property name="position">0</property>
               </packing>
             </child>
           </object>

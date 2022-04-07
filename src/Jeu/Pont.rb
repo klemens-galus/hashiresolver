@@ -3,7 +3,6 @@ require_relative 'Orientation'
 # Classe représentant un pont
 #
 class Pont
-  # @double Si le pont est simple ou double
   # @ile_debut 1ere ile du pont
   # @ile_fin 2eme ile du pont
   # @double Boolean indiquant si le pont est simple ou double
