@@ -1,6 +1,7 @@
 require 'gtk3'
-require './ArcadeMenu'
-require './ClassementMenu'
+require_relative 'ArcadeMenu'
+require_relative 'ClassementMenu'
+require_relative 'Astuces'
 
 #
 # Menu principale
@@ -72,6 +73,11 @@ class MainMenu
     classement_btn.signal_connect('clicked') do
       classement
     end
+
+    tuto_btn = @builder.get_object('tutoBtn')
+    tuto_btn.signal_connect('clicked') do
+      tuto
+    end
   end
 
   #
@@ -105,6 +111,11 @@ class MainMenu
     puts('je lance classement')
     clear_window
     ClassementMenu.new(@window, @pseudo)
+  end
+
+  def tuto
+    clear_window
+    Astuces.new(@window, @pseudo)
   end
 
   #

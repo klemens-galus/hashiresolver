@@ -1,28 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.2 -->
+<!-- Generated with glade 3.22.2 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkWindow" id="mainWindow">
-    <property name="width-request">1280</property>
-    <property name="height-request">720</property>
-    <property name="can-focus">False</property>
+    <property name="width_request">1280</property>
+    <property name="height_request">720</property>
+    <property name="can_focus">False</property>
     <property name="resizable">False</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
     <child>
       <object class="GtkBox" id="astuces">
         <property name="visible">True</property>
-        <property name="can-focus">False</property>
+        <property name="can_focus">False</property>
         <property name="valign">start</property>
-        <property name="margin-top">50</property>
+        <property name="margin_top">50</property>
         <property name="orientation">vertical</property>
         <property name="spacing">65</property>
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="can-focus">False</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkButton" id="retourBtn">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="relief">none</property>
+                <property name="always_show_image">True</property>
+                <child>
+                  <object class="GtkImage" id="retourImage">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="pixbuf">../images/return.png</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
             <child type="center">
               <object class="GtkLabel" id="bienvenueLabel">
                 <property name="visible">True</property>
-                <property name="can-focus">False</property>
+                <property name="can_focus">False</property>
                 <property name="label" translatable="yes">ASTUCES</property>
                 <attributes>
                   <attribute name="font-desc" value="Franchise 10"/>
@@ -39,15 +66,15 @@
             <child>
               <object class="GtkButton" id="classementBtn">
                 <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
-                <property name="margin-right">81</property>
-                <property name="margin-end">81</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="margin_right">81</property>
+                <property name="margin_end">81</property>
                 <property name="relief">none</property>
                 <child>
                   <object class="GtkImage">
                     <property name="visible">True</property>
-                    <property name="can-focus">False</property>
+                    <property name="can_focus">False</property>
                     <property name="pixbuf">../images/coupe.png</property>
                   </object>
                 </child>
@@ -55,33 +82,9 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="pack-type">end</property>
+                <property name="pack_type">end</property>
                 <property name="position">0</property>
               </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="retourBtn">
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
-                <property name="relief">none</property>
-                <property name="always-show-image">True</property>
-                <child>
-                  <object class="GtkImage" id="retourImage">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="pixbuf">../images/return.png</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <child>
-              <placeholder/>
             </child>
           </object>
           <packing>
@@ -91,14 +94,15 @@
           </packing>
         </child>
         <child>
-          <object class="GtkTextView" id="viewtext">
-            <property name="width-request">900</property>
-            <property name="height-request">370</property>
+          <object class="GtkLabel" id="pagesNumLabel">
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="halign">center</property>
-            <property name="editable">False</property>
-            <property name="cursor-visible">False</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Page 0/0</property>
+            <attributes>
+              <attribute name="font-desc" value="Pixellari Italic 10"/>
+              <attribute name="scale" value="2"/>
+              <attribute name="foreground" value="#ffffffffffff"/>
+            </attributes>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -107,20 +111,36 @@
           </packing>
         </child>
         <child>
+          <object class="GtkTextView" id="viewtext">
+            <property name="width_request">900</property>
+            <property name="height_request">370</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="halign">center</property>
+            <property name="editable">False</property>
+            <property name="cursor_visible">False</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="can-focus">False</property>
+            <property name="can_focus">False</property>
             <property name="homogeneous">True</property>
             <child>
               <object class="GtkButton" id="backBtn">
                 <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
                 <property name="relief">none</property>
                 <child>
                   <object class="GtkImage" id="backImg">
                     <property name="visible">True</property>
-                    <property name="can-focus">False</property>
+                    <property name="can_focus">False</property>
                     <property name="pixbuf">../images/boutons/gauche/gauche.png</property>
                   </object>
                 </child>
@@ -134,13 +154,13 @@
             <child>
               <object class="GtkButton" id="forwBtn">
                 <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
                 <property name="relief">none</property>
                 <child>
                   <object class="GtkImage" id="forwImg">
                     <property name="visible">True</property>
-                    <property name="can-focus">False</property>
+                    <property name="can_focus">False</property>
                     <property name="pixbuf">../images/boutons/droite/droite.png</property>
                   </object>
                 </child>
@@ -155,7 +175,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">2</property>
+            <property name="position">3</property>
           </packing>
         </child>
       </object>

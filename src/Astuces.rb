@@ -1,52 +1,55 @@
 require 'gtk3'
 require 'gdk3'
-require "./ArcadeMenu.rb"
-
+require_relative 'MainMenu'
+require_relative './UI/AppColors'
 
 class Astuces
 
-  def remplir(file)
-    fich = File.open(file)
-    rep = fich.read()
-    fich.close()
-    return rep
-
-  end
   def initialize(fenetre, pseudo)
-    @pseudo = pseudo;
-    @text = nil
-    mainColor = Gdk::RGBA::parse("#003049")
-    secondColor = Gdk::RGBA::parse("#00507a")
+    @pseudo = pseudo
+    @numero_courant = 0
+    build_interface(fenetre)
+    populate_liste_pages
+    setup_text_view
+    apply_css
+    connect_signals
+    afficher_page(@numero_courant)
 
-    @builder = Gtk::Builder.new()
-    @builder.add_from_file("../asset/glade/Astuces.glade")
-    @builder.get_object('mainWindow').remove(@builder.get_object("astuces"))
-    @main = fenetre
-    @main.add(@builder.get_object("astuces"))
-    @main.override_background_color(:'normal', mainColor)
+    @window.show_all
+  end
 
-    @main.set_title("Astuces")
+  def build_interface(fenetre)
+    @builder = Gtk::Builder.new
+    @builder.add_from_file('../asset/glade/Astuces.glade')
+    @builder.get_object('mainWindow').remove(@builder.get_object('astuces'))
 
-    text_page = Array.new 5
-    num_page = 0
-    text_page[0] = remplir("../asset/textes/Apage1.txt")
-    text_page[1] = remplir("../asset/textes/Apage2.txt")
-    text_page[2] = remplir("../asset/textes/Apage3.txt")
-    text_page[3] = remplir("../asset/textes/Apage4.txt")
-    text_page[4] = remplir("../asset/textes/Apage5.txt")
+    @window = fenetre
+    @window.add(@builder.get_object('astuces'))
+    @window.override_background_color(:normal, AppColors::MAIN_COLOR)
 
-    tview = @builder.get_object("viewtext")
-    tbuf = Gtk::TextBuffer.new
-    tview.set_buffer tbuf
+    @window.set_title('Astuces')
+  end
 
-    tbuf.set_text(text_page[0])
-    tview.name = "BUFF"
+  def populate_liste_pages
+    fichier_pages = Dir.glob('../asset/textes/*')
 
-    tview.override_background_color(:'normal', secondColor)
+    @pages_text = []
 
-    provider = Gtk::CssProvider.new()
+    fichier_pages.each do |fichier_page|
+      @pages_text << File.open(fichier_page).read
+    end
+  end
+
+  def afficher_page(numero)
+    @text_buffer_page.set_text(@pages_text[numero])
+    pages_num_label = @builder.get_object('pagesNumLabel')
+    pages_num_label.set_text("Page #{numero + 1}/#{@pages_text.length}")
+  end
+
+  def apply_css
+    provider = Gtk::CssProvider.new
     provider.load(data: <<-CSS)
-        #BUFF{
+        #text_view_page{
             font-family: "Pixellari";
             font-size: 25px;
         }
@@ -55,57 +58,67 @@ class Astuces
         }
     CSS
     Gtk::StyleContext.add_provider_for_screen(Gdk::Screen.default, provider, Gtk::StyleProvider::PRIORITY_APPLICATION)
-    retourBtn = @builder.get_object("retourBtn")
-    retourBtn.signal_connect('clicked') do
-      clearWindow()
-      mainMenu = MainMenu.new(@main, @pseudo)
+    @text_view_page.override_background_color(:normal, AppColors::SECOND_COLOR)
+  end
+
+  def setup_text_view
+    @text_view_page = @builder.get_object('viewtext')
+    @text_buffer_page = Gtk::TextBuffer.new
+    @text_view_page.set_buffer @text_buffer_page
+    @text_view_page.name = 'text_view_page'
+  end
+
+  def connect_signals
+    retour_btn = @builder.get_object('retourBtn')
+    retour_btn.signal_connect('clicked') do
+      clear_window
+      MainMenu.new(@window, @pseudo)
     end
 
-    retourBtn.signal_connect('enter-notify-event') do
-      @builder.get_object("retourImage").set_from_file("../asset/images/return_hover.png");
+    # Gestion du hover sur le bouton retour
+    retour_btn.signal_connect('enter-notify-event') do
+      @builder.get_object('retourImage').set_from_file('../asset/images/return_hover.png')
     end
-    retourBtn.signal_connect('leave-notify-event') do
-      @builder.get_object("retourImage").set_from_file("../asset/images/return.png");
+    retour_btn.signal_connect('leave-notify-event') do
+      @builder.get_object('retourImage').set_from_file('../asset/images/return.png')
     end
 
-
-    backBtn = @builder.get_object("backBtn")
-    backBtn.signal_connect('clicked') do
-      if(num_page>0)
-        num_page = num_page-1
-        tbuf.set_text(text_page[num_page])
+    page_precedente_btn = @builder.get_object('backBtn')
+    page_precedente_btn.signal_connect('clicked') do
+      if @numero_courant.positive?
+        @numero_courant -= 1
+        afficher_page(@numero_courant)
       end
     end
 
-    backBtn.signal_connect('enter-notify-event') do
-      @builder.get_object("backImg").set_from_file("../asset/images/boutons/gauche/gauche_hover.png");
+    # Gestion hover du bouton page précédente
+    page_precedente_btn.signal_connect('enter-notify-event') do
+      @builder.get_object('backImg').set_from_file('../asset/images/boutons/gauche/gauche_hover.png')
     end
-    backBtn.signal_connect('leave-notify-event') do
-      @builder.get_object("backImg").set_from_file("../asset/images/boutons/gauche/gauche.png");
+    page_precedente_btn.signal_connect('leave-notify-event') do
+      @builder.get_object('backImg').set_from_file('../asset/images/boutons/gauche/gauche.png')
     end
 
-    forwBtn = @builder.get_object("forwBtn")
-    forwBtn.signal_connect('clicked') do
-      if(num_page<4)
-        num_page = num_page+1
-        tbuf.set_text(text_page[num_page])
+    page_suivante_btn = @builder.get_object('forwBtn')
+    page_suivante_btn.signal_connect('clicked') do
+      if @numero_courant < @pages_text.length - 1
+        @numero_courant += 1
+        afficher_page(@numero_courant)
       end
     end
 
-    forwBtn.signal_connect('enter-notify-event') do
-      @builder.get_object("forwImg").set_from_file("../asset/images/boutons/droite/droite_hover.png");
+    # Gestion hover du bouton page suivante
+    page_suivante_btn.signal_connect('enter-notify-event') do
+      @builder.get_object('forwImg').set_from_file('../asset/images/boutons/droite/droite_hover.png')
     end
-    forwBtn.signal_connect('leave-notify-event') do
-      @builder.get_object("forwImg").set_from_file("../asset/images/boutons/droite/droite.png");
+    page_suivante_btn.signal_connect('leave-notify-event') do
+      @builder.get_object('forwImg').set_from_file('../asset/images/boutons/droite/droite.png')
     end
 
-    @main.signal_connect("delete-event") { |_widget| Gtk.main_quit }
-    @main.show_all
+    @window.signal_connect('delete-event') { |_widget| Gtk.main_quit }
   end
 
-  def clearWindow()
-    @main.remove(@builder.get_object("astuces"))
+  def clear_window
+    @window.remove(@builder.get_object('astuces'))
   end
-
 end
-
