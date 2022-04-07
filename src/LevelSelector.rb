@@ -6,19 +6,19 @@ require_relative './Jeu/EtatJeu'
 require_relative './UI/AppColors'
 
 #
-# Menu de selection des niveaux du mode arcade
+# Menu de sélection des niveaux du mode arcade
 #
 class LevelSelector
   # @pseudo pseudo Pseudo du joueur
   # @builder Builder glade pour récuperer les composants graphiques
-  # @window Fenetre dans laquelle le menu va s'afficher
+  # @window Fenêtre dans laquelle le menu va s'afficher
   # @diff Difficulté des niveaux de ce menu
   # @second_color Couleur secondaire de ce menu
 
   #
   # Initialisation
   #
-  # @param [Gtk::Window] fenetre Fenetre dans laquelle le menu va s'afficher
+  # @param [Gtk::Window] fenetre Fenêtre dans laquelle le menu va s'afficher
   # @param [String] diff Difficulté choisie
   # @param [String] pseudo Pseudo du joueur
   #
@@ -73,11 +73,11 @@ class LevelSelector
   end
 
   #
-  # Verifi si le niveau donné est déjà fini par le joueur
+  # Vérifie si le niveau donné est déjà fini par le joueur
   #
   # @param [String] niveau Niveau en cours de traitement
   #
-  # @return [Boolean] Si oui où non le niveau est terminé par le joueur
+  # @return [Boolean] Si oui ou non le niveau est terminé par le joueur
   #
   def niveau_est_deja_fini?(niveau)
     # Chargement données joueur
@@ -95,7 +95,7 @@ class LevelSelector
   #
   # Chargement des composants graphiques Gtk dans la fenetre
   #
-  # @param [Gtk::Window] fenetre Fenetre dans laquelle le menu va s'afficher
+  # @param [Gtk::Window] fenetre Fenêtre dans laquelle le menu va s'afficher
   #
   def build_interface(fenetre)
     @builder.add_from_file('../asset/glade/LevelSelector2.glade')
@@ -160,7 +160,7 @@ class LevelSelector
   end
 
   #
-  # Methode qui vide la fenêtre. A utiliser avant de leguer la fenêtre à un nouveau menu
+  # Méthode qui vide la fenêtre. A utiliser avant de léguer la fenêtre à un nouveau menu
   #
   def clear_window
     @window.remove(@builder.get_object('levels'))
