@@ -25,6 +25,9 @@ class CaseVide < Gtk::Button
     # Pas de fond
     set_relief(Gtk::ReliefStyle::NONE)
 
+    # Non clickable
+    set_sensitive(false)
+
     # Couleure du texte
     override_color(:normal, AppColors::ILE_TEXTE_NORMAL)
   end

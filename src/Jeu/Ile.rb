@@ -101,7 +101,7 @@ class Ile < Gtk::Button
   #
   def update_etat_ile
     # l'ile est complete
-    if nombre_ponts == @numero
+    if est_complete?
       override_color(:normal, AppColors::ILE_TEXTE_COMPLETE)
     else
       override_color(:normal, AppColors::ILE_TEXTE_NORMAL)
@@ -120,6 +120,63 @@ class Ile < Gtk::Button
   #
   def remove_border
     update_etat_ile
+  end
+
+  #
+  # Renvoi la liste des iles voisines de l'ile
+  #
+  # @return [Array] Liste d'iles voisines
+  #
+  def get_liste_voisins
+    liste_voisins = []
+
+    # Gauche
+    (0..@x - 1).each do |x|
+      child = @grille.get_child_at(x, @y)
+
+      if child.instance_of?(Ile)
+        liste_voisins << child
+        break
+      end
+    end
+
+    # Droite
+    (@x + 1..@grille.taille - 1).each do |x|
+      child = @grille.get_child_at(x, @y)
+
+      if child.instance_of?(Ile)
+        liste_voisins << child
+        break
+      end
+    end
+
+    # Haut
+    (0..@y - 1).reverse_each do |y|
+      child = @grille.get_child_at(@x, y)
+
+      if child.instance_of?(Ile)
+        liste_voisins << child
+        break
+      end
+    end
+
+    # Bas
+    (@y + 1..@grille.taille - 1).each do |x|
+      child = @grille.get_child_at(x, @y)
+
+      if child.instance_of?(Ile)
+        liste_voisins << child
+        break
+      end
+    end
+
+    liste_voisins
+  end
+
+  def est_complete?
+    return true if @numero == nombre_ponts
+
+    false
   end
 
   def to_s

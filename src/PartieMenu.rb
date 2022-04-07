@@ -3,6 +3,7 @@ require_relative 'LevelSelector'
 require_relative './Jeu/Grille'
 require_relative './Jeu/Chronometre'
 require_relative './Util/Sauvegardeur'
+require_relative './Util/Solveur'
 
 #
 # Menu lors d'une partie
@@ -15,6 +16,10 @@ class PartieMenu
   # @niveau Niveau choisi
   # @jeu_grille Grille qui contient les iles et les cases
   # @chrono Chronometre pour la gestion du temps
+  # @aide_label Texte pour l'affichage des aides
+  # @solveur Outil d'aide à la résolution de la grille
+
+  attr :aide_label, true
 
   #
   # Initialisation
@@ -33,6 +38,7 @@ class PartieMenu
     apply_css
     connect_signals
     creer_grille
+    @solveur = Solveur.new(@jeu_grille, self)
     start_chrono
     charger_niveau_profil
   end
@@ -46,6 +52,7 @@ class PartieMenu
     @builder.add_from_file('../asset/glade/grilleJeu.glade')
 
     @window = fenetre
+    @aide_label = @builder.get_object('aideLabel')
 
     # Liberation de la Box principale qui ne peux etre ratachée qu'a une seule fenêtre
     @builder.get_object('mainWindow').remove(@builder.get_object('grilleJeuBox'))
@@ -124,6 +131,10 @@ class PartieMenu
     back_btn = @builder.get_object('backBtn')
     back_btn.signal_connect('clicked') do
       back
+    end
+
+    @builder.get_object('aideBtn').signal_connect('clicked') do
+      demande_aide
     end
   end
 
@@ -204,5 +215,9 @@ class PartieMenu
 
     # Remise en place du chrono
     @chrono.temps = data_profil[:arcade][@diff.to_sym][@niveau.to_sym][:temps]
+  end
+
+  def demande_aide
+    @solveur.analyser_grille
   end
 end
