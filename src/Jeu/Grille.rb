@@ -13,16 +13,16 @@ class Grille < Gtk::Grid
   # @taille Taille de la grille (selon les données du niveau)
   # @selected Ile séléctionnée
   # @liste_ponts Liste des ponts crées
-  # @liste_ile Liste des iles du niveau (utilisée pour la verification de victoire)
+  # @liste_iles Liste des iles du niveau (utilisée pour la verification de victoire)
   # @gui Le menu qui contient la grille
 
   attr :selected, true
-  attr_reader :liste_ponts
+  attr_reader :liste_ponts, :taille, :liste_iles
 
   def initialize(difficulty, niveau, gui)
     @selected = nil
     @liste_ponts = []
-    @liste_ile = []
+    @liste_iles = []
     @gui = gui
 
     super()
@@ -82,7 +82,7 @@ class Grille < Gtk::Grid
       attach(ile, x.to_i, y.to_i, 1, 1)
 
       # Ajout de l'ile dans la liste pour la verification de victoire
-      @liste_ile << ile
+      @liste_iles << ile
     end
   end
 
@@ -222,7 +222,7 @@ class Grille < Gtk::Grid
   #
   def check_victoire
     # Verification de la completion de chaques iles
-    @liste_ile.each do |ile|
+    @liste_iles.each do |ile|
       return false if ile.numero != ile.nombre_ponts
     end
 
