@@ -6,6 +6,7 @@ require_relative './Util/Sauvegardeur'
 require_relative './Util/Solveur'
 require_relative './Jeu/EtatJeu'
 
+
 #
 # Menu lors d'une partie
 #
@@ -145,6 +146,16 @@ class PartieMenu
     @builder.get_object('aideBtn').signal_connect('clicked') do
       demande_aide
     end
+
+    undo_btn = @builder.get_object('undoBtn')
+    undo_btn.signal_connect('clicked') do
+      @jeu_grille.undo()
+
+    end
+    redo_btn = @builder.get_object('redoBtn')
+    redo_btn.signal_connect('clicked') do
+      @jeu_grille.redo()
+    end
   end
 
   def start_chrono
@@ -181,7 +192,7 @@ class PartieMenu
     @jeu_grille = Grille.new(@diff, @niveau, self)
     @jeu_grille.set_column_homogeneous(true)
     @jeu_grille.set_row_homogeneous(true)
-
+    @UndoRedo = UndoRedo.new(@jeu_grille)
     # Placement de la grille dans le menu
     @builder.get_object('grilleJeuBox').pack_start(@jeu_grille, expand: true, fill: true, padding: 0)
 
