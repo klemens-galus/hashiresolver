@@ -86,10 +86,6 @@ class Grille < Gtk::Grid
 
       # Ajout de l'ile dans la liste pour la verification de victoire
       @liste_ile << ile
-
-      if @data_niveau[:fini] == false
-        ile.set_sensitive(true);
-      end
     end
   end
 
@@ -233,6 +229,7 @@ class Grille < Gtk::Grid
       return false if ile.numero != ile.nombre_ponts
     end
 
+    # Toutes les iles sont completes
     true
   end
 
@@ -250,9 +247,12 @@ class Grille < Gtk::Grid
     end
   end
 
-  def disable_button
+  #
+  # Désactive les iles pour empecher la modification après une victoire
+  #
+  def desactiver_iles
     @liste_ile.each do |ile|
-      ile.set_sensitive(false);
+      ile.set_sensitive(false)
     end
   end
 
