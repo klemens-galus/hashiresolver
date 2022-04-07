@@ -16,6 +16,7 @@ class Grille < Gtk::Grid
   # @liste_ponts Liste des ponts crées
   # @liste_iles Liste des iles du niveau (utilisée pour la verification de victoire)
   # @gui Le menu qui contient la grille
+  # @diff Le niveau de difficulté
 
   attr :selected, true
   attr_reader :liste_ponts, :taille, :liste_iles
@@ -25,6 +26,7 @@ class Grille < Gtk::Grid
     @liste_ponts = []
     @liste_iles = []
     @gui = gui
+    @diff = difficulty
 
     super()
     charger_niveau(difficulty, niveau)
@@ -57,7 +59,7 @@ class Grille < Gtk::Grid
     # Placement case vides
     (0..@taille - 1).each do |i|
       (0..@taille - 1).each do |j|
-        attach(CaseVide.new, i, j, 1, 1)
+        attach(CaseVide.new.set_sensitive(false), i, j, 1, 1)
       end
     end
 
@@ -229,6 +231,7 @@ class Grille < Gtk::Grid
       return false if ile.numero != ile.nombre_ponts
     end
 
+    # Toutes les iles sont completes
     true
   end
 
@@ -236,11 +239,22 @@ class Grille < Gtk::Grid
   def calcul_score
     case @gui.diff
     when 'facile'
-      10_000 / @gui.chrono.temps                    # Donc 120 secondes donne => 10000 / 120 un score de 83.33
+      10000 / @gui.chrono.temps                    # Donc 120 secondes donne => 10000 / 120 un score de 83.33
     when 'normal'
-      10_000 / @gui.chrono.temps * 2                # Donc 120 secondes donne => 10000 / 120 * 2 un score de 166.66
+      10000 / @gui.chrono.temps * 2                # Donc 120 secondes donne => 10000 / 120 * 2 un score de 166.66
     when 'difficile'
-      10_000 / @gui.chrono.temps * 5                # Donc 120 secondes donne => 10000 / 120 * 5 un score de 416.66
+      10000 / @gui.chrono.temps * 5                # Donc 120 secondes donne => 10000 / 120 * 5 un score de 416.66
+    else
+      return 0
+    end
+  end
+
+  #
+  # Désactive les iles pour empecher la modification après une victoire
+  #
+  def desactiver_iles
+    @liste_ile.each do |ile|
+      ile.set_sensitive(false)
     end
   end
 
@@ -253,6 +267,8 @@ class Grille < Gtk::Grid
 
     @gui.etat = EtatJeu::GAGNE
     @gui.sauvegarder_grille(score)
+
+    desactiver_iles
 
     VictoirePopup.popup(score)
   end

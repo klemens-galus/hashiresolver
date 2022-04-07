@@ -50,6 +50,8 @@ class PartieMenu
     stop_chrono if @etat == EtatJeu::GAGNE
   end
 
+  attr_reader :chrono
+
   #
   # Chargement des composants graphiques Gtk dans la fenetre
   #
@@ -226,9 +228,11 @@ class PartieMenu
     # Remise en place du chrono
     @chrono.temps = data_profil[:arcade][@diff.to_sym][@niveau.to_sym][:temps]
     @builder.get_object('tempsLabel').set_text(@chrono.second_beautifull)
+
+    @jeu_grille.desactiver_iles if @etat == EtatJeu::GAGNE
   end
 
   def demande_aide
-    @solveur.analyser_grille
+    @solveur.analyser_grille if @etat == EtatJeu::EN_COURS
   end
 end
