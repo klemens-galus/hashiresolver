@@ -4,7 +4,7 @@ require_relative 'Ile'
 require_relative 'Pont'
 require_relative 'CaseVide'
 require_relative 'Orientation'
-
+require_relative 'VictoirePopup'
 #
 # Grille de jeu contenant les îles et les ponts
 #
@@ -13,16 +13,16 @@ class Grille < Gtk::Grid
   # @taille Taille de la grille (selon les données du niveau)
   # @selected Ile séléctionnée
   # @liste_ponts Liste des ponts crées
-  # @liste_iles Liste des iles du niveau (utilisée pour la verification de victoire)
+  # @liste_ile Liste des iles du niveau (utilisée pour la verification de victoire)
   # @gui Le menu qui contient la grille
 
   attr :selected, true
-  attr_reader :liste_ponts, :taille, :liste_iles
+  attr_reader :liste_ponts
 
   def initialize(difficulty, niveau, gui)
     @selected = nil
     @liste_ponts = []
-    @liste_iles = []
+    @liste_ile = []
     @gui = gui
 
     super()
@@ -82,7 +82,7 @@ class Grille < Gtk::Grid
       attach(ile, x.to_i, y.to_i, 1, 1)
 
       # Ajout de l'ile dans la liste pour la verification de victoire
-      @liste_iles << ile
+      @liste_ile << ile
     end
   end
 
@@ -222,26 +222,38 @@ class Grille < Gtk::Grid
   #
   def check_victoire
     # Verification de la completion de chaques iles
-    @liste_iles.each do |ile|
+    @liste_ile.each do |ile|
       return false if ile.numero != ile.nombre_ponts
     end
 
     true
   end
 
-  #
-  # Fonction de gestion de la victoire
-  #
-  def gagner
-    @gui.stop_chrono
-    @gui.sauvegarder_grille
 
-    Gtk::MessageDialog.new(
-      parent: nil,
-      flags: 0,
-      type: :info,
-      buttons: :close,
-      message: '!!!!!!!!!! BRAVO !!!!!!!!!!'
-    ).show_all
+  # Retourne un score en fonction du temps et de la difficulté
+def calcul_score
+  case @diff
+  when 'facile'
+    return 10000 / @chrono.temps                    # Donc 120 secondes donne => 10000 / 120 un score de 83.33
+  when 'normal'
+    return 10000 / @chrono.temps * 2                # Donc 120 secondes donne => 10000 / 120 * 2 un score de 166.66
+  when 'difficile'
+    return 10000 / @chrono.temps * 5                # Donc 120 secondes donne => 10000 / 120 * 5 un score de 416.66
+  else
+    return nil
   end
+end
+
+#
+# Fonction de gestion de la victoire
+#
+def gagner
+  @gui.stop_chrono
+  @gui.sauvegarder_grille
+
+  score = calcul_score
+
+  VictoirePopup.popup(score)
+end
+
 end
