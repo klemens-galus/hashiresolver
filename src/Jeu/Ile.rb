@@ -1,5 +1,6 @@
 require 'gtk3'
 require_relative 'Grille'
+require_relative '../UI/AppColors'
 
 #
 # Bouton représentant une île
@@ -29,7 +30,7 @@ class Ile < Gtk::Button
   #
   def set_style
     set_relief(Gtk::ReliefStyle::NONE)
-    override_color(:normal, Gdk::RGBA.new(1, 1, 1, 1))
+    override_color(:normal, AppColors::ILE_TEXTE_NORMAL)
   end
 
   #
@@ -101,9 +102,9 @@ class Ile < Gtk::Button
   def update_etat_ile
     # l'ile est complete
     if nombre_ponts == @numero
-      override_color(:normal, AppColors.ILE_TEXTE_COMPLETE)
+      override_color(:normal, AppColors::ILE_TEXTE_COMPLETE)
     else
-      override_color(:normal, AppColors.ILE_TEXTE_NORMAL)
+      override_color(:normal, AppColors::ILE_TEXTE_NORMAL)
     end
   end
 
@@ -111,7 +112,7 @@ class Ile < Gtk::Button
   # Indicatieur visuel de selection de l'ile
   #
   def add_border
-    override_color(:normal, AppColors.ILE_TEXTE_SELECTION)
+    override_color(:normal, AppColors::ILE_TEXTE_SELECTION)
   end
 
   #

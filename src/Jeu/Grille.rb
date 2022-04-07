@@ -13,12 +13,17 @@ class Grille < Gtk::Grid
   # @taille Taille de la grille (selon les données du niveau)
   # @selected Ile séléctionnée
   # @liste_ponts Liste des ponts crées
+  # @liste_ile Liste des iles du niveau (utilisée pour la verification de victoire)
+  # @gui Le menu qui contient la grille
 
   attr :selected, true
+  attr_reader :liste_ponts
 
-  def initialize(difficulty, niveau)
+  def initialize(difficulty, niveau, gui)
     @selected = nil
     @liste_ponts = []
+    @liste_ile = []
+    @gui = gui
 
     super()
     charger_niveau(difficulty, niveau)
@@ -73,7 +78,11 @@ class Grille < Gtk::Grid
       puts "creation ile #{x},#{y} |#{nombre_ponts}|"
 
       # Ajout de l'ile dans la grille
-      attach(Ile.new(x.to_i, y.to_i, nombre_ponts.to_i, self), x.to_i, y.to_i, 1, 1)
+      ile = Ile.new(x.to_i, y.to_i, nombre_ponts.to_i, self)
+      attach(ile, x.to_i, y.to_i, 1, 1)
+
+      # Ajout de l'ile dans la liste pour la verification de victoire
+      @liste_ile << ile
     end
   end
 
@@ -203,5 +212,36 @@ class Grille < Gtk::Grid
     ile1.remove_border
     ile2.remove_border
     @selected = nil
+
+    # Verification de victoire
+    gagner if check_victoire
+  end
+
+  #
+  # Verification de toutes les iles pour la victoire
+  #
+  def check_victoire
+    # Verification de la completion de chaques iles
+    @liste_ile.each do |ile|
+      return false if ile.numero != ile.nombre_ponts
+    end
+
+    true
+  end
+
+  #
+  # Fonction de gestion de la victoire
+  #
+  def gagner
+    @gui.stop_chrono
+    @gui.sauvegarder_grille
+
+    Gtk::MessageDialog.new(
+      parent: nil,
+      flags: 0,
+      type: :info,
+      buttons: :close,
+      message: '!!!!!!!!!! BRAVO !!!!!!!!!!'
+    ).show_all
   end
 end

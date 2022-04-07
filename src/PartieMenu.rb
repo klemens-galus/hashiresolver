@@ -1,6 +1,8 @@
 require 'gtk3'
-require './LevelSelector'
-require './Jeu/Grille'
+require_relative 'LevelSelector'
+require_relative './Jeu/Grille'
+require_relative './Jeu/Chronometre'
+require_relative './Util/Sauvegardeur'
 
 #
 # Menu lors d'une partie
@@ -10,6 +12,9 @@ class PartieMenu
   # @builder Builder glade pour récuperer les composants graphiques
   # @window Fenetre dans laquelle le menu va s'afficher
   # @diff Difficulté des niveaux de ce menu
+  # @niveau Niveau choisi
+  # @jeu_grille Grille qui contient les iles et les cases
+  # @chrono Chronometre pour la gestion du temps
 
   #
   # Initialisation
@@ -28,6 +33,8 @@ class PartieMenu
     apply_css
     connect_signals
     creer_grille
+    start_chrono
+    charger_niveau_profil
   end
 
   #
@@ -120,10 +127,20 @@ class PartieMenu
     end
   end
 
+  def start_chrono
+    @chrono = Chronometre.new(@builder.get_object('tempsLabel'))
+    @chrono.start
+  end
+
+  def stop_chrono
+    @chrono.stop
+  end
+
   #
   # Retour sur la selection de niveau
   #
   def back
+    sauvegarder_grille
     clear_window
     LevelSelector.new(@window, @diff, @pseudo)
   end
@@ -141,13 +158,51 @@ class PartieMenu
   def creer_grille
     puts "création de la grille #{@niveau} : #{@diff}"
 
-    jeu_grid = Grille.new(@diff, @niveau)
-    jeu_grid.set_column_homogeneous(true)
-    jeu_grid.set_row_homogeneous(true)
+    @jeu_grille = Grille.new(@diff, @niveau, self)
+    @jeu_grille.set_column_homogeneous(true)
+    @jeu_grille.set_row_homogeneous(true)
 
     # Placement de la grille dans le menu
-    @builder.get_object('grilleJeuBox').pack_start(jeu_grid, expand: true, fill: true, padding: 0)
+    @builder.get_object('grilleJeuBox').pack_start(@jeu_grille, expand: true, fill: true, padding: 0)
 
     @window.show_all
+  end
+
+  #
+  # Sasuvegarde la grille dans le fichier du joueur
+  #
+  def sauvegarder_grille
+    stop_chrono
+    Sauvegardeur.sauvegarder_niveau_arcade(@diff, @niveau, @pseudo, @jeu_grille, @chrono)
+  end
+
+  #
+  # Charge les ponts présents dans le fichier du joueur
+  #
+  def charger_niveau_profil
+    fichier_profil = File.open("../saves/#{@pseudo}.yml", 'r')
+
+    data_profil = YAML.load(fichier_profil.read)
+
+    # Verification de la présence du niveau dans le fichier du joueur
+    return unless data_profil[:arcade][@diff.to_sym].key?(@niveau.to_sym)
+
+    # Données concernants les ponts
+    data_pont = data_profil[:arcade][@diff.to_sym][@niveau.to_sym][:ponts]
+
+    nb_ponts = data_pont[:ile_debut].length
+
+    # Remise en place des ponts
+    (0..nb_ponts - 1).each do |i|
+      ile_debut = @jeu_grille.get_child_at(data_pont[:ile_debut][i].split(',')[0].to_i, data_pont[:ile_debut][i].split(',')[1].to_i)
+      ile_fin = @jeu_grille.get_child_at(data_pont[:ile_fin][i].split(',')[0].to_i, data_pont[:ile_fin][i].split(',')[1].to_i)
+
+      @jeu_grille.creer_pont(ile_debut, ile_fin) if data_pont[:double][i]
+
+      @jeu_grille.creer_pont(ile_debut, ile_fin)
+    end
+
+    # Remise en place du chrono
+    @chrono.temps = data_profil[:arcade][@diff.to_sym][@niveau.to_sym][:temps]
   end
 end

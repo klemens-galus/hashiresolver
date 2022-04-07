@@ -174,13 +174,17 @@ class MenuProfil
     # Données de base
     data = {
       score: 0,
-      arcade: [
-        {
-          level: 1,
-          difficulty: 'easy',
-          state: 'state here'
+      arcade: {
+        facile: {
+
+        },
+        normal: {
+
+        },
+        difficile: {
+
         }
-      ]
+      }
     }
 
     f.write(data.to_yaml)
