@@ -3,7 +3,7 @@ module MethodesTexte
   AUCUNE_AIDE = "Aucune aide n'a été trouvé"
 
   METHODE1_NORMALE = "Une île de 4 avec deux voisines peut être reliée à l'aide de ponts doubles"
-  METHODE1_FACILE = "l'île qui peut être reliée avec deux ponts doubles à été montrée"
+  METHODE1_FACILE = "L'ile qui peut être reliée avec deux ponts doubles à été montrée"
 
   METHODE2_NORMALE = "Une île de 6 avec trois voisines peut être reliée à l'aide de ponts doubles"
   METHODE2_FACILE = "L'île qui peut être reliée avec trois ponts doubles à été montrée"

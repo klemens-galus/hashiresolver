@@ -240,7 +240,7 @@ class PartieMenu
 
     # Remise en place du chrono
     @chrono.temps = data_profil[:arcade][@diff.to_sym][@niveau.to_sym][:temps]
-    @builder.get_object('tempsLabel').set_text(@chrono.second_beautiful)
+    @builder.get_object('tempsLabel').set_text(@chrono.second_beautifull)
 
     @jeu_grille.desactiver_iles if @etat == EtatJeu::GAGNE
   end

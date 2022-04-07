@@ -3,7 +3,7 @@ require 'yaml'
 require_relative '../UI/AppColors'
 
 class VictoirePopup
-  # Affichage du popup de sélection du nom du nouveau profil
+  # Affichage du popup de selection du nom du nouveau profil
 
   def self.popup(score)
     builder = Gtk::Builder.new

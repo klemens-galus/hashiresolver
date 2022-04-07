@@ -7,7 +7,7 @@ require_relative 'Orientation'
 #
 class CaseVide < Gtk::Button
 
-  # @libre Boolean pour savoir si la case est déjà utilisée par un pont
+  # @libre Boolean pour savoir si la case est déjà uttilisée par un pont
 
   attr :libre, true
 
@@ -25,17 +25,17 @@ class CaseVide < Gtk::Button
     # Pas de fond
     set_relief(Gtk::ReliefStyle::NONE)
 
-    # Non clicable
+    # Non clickable
     set_sensitive(false)
 
-    # Couleur du texte
+    # Couleure du texte
     override_color(:normal, AppColors::ILE_TEXTE_NORMAL)
   end
 
   #
   # Affichage de cette case pour un pont simple en fonction de l'orientation
   #
-  # @param [Orientation] orientation Orientation du pont auquel appartient cette case
+  # @param [Orientation] orientation Orientation du pont au quel appartient cette case
   #
   def afficher_corp_pont_simple(orientation)
     @libre = false
@@ -50,7 +50,7 @@ class CaseVide < Gtk::Button
   #
   # Affichage de cette case pour un pont double en fonction de l'orientation
   #
-  # @param [Orientation] orientation Orientation du pont auquel appartient cette case
+  # @param [Orientation] orientation Orientation du pont au quel appartient cette case
   #
   def afficher_corp_pont_double(orientation)
     @libre = false
@@ -63,7 +63,7 @@ class CaseVide < Gtk::Button
   end
 
   #
-  # Libération de la case
+  # Liberation de la case
   #
   def effacer_corp_pont
     @libre = true

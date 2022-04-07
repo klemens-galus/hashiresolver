@@ -7,7 +7,7 @@ require './LevelSelector'
 class ArcadeMenu
   # @pseudo pseudo Pseudo du joueur
   # @builder Builder glade pour récuperer les composants graphiques
-  # @window Fenêtre dans laquelle le menu va s'afficher
+  # @window Fenetre dans laquelle le menu va s'afficher
 
   #
   # Initialisation
@@ -84,7 +84,7 @@ class ArcadeMenu
   end
 
   #
-  # Methode qui vide la fenêtre. A utiliser avant de léguer la fenêtre à un nouveau menu
+  # Methode qui vide la fenêtre. A utiliser avant de leguer la fenêtre à un nouveau menu
   #
   def clear_window
     @window.remove(@builder.get_object('arcadeBox'))

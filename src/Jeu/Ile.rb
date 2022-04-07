@@ -7,10 +7,10 @@ require_relative '../Util/UndoRedo'
 # Bouton représentant une île
 #
 class Ile < Gtk::Button
-  # @x Position x de l'île dans la grille
-  # @y Position y de l'île dans la grille
-  # @numero Nombres de ponts attendus par cette île
-  # @grille Grille qui contient cette île
+  # @x Position x de l'ile dans la grille
+  # @y Position y de l'ile dans la grille
+  # @numero Nombres de pont attendus par cette ile
+  # @grille Grille qui contient cette ile
 
   attr_reader :x, :y, :numero, :grille
 
@@ -39,23 +39,23 @@ class Ile < Gtk::Button
   #
   def connect_signals
     signal_connect 'clicked' do
-      # Sélection de la case
+      # Selection de la case
       if grille.selected.nil?
         grille.selected = self
         # Debug
         puts "#{self} est selectionnée"
-        # Retour visuel de sélection
+        # Retour visuel de selection
         add_border
 
-      # Désélection de la case
+      # Deselction de la case
       elsif grille.selected == self
         grille.selected = nil
         # Debug
         puts "#{self} est deselectionnée"
-        # Retour visuel de la désélection
+        # Retour visuel de la deselection
         remove_border
 
-      # Sélection après une autre sélection => essai de création d'un pont
+      # Selection apres une autre selection => essai de création d'un pont
       elsif grille.selected != self && !grille.selected.nil?
         @undoRedo.undoEmpile(grille.selected, self)
         grille.creer_pont(grille.selected, self)
@@ -67,7 +67,7 @@ class Ile < Gtk::Button
   end
 
   #
-  # Méthode d'ajout d'un pont sur l'île
+  # Methode d'ajout d'un pont sur l'ile
   #
   # @param [Pont] pont Le pont à ajouter
   #
@@ -77,7 +77,7 @@ class Ile < Gtk::Button
   end
 
   #
-  # Méthode de suppression d'un pont de l'île
+  # Methode de suppression d'un pont de l'ile
   #
   # @param [Pont] pont Le pont à supprimer
   #
@@ -87,7 +87,7 @@ class Ile < Gtk::Button
   end
 
   #
-  # Compte le nombre de ponts en tenant compte des doubles ponts
+  # Compte de nombre de ponts en tenant compte des doubles ponts
   #
   # @return [int] Le nombre de ponts
   #
@@ -102,10 +102,10 @@ class Ile < Gtk::Button
   end
 
   #
-  # Change le style de l'île en fonction des ses variables
+  # Change le style de l'ile en fonction des ses variables
   #
   def update_etat_ile
-    # l'île est complète
+    # l'ile est complete
     if est_complete?
       override_color(:normal, AppColors::ILE_TEXTE_COMPLETE)
     else
@@ -116,30 +116,30 @@ class Ile < Gtk::Button
   end
 
   #
-  # Indicatieur visuel de sélection de l'île
+  # Indicatieur visuel de selection de l'ile
   #
   def add_border
     override_color(:normal, AppColors::ILE_TEXTE_SELECTION)
   end
 
   #
-  # Retour à la normal de l'île
+  # Retour à la normal de l'ile
   #
   def remove_border
     update_etat_ile
   end
 
   #
-  # Indicateur visuel si l'île est concernée par une aide
+  # Indicateur visuel si l'ile est concernée par une aide
   #
   def afficher_aide
     override_background_color(:normal, AppColors::ILE_BACKGROUND_AIDE)
   end
 
   #
-  # Renvoi la liste des iles voisines de l'île
+  # Renvoi la liste des iles voisines de l'ile
   #
-  # @return [Array] Liste d'îles voisines
+  # @return [Array] Liste d'iles voisines
   #
   def get_liste_voisins
     liste_voisins = []

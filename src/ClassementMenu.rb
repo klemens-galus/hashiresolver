@@ -10,13 +10,13 @@ require_relative './UI/AppColors'
 class ClassementMenu
   # @pseudo pseudo Pseudo du joueur
   # @builder Builder glade pour récuperer les composants graphiques
-  # @window Fenêtre dans laquelle le menu va s'afficher
+  # @window Fenetre dans laquelle le menu va s'afficher
   # @list_box Composant graphique pour l'affichage du classement
 
   #
   # Initialisation
   #
-  # @param [Gtk::Window] fenetre Fenêtre dans laquelle le menu va s'afficher
+  # @param [Gtk::Window] fenetre Fenetre dans laquelle le menu va s'afficher
   # @param [String] pseudo Pseudo du joueur
   #
   def initialize(fenetre, pseudo)
@@ -32,14 +32,14 @@ class ClassementMenu
   end
 
   #
-  # Chargement des composants graphiques Gtk dans la fenêtre
+  # Chargement des composants graphiques Gtk dans la fenetre
   #
-  # @param [Gtk::Window] fenetre Fenêtre dans laquelle le menu va s'afficher
+  # @param [Gtk::Window] fenetre Fenetre dans laquelle le menu va s'afficher
   #
   def build_interface(fenetre)
     @builder.add_from_file('../asset/glade/ClassementMenu.glade')
 
-    # Liberation de la Box principale qui ne peux etre rattachée qu'à une seule fenêtre
+    # Liberation de la Box principale qui ne peux etre ratachée qu'a une seule fenêtre
     @builder.get_object('mainWindow').remove(@builder.get_object('classementBox'))
 
     @window = fenetre
@@ -57,7 +57,7 @@ class ClassementMenu
   end
 
   #
-  # Rempli le composant graphique du classement avec les scores des joueurs
+  # Rempli le composant graphique du classement avec les scores des joueurs sur
   #
   def populate_classement_list
     liste_scores = {}
@@ -130,7 +130,7 @@ class ClassementMenu
   end
 
   #
-  # Methode qui vide la fenêtre. A utiliser avant de léguer la fenêtre à un nouveau menu
+  # Methode qui vide la fenêtre. A utiliser avant de leguer la fenêtre à un nouveau menu
   #
   def clear_window
     @window.remove(@builder.get_object('classementBox'))

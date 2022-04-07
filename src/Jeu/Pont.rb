@@ -3,8 +3,8 @@ require_relative 'Orientation'
 # Classe représentant un pont
 #
 class Pont
-  # @ile_debut 1ere île du pont
-  # @ile_fin 2eme île du pont
+  # @ile_debut 1ere ile du pont
+  # @ile_fin 2eme ile du pont
   # @double Boolean indiquant si le pont est simple ou double
 
   attr_reader :ile_debut, :ile_fin, :orientation
@@ -32,7 +32,7 @@ class Pont
   end
 
   #
-  # Méthode de suppression du pont. Retire le pont des îles puis libères les cases qui le composait
+  # Methode de suppression du pont. Retire le pont des iles puis libères les cases qui le composait
   #
   def supprimer
     ile_debut.retirer_pont(self)
@@ -56,7 +56,7 @@ class Pont
   end
 
   #
-  # Liberation de toutes les cases qui composent le pont
+  # Liberation de toutes les cases qui compose le pont
   #
   def effacer
     @tableau_case_pont.each do |case_pont|

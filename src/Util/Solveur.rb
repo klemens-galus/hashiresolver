@@ -26,13 +26,13 @@ class Solveur
   end
 
   #
-  # Si une île de 4 à deux voisines, tout relier par des ponts doubles
+  # Si une ile de 4 à deux voisins, tout relier par des ponts doubles
   #
   def tester_methode1
-    # Vérification des îles
+    # Verification des iles
     @grille.liste_iles.each do |ile|
       if ile.numero == 4 && ile.get_liste_voisins.length == 2 && !ile.est_complete?
-        # une aide à déjà été demandée pour ce cas => affichage de l'île concernée
+        # une aide à déja été demandé pour ce cas => affichage de l'ile concernée
         if @gui.aide_label.text == MethodesTexte::METHODE1_NORMALE
           @gui.aide_label.set_text(MethodesTexte::METHODE1_FACILE)
           ile.afficher_aide
@@ -51,13 +51,13 @@ class Solveur
   end
 
   #
-  # Si une île de 6 à trois voisines, tout relier par des ponts doubles
+  # Si une ile de 6 à trois voisins, tout relier par des ponts doubles
   #
   def tester_methode2
-    # Vérification des îles
+    # Verification des iles
     @grille.liste_iles.each do |ile|
       if ile.numero == 6 && ile.get_liste_voisins.length == 3 && !ile.est_complete?
-        # une aide à déjà été demandée pour ce cas => affichage de l'île concernée
+        # une aide à déja été demandé pour ce cas => affichage de l'ile concernée
         if @gui.aide_label.text == MethodesTexte::METHODE2_NORMALE
           @gui.aide_label.set_text(MethodesTexte::METHODE2_FACILE)
           ile.afficher_aide
@@ -77,13 +77,13 @@ class Solveur
   end
 
   #
-  # Si une île de 8 à quatre voisines, tout relier par des ponts doubles
+  # Si une ile de 8 à quatre voisins, tout relier par des ponts doubles
   #
   def tester_methode3
-    # Vérification des îles
+    # Verification des iles
     @grille.liste_iles.each do |ile|
       if ile.numero == 8 && ile.get_liste_voisins.length == 4 && !ile.est_complete?
-        # une aide à déjà été demandée pour ce cas => affichage de l'île concernée
+        # une aide à déja été demandé pour ce cas => affichage de l'ile concernée
         if @gui.aide_label.text == MethodesTexte::METHODE3_NORMALE
           @gui.aide_label.set_text(MethodesTexte::METHODE3_FACILE)
           ile.afficher_aide
@@ -103,14 +103,14 @@ class Solveur
   end
 
   #
-  # Si une île à un voisins, relier l'île
+  # Si une ile à un voisins, relier l'ile
   #
   def tester_methode4
-    # Vérification des iles
+    # Verification des iles
     @grille.liste_iles.each do |ile|
       puts "ile #{ile}, nb voisins : #{ile.get_liste_voisins.length}"
       if ile.get_liste_voisins.length == 1 && !ile.est_complete?
-        # une aide à déjà été demandée pour ce cas => affichage de l'île concernée
+        # une aide à déja été demandé pour ce cas => affichage de l'ile concernée
         if @gui.aide_label.text == MethodesTexte::METHODE4_NORMALE
           @gui.aide_label.set_text(MethodesTexte::METHODE4_FACILE)
           ile.afficher_aide
@@ -133,7 +133,7 @@ class Solveur
   # Si une ile de 3 à deux voisins, relier 1 pont de chaque
   #
   def tester_methode5
-    # Vérification des iles
+    # Verification des iles
     @grille.liste_iles.each do |ile|
       puts "ile #{ile}, nb voisins : #{ile.get_liste_voisins.length}"
       if ile.numero == 3 && ile.get_liste_voisins.length == 2 && !ile.est_complete?
@@ -148,7 +148,7 @@ class Solveur
         end
 
         if valid
-          # une aide à déjà été demandée pour ce cas => affichage de l'île concernée
+          # une aide à déja été demandé pour ce cas => affichage de l'ile concernée
           if @gui.aide_label.text == MethodesTexte::METHODE5_NORMALE
             @gui.aide_label.set_text(MethodesTexte::METHODE5_FACILE)
             ile.afficher_aide
@@ -172,7 +172,7 @@ class Solveur
   # Si une ile de 5 à trois voisins, relier 1 pont de chaque
   #
   def tester_methode6
-    # Vérification des iles
+    # Verification des iles
     @grille.liste_iles.each do |ile|
       puts "ile #{ile}, nb voisins : #{ile.get_liste_voisins.length}"
       if ile.numero == 5 && ile.get_liste_voisins.length == 3 && !ile.est_complete?
@@ -184,7 +184,7 @@ class Solveur
         end
 
         if valid
-          # une aide à déjà été demandée pour ce cas => affichage de l'île concernée
+          # une aide à déja été demandé pour ce cas => affichage de l'ile concernée
           if @gui.aide_label.text == MethodesTexte::METHODE6_NORMALE
             @gui.aide_label.set_text(MethodesTexte::METHODE6_FACILE)
             ile.afficher_aide
@@ -208,7 +208,7 @@ class Solveur
   # Si une ile de 7 à 4 voisins, relier 1 pont de chaque
   #
   def tester_methode7
-    # Vérification des iles
+    # Verification des iles
     @grille.liste_iles.each do |ile|
       puts "ile #{ile}, nb voisins : #{ile.get_liste_voisins.length}"
       if ile.numero == 7 && ile.get_liste_voisins.length == 4 && !ile.est_complete?
@@ -220,7 +220,7 @@ class Solveur
         end
 
         if valid
-          # une aide à déjà été demandée pour ce cas => affichage de l'île concernée
+          # une aide à déja été demandé pour ce cas => affichage de l'ile concernée
           if @gui.aide_label.text == MethodesTexte::METHODE7_NORMALE
             @gui.aide_label.set_text(MethodesTexte::METHODE7_FACILE)
             ile.afficher_aide
@@ -244,7 +244,7 @@ class Solveur
   # Si une ile de 3 à 2 voisins dont une ile de 1, relier tous les ponts
   #
   def tester_methode8
-    # Vérification des iles
+    # Verification des iles
     @grille.liste_iles.each do |ile|
       puts "ile #{ile}, nb voisins : #{ile.get_liste_voisins.length}"
       if ile.numero == 3 && ile.get_liste_voisins.length == 2 && !ile.est_complete?
@@ -258,7 +258,7 @@ class Solveur
         end
 
         if valid
-          # une aide à déjà été demandée pour ce cas => affichage de l'île concernée
+          # une aide à déja été demandé pour ce cas => affichage de l'ile concernée
           if @gui.aide_label.text == MethodesTexte::METHODE8_NORMALE
             @gui.aide_label.set_text(MethodesTexte::METHODE8_FACILE)
             ile.afficher_aide
@@ -282,7 +282,7 @@ class Solveur
   # Si une ile de 5 à 3 voisins dont une ile de 1, relier tous les ponts
   #
   def tester_methode9
-    # Vérification des iles
+    # Verification des iles
     @grille.liste_iles.each do |ile|
       puts "ile #{ile}, nb voisins : #{ile.get_liste_voisins.length}"
       if ile.numero == 5 && ile.get_liste_voisins.length == 3 && !ile.est_complete?
@@ -296,7 +296,7 @@ class Solveur
         end
 
         if valid
-          # une aide à déjà été demandée pour ce cas => affichage de l'île concernée
+          # une aide à déja été demandé pour ce cas => affichage de l'ile concernée
           if @gui.aide_label.text == MethodesTexte::METHODE9_NORMALE
             @gui.aide_label.set_text(MethodesTexte::METHODE9_FACILE)
             ile.afficher_aide
@@ -320,7 +320,7 @@ class Solveur
   # Si une ile de 7 à 4 voisins dont une ile de 1, relier tous les ponts
   #
   def tester_methode10
-    # Vérification des iles
+    # Verification des iles
     @grille.liste_iles.each do |ile|
       puts "ile #{ile}, nb voisins : #{ile.get_liste_voisins.length}"
       if ile.numero == 7 && ile.get_liste_voisins.length == 4 && !ile.est_complete?
@@ -334,7 +334,7 @@ class Solveur
         end
 
         if valid
-          # une aide à déjà été demandée pour ce cas => affichage de l'île concernée
+          # une aide à déja été demandé pour ce cas => affichage de l'ile concernée
           if @gui.aide_label.text == MethodesTexte::METHODE10_NORMALE
             @gui.aide_label.set_text(MethodesTexte::METHODE10_FACILE)
             ile.afficher_aide
@@ -358,7 +358,7 @@ class Solveur
   # Si une ile de 4 à 3 voisins dont 2 ile de 1, relier tous les ponts
   #
   def tester_methode11
-    # Vérification des iles
+    # Verification des iles
     @grille.liste_iles.each do |ile|
       puts "ile #{ile}, nb voisins : #{ile.get_liste_voisins.length}"
       if ile.numero == 4 && ile.get_liste_voisins.length == 3 && !ile.est_complete?
@@ -372,7 +372,7 @@ class Solveur
         end
 
         if nb_ile1 == 2
-          # une aide à déjà été demandée pour ce cas => affichage de l'île concernée
+          # une aide à déja été demandé pour ce cas => affichage de l'ile concernée
           if @gui.aide_label.text == MethodesTexte::METHODE11_NORMALE
             @gui.aide_label.set_text(MethodesTexte::METHODE11_FACILE)
             ile.afficher_aide
@@ -396,7 +396,7 @@ class Solveur
   # Si une ile de 6 à 4 voisins dont 1 ile de 1, relier un pont sur tous sauf le 1
   #
   def tester_methode12
-    # Vérification des iles
+    # Verification des iles
     @grille.liste_iles.each do |ile|
       puts "ile #{ile}, nb voisins : #{ile.get_liste_voisins.length}"
       if ile.numero == 6 && ile.get_liste_voisins.length == 4 && !ile.est_complete?
@@ -417,7 +417,7 @@ class Solveur
         end
 
         if nb_ile1 == 1 && valid
-          # une aide à déjà été demandée pour ce cas => affichage de l'île concernée
+          # une aide à déja été demandé pour ce cas => affichage de l'ile concernée
           if @gui.aide_label.text == MethodesTexte::METHODE12_NORMALE
             @gui.aide_label.set_text(MethodesTexte::METHODE12_FACILE)
             ile.afficher_aide
@@ -438,10 +438,10 @@ class Solveur
   end
 
   #
-  # Une ile de 1 ne peux pas être reliée à une autre ile de 1
+  # Une ile de 1 ne peux pas être relié à une autre ile de 1
   #
   def tester_methode13
-    # Vérification des iles
+    # Verification des iles
     @grille.liste_iles.each do |ile|
       puts "ile #{ile}, nb voisins : #{ile.get_liste_voisins.length}"
       if ile.numero == 1
@@ -453,7 +453,7 @@ class Solveur
         end
 
         if valid
-          # une aide à déjà été demandée pour ce cas => affichage de l'île concernée
+          # une aide à déja été demandé pour ce cas => affichage de l'ile concernée
           if @gui.aide_label.text == MethodesTexte::METHODE13_NORMALE
             @gui.aide_label.set_text(MethodesTexte::METHODE13_FACILE)
             ile.afficher_aide
@@ -474,10 +474,10 @@ class Solveur
   end
 
   #
-  # Une ile de 2 ne peux pas être reliée à une autre ile de 2
+  # Une ile de 2 ne peux pas être relié à une autre ile de 2
   #
   def tester_methode14
-    # Vérification des iles
+    # Verification des iles
     @grille.liste_iles.each do |ile|
       puts "ile #{ile}, nb voisins : #{ile.get_liste_voisins.length}"
       if ile.numero == 2
@@ -489,7 +489,7 @@ class Solveur
         end
 
         if valid
-          # une aide à déjà été demandée pour ce cas => affichage de l'île concernée
+          # une aide à déja été demandé pour ce cas => affichage de l'ile concernée
           if @gui.aide_label.text == MethodesTexte::METHODE14_NORMALE
             @gui.aide_label.set_text(MethodesTexte::METHODE14_FACILE)
             ile.afficher_aide
@@ -510,10 +510,10 @@ class Solveur
   end
 
   #
-  # Une ile de 2 ne peux pas être reliée à deux iles de 1 (isolement)
+  # Une ile de 2 ne peux pas être relié à deux iles de 1 (isolement)
   #
   def tester_methode15
-    # Vérification des iles
+    # Verification des iles
     @grille.liste_iles.each do |ile|
       puts "ile #{ile}, nb voisins : #{ile.get_liste_voisins.length}"
       if ile.numero == 2
@@ -524,7 +524,7 @@ class Solveur
         end
 
         if nb_ponts_avec1 > 1
-          # une aide à déjà été demandée pour ce cas => affichage de l'île concernée
+          # une aide à déja été demandé pour ce cas => affichage de l'ile concernée
           if @gui.aide_label.text == MethodesTexte::METHODE15_NORMALE
             @gui.aide_label.set_text(MethodesTexte::METHODE15_FACILE)
             ile.afficher_aide

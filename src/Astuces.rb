@@ -8,13 +8,13 @@ require_relative './UI/AppColors'
 #
 class Astuces
 
-  # @pseudo Utilisé pour repasser le pseudo du joueur au menu principal en cas de retour
-  # @numero_courant Numéro actuel de la page affiché
-  # @window Fenêtre qui contient ce menu
+  # @pseudo Uttilisé pour repasser le pseudo du joueur au menu principal en cas de retour
+  # @numero_courant Numero actuel de la page affiché
+  # @window Fenetre qui contient ce menu
   # @builder Builder Gtk pour implementer le fichier Glade
   # @pages_text Array contenant les différents textes du tuto
-  # @text_buffer_page Buffer utilisé pour l'affichage du texte dans la text_view
-  # @text_view_page TextView utilisé pour l'affichage du texte
+  # @text_buffer_page Buffer uttilisé pour l'affichage du text dans la text_view
+  # @text_view_page TextView uttilisé pour l'affichage du text
 
   def initialize(fenetre, pseudo)
     @pseudo = pseudo
@@ -33,7 +33,7 @@ class Astuces
   #
   # Chargement des composants graphiques Gtk dans la fenetre
   #
-  # @param [Gtk::Window] fenetre Fenêtre dans laquelle le menu va s'afficher
+  # @param [Gtk::Window] fenetre Fenetre dans laquelle le menu va s'afficher
   #
   def build_interface(fenetre)
     @builder = Gtk::Builder.new
@@ -48,7 +48,7 @@ class Astuces
   end
 
   #
-  # Charge les pages du tuto présentent dans le dossier texte des assets
+  # Charges les pages du tutos présentent dans le dossier textes des assets
   #
   def populate_liste_pages
     # Récuperation des fichiers correspondants aux pages du tuto
@@ -63,12 +63,12 @@ class Astuces
   end
 
   #
-  # Affiche le texte correspondant à la page dans la text_view
+  # Affiche le texte correspondants à la page dans la text_view
   #
   # @param [int] numero Numéro de la page
   #
   def afficher_page(numero)
-    # Affichage du texte
+    # Affichage du text
     @text_buffer_page.set_text(@pages_text[numero])
 
     # Mise a jour du compteur de pages
@@ -77,7 +77,7 @@ class Astuces
   end
 
   #
-  # Application du css aux composants Gtk
+  # Applicatio du css aux composants Gtk
   #
   def apply_css
     provider = Gtk::CssProvider.new
@@ -100,11 +100,11 @@ class Astuces
   def setup_text_view
     @text_view_page = @builder.get_object('viewtext')
 
-    # Création d'un buffer pour la transmission du texte
+    # Création d'un buffer pour la transimition du texte
     @text_buffer_page = Gtk::TextBuffer.new
     @text_view_page.set_buffer @text_buffer_page
 
-    # Nom pour le css
+    # nom pour le css
     @text_view_page.name = 'text_view_page'
   end
 
@@ -164,7 +164,7 @@ class Astuces
   end
 
   #
-  # Methode qui vide la fenêtre. A utiliser avant de léguer la fenêtre à un nouveau menu
+  # Methode qui vide la fenêtre. A utiliser avant de leguer la fenêtre à un nouveau menu
   #
   def clear_window
     @window.remove(@builder.get_object('astuces'))
