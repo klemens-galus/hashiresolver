@@ -7,8 +7,7 @@ class VictoirePopup
 
 
 
-# Affichage du popup de selection du nom du nouveau profil
-#gla
+# Affichage du popup de sélection du nom du nouveau profil
   def self.popup(score)
     builder = Gtk::Builder.new
     builder.add_from_file('../../asset/glade/VictoirePopup.glade')
@@ -36,7 +35,7 @@ class VictoirePopup
   end
 
   #
-  # Methode qui vide la fenêtre. A utiliser avant de leguer la fenêtre à un nouveau menu
+  # Methode qui vide la fenêtre. A utiliser avant de léguer la fenêtre à un nouveau menu
   #
   def clear_window
     @window.remove(@builder.get_object('victoire'))
