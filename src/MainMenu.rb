@@ -59,11 +59,6 @@ class MainMenu
       Gtk.main_quit
     end
 
-    continuer_btn = @builder.get_object('continuerBtn')
-    continuer_btn.signal_connect('clicked') do
-      play
-    end
-
     arcade_btn = @builder.get_object('arcadeBtn')
     arcade_btn.signal_connect('clicked') do
       arcade
@@ -101,13 +96,6 @@ class MainMenu
   def show
     @window.show_all
     Gtk.main
-  end
-
-  #
-  # Lancement du mode aventure
-  #
-  def play
-    puts('Lancement jeu')
   end
 
   #

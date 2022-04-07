@@ -25,6 +25,9 @@
               <placeholder/>
             </child>
             <child>
+              <placeholder/>
+            </child>
+            <child>
               <object class="GtkButton" id="retourBtn">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -43,9 +46,6 @@
                 <property name="fill">True</property>
                 <property name="position">3</property>
               </packing>
-            </child>
-            <child>
-              <placeholder/>
             </child>
             <child type="center">
               <object class="GtkLabel" id="bienvenueLabel">
@@ -99,64 +99,8 @@
             <property name="can_focus">False</property>
             <property name="margin_bottom">20</property>
             <property name="orientation">vertical</property>
-            <property name="spacing">28</property>
+            <property name="spacing">135</property>
             <property name="homogeneous">True</property>
-            <child>
-              <object class="GtkButton" id="continuerBtn">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="halign">center</property>
-                <property name="valign">center</property>
-                <property name="relief">none</property>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="halign">center</property>
-                    <property name="label" translatable="yes">Continuer</property>
-                    <attributes>
-                      <attribute name="font-desc" value="Pixellari Medium 10"/>
-                      <attribute name="scale" value="5"/>
-                      <attribute name="foreground" value="#eaeae2e2b7b7"/>
-                    </attributes>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="aventureBtn">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="halign">center</property>
-                <property name="valign">center</property>
-                <property name="relief">none</property>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="halign">center</property>
-                    <property name="label" translatable="yes">Aventure</property>
-                    <attributes>
-                      <attribute name="font-desc" value="Pixellari Medium 10"/>
-                      <attribute name="scale" value="5"/>
-                      <attribute name="foreground" value="#eaeae2e2b7b7"/>
-                    </attributes>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">2</property>
-              </packing>
-            </child>
             <child>
               <object class="GtkButton" id="arcadeBtn">
                 <property name="visible">True</property>
@@ -164,6 +108,7 @@
                 <property name="receives_default">True</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>
+                <property name="margin_top">41</property>
                 <property name="relief">none</property>
                 <child>
                   <object class="GtkLabel">
@@ -181,7 +126,7 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">3</property>
+                <property name="position">1</property>
               </packing>
             </child>
             <child>

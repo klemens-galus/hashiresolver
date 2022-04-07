@@ -98,6 +98,10 @@
             <property name="can_focus">True</property>
             <property name="halign">center</property>
             <property name="editable">False</property>
+            <property name="left_margin">15</property>
+            <property name="right_margin">15</property>
+            <property name="top_margin">15</property>
+            <property name="bottom_margin">15</property>
             <property name="cursor_visible">False</property>
           </object>
           <packing>
