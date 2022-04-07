@@ -13,9 +13,9 @@ require_relative '../Util/UndoRedo'
 class Grille < Gtk::Grid
   # @data_niveau Données du niveau actuel
   # @taille Taille de la grille (selon les données du niveau)
-  # @selected Ile séléctionnée
+  # @selected Île sélectionnée
   # @liste_ponts Liste des ponts crées
-  # @liste_iles Liste des iles du niveau (utilisée pour la verification de victoire)
+  # @liste_iles Liste des îles du niveau (utilisée pour la vérification de victoire)
   # @gui Le menu qui contient la grille
   # @diff Le niveau de difficulté
 
@@ -45,7 +45,7 @@ class Grille < Gtk::Grid
   def charger_niveau(difficulty, niveau)
     fichier_niveau = File.open("../levels/#{difficulty}/#{niveau}.yml")
 
-    # Récuperation des  données en YAML (format hash)
+    # Récupération des  données en YAML (format hash)
     @data_niveau = YAML.load(fichier_niveau.read)
 
     # Taille de la zone de jeu (carré pour l'instant)
@@ -56,10 +56,10 @@ class Grille < Gtk::Grid
   end
 
   #
-  # Initialise la grille avec des cellules vides puit place les iles par rapport aux données
+  # Initialise la grille avec des cellules vides puis place les îles par rapport aux données
   #
   def placer_iles
-    # Placement case vides
+    # Placement cases vides
     (0..@taille - 1).each do |i|
       (0..@taille - 1).each do |j|
         attach(CaseVide.new.set_sensitive(false), i, j, 1, 1)
@@ -69,64 +69,64 @@ class Grille < Gtk::Grid
     # Debug
     puts @data_niveau[:iles].split('%')
 
-    # Lecture des données pour placer les iles
+    # Lecture des données pour placer les îles
     @data_niveau[:iles].split('%').each do |data_ile|
       pos = data_ile.split('/')[0]
       nombre_ponts = data_ile.split('/')[1]
       x = pos.split(',')[0]
       y = pos.split(',')[1]
 
-      # Récuperation de la case vide à l'endroit voulu pour echanger avec l'ile
+      # Récupération de la case vide à l'endroit voulu pour échanger avec l'île
       case_vide = get_child_at(x.to_i, y.to_i)
       remove(case_vide)
 
       # Debug
       puts "creation ile #{x},#{y} |#{nombre_ponts}|"
 
-      # Ajout de l'ile dans la grille
+      # Ajout de l'île dans la grille
       ile = Ile.new(x.to_i, y.to_i, nombre_ponts.to_i, self, @undoRedo)
       attach(ile, x.to_i, y.to_i, 1, 1)
 
-      # Ajout de l'ile dans la liste pour la verification de victoire
+      # Ajout de l'île dans la liste pour la vérification de victoire
       @liste_iles << ile
     end
   end
 
   #
-  # Recherche d'un pont entre deux iles
+  # Recherche d'un pont entre deux îles
   #
-  # @param [Ile] ile1 Premiere ile du pont
-  # @param [Ile] ile2 Seconde ile du pont
+  # @param [Ile] île1 Premiere île du pont
+  # @param [Ile] île2 Seconde île du pont
   #
-  # @return [Pont] Pont trouvé ou nil si aucun pont entre les deux iles
+  # @return [Pont] Pont trouvé ou nil si aucun pont entre les deux îles
   #
   def get_pont(ile1, ile2)
     @liste_ponts.each do |pont|
-      # Verification dans les deux sens (ile1 => ile2 et ile2 => ile1)
+      # Vérification dans les deux sens (ile1 => ile2 et ile2 => ile1)
       if (pont.ile_debut == ile1 && pont.ile_fin == ile2) || (pont.ile_debut == ile2 && pont.ile_fin == ile1)
         return pont
       end
     end
 
-    # Aucun pont trouvé
+    # Aucuns ponts trouvés
     nil
   end
 
   #
-  # Ajoute les cases qui separent deux iles pour former un pont
+  # Ajoute les cases qui séparent deux îles pour former un pont
   #
-  # @param [Pont] pont Le pont a former
+  # @param [Pont] pont Le pont à former
   #
   def ajouter_corp_pont(pont)
     if pont.orientation == Orientation::VERTICAL
-      # Parcours de cases qui séparent deux iles verticales
+      # Parcours de cases qui séparent deux îles verticales
       (pont.ile_debut.y..pont.ile_fin.y).each do |y|
-        # Ajout de la case seulement si ce n'est pas une ile (permet de passer les iles des bouts)
+        # Ajout de la case seulement si ce n'est pas une île (permet de passer les îles des bouts)
         pont.ajouter_case_pont(get_child_at(pont.ile_debut.x, y)) unless get_child_at(pont.ile_debut.x,
                                                                                       y).instance_of?(Ile)
       end
     elsif pont.orientation == Orientation::HORIZONTAL
-      # Meme principe pour des iles horizontales
+      # Même principe pour des îles horizontales
       (pont.ile_debut.x..pont.ile_fin.x).each do |x|
         pont.ajouter_case_pont(get_child_at(x, pont.ile_debut.y)) unless get_child_at(x,
                                                                                       pont.ile_debut.y).instance_of?(Ile)
@@ -135,22 +135,22 @@ class Grille < Gtk::Grid
   end
 
   #
-  # Verifie si le pont que l'on veut créer croise un autre pont ou rencontre une ile
+  # Vérifie si le pont que l'on veut créer croise un autre pont ou rencontre une ile
   #
-  # @param [Pont] pont Le pont à verifier
+  # @param [Pont] pont Le pont à vérifier
   #
   # @return [Boolean] true si le pont peut être créer, false sinon
   #
   def verification_croisement(pont)
     if pont.orientation == Orientation::VERTICAL
-      # Verification de toutes les cases pour un pont à la vertical
+      # Vérification de toutes les cases pour un pont à la vertical
       (pont.ile_debut.y + 1..pont.ile_fin.y - 1).each do |y|
         case_pont = get_child_at(pont.ile_debut.x, y)
-        # detection si une case n'est pas libre ou si une ile est sur le chemin du pont
+        # détection de si une case n'est pas libre ou si une île est sur le chemin du pont
         return false if case_pont.instance_of?(Ile) || !case_pont.libre
       end
     elsif pont.orientation == Orientation::HORIZONTAL
-      # Meme principe pour l'horizontal
+      # Même principe pour l'horizontal
       (pont.ile_debut.x + 1..pont.ile_fin.x - 1).each do |x|
         case_pont = get_child_at(x, pont.ile_debut.y)
         return false if case_pont.instance_of?(Ile) || !case_pont.libre
@@ -161,7 +161,7 @@ class Grille < Gtk::Grid
   end
 
   #
-  # Création d'un pont entre deux iles
+  # Création d'un pont entre deux îles
   #
   # @param [Ile] ile1 Premiere ile du pont
   # @param [Ile] ile2 Seconde ile du pont
@@ -172,7 +172,7 @@ class Grille < Gtk::Grid
 
     # Cas où le pont souhaité n'existe pas
     if get_pont(ile1, ile2).nil?
-      # Memes x => pont vertical
+      # Mêmes x => pont vertical
       if ile1.x == ile2.x
         # Création des ponts avec ile_depart.x < ile_fin.x pour avoir tous les ponts dans le même sens
         pont = Pont.new(ile1, ile2, Orientation::VERTICAL) if ile1.y < ile2.y
@@ -186,7 +186,7 @@ class Grille < Gtk::Grid
       end
 
       if !pont.nil? && verification_croisement(pont)
-        # Ajout du pont dans la liste, les iles et affichage du pont
+        # Ajout du pont dans la liste, les îles et affichage du pont
         @liste_ponts << pont
 
         ile1.ajouter_pont(pont)
@@ -209,32 +209,32 @@ class Grille < Gtk::Grid
         @liste_ponts.delete(pont)
       else
         pont.double = true
-        # Mise a jour de l'affichage de toutes les parties du pont pour afficher un pont double
+        # Mise à jour de l'affichage de toutes les parties du pont pour afficher un pont double
         pont.afficher
       end
     end
 
-    # Deselection des iles à la fin de la création du pont
+    # Désélection des îles à la fin de la création du pont
     ile1.remove_border
     ile2.remove_border
     @selected = nil
 
-    # Verification de victoire
+    # Vérification de victoire
     gagner if check_victoire
   end
 
   #
-  # Verification de toutes les iles pour la victoire
+  # Vérification de toutes les îles pour la victoire
   #
   def check_victoire
-    # Verification de la completion de chaques iles
+    # Vérification de la complétion de chaques îles
     return if @gui.etat == EtatJeu::GAGNE
 
     @liste_iles.each do |ile|
       return false if ile.numero != ile.nombre_ponts
     end
 
-    # Toutes les iles sont completes
+    # Toutes les îles sont complètes
     true
   end
 
@@ -253,7 +253,7 @@ class Grille < Gtk::Grid
   end
 
   #
-  # Désactive les iles pour empecher la modification après une victoire
+  # Désactive les îles pour empecher la modification après une victoire
   #
   def desactiver_iles
     @liste_iles.each do |ile|

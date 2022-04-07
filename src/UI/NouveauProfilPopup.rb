@@ -3,7 +3,7 @@ require_relative 'AppColors'
 
 class NouveauProfilPopup < Gtk::Window
   # @builder Builder gtk pour la mise en place du fichier Glade
-  # @pseudo_entry Boite de texte qui contient le pseudo choisi par le joueur
+  # @pseudo_entry Boîte de texte qui contient le pseudo choisi par le joueur
   # @valider_button Le bouton de validation du popup
 
   attr_reader :valider_button, :pseudo_entry
