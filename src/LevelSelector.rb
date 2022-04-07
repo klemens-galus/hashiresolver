@@ -1,7 +1,8 @@
 require 'gtk3'
 require 'gdk3'
-require './ArcadeMenu'
-require './PartieMenu'
+require_relative 'ArcadeMenu'
+require_relative 'PartieMenu'
+require_relative './Jeu/EtatJeu'
 
 #
 # Menu de selection des niveaux du mode arcade
@@ -52,6 +53,10 @@ class LevelSelector
 
     liste_niveaux.each do |niveau|
       label = Gtk::Label.new(niveau)
+
+      # Marquage si le niveau est déjà fini
+      label.set_text("#{label.text} ✓") if niveau_est_deja_fini?(niveau)
+
       label.name = 'BTNLVL'
 
       button = Gtk::Button.new
@@ -65,6 +70,26 @@ class LevelSelector
 
       @list_box.add(button)
     end
+  end
+
+  #
+  # Verifi si le niveau donné est déjà fini par le joueur
+  #
+  # @param [String] niveau Niveau en cours de traitement
+  #
+  # @return [Boolean] Si oui où non le niveau est terminé par le joueur
+  #
+  def niveau_est_deja_fini?(niveau)
+    # Chargement données joueur
+    data_joueur = YAML.load(File.open("../saves/#{@pseudo}.yml", 'r').read)
+
+    # Le niveau n'est pas dans le fichier => ne peut pas être fini
+    return false unless data_joueur[:arcade][@diff.to_sym].key?(niveau.to_sym)
+
+    # Récuperation des données du joueur sur le niveau
+    data_niveau = data_joueur[:arcade][@diff.to_sym][niveau.to_sym]
+
+    return data_niveau[:etat] == EtatJeu::GAGNE
   end
 
   #
