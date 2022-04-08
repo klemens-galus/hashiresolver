@@ -221,6 +221,8 @@ class Grille < Gtk::Grid
 
     # Verification de victoire
     gagner if check_victoire
+
+    @gui.sauvegarder_grille(calcul_score)
   end
 
   #
