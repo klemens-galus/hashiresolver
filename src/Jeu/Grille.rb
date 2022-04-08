@@ -221,6 +221,8 @@ class Grille < Gtk::Grid
 
     # Verification de victoire
     gagner if check_victoire
+
+    @gui.sauvegarder_grille(calcul_score)
   end
 
   #
@@ -269,6 +271,7 @@ class Grille < Gtk::Grid
     puts score.to_s
 
     @gui.etat = EtatJeu::GAGNE
+    @gui.stop_chrono
     @gui.sauvegarder_grille(score)
 
     desactiver_iles
