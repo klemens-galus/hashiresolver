@@ -166,6 +166,7 @@ class PartieMenu
   # Retour sur la selection de niveau
   #
   def back
+    stop_chrono
     sauvegarder_grille(@jeu_grille.calcul_score)
     clear_window
     LevelSelector.new(@window, @diff, @pseudo)
@@ -198,7 +199,7 @@ class PartieMenu
   # Sasuvegarde la grille dans le fichier du joueur
   #
   def sauvegarder_grille(score)
-    stop_chrono
+    # stop_chrono
     Sauvegardeur.sauvegarder_niveau_arcade(@diff, @niveau, @pseudo, @jeu_grille, @chrono, score, @etat)
   end
 
